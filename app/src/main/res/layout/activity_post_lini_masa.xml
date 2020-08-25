@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".activity.PostLiniMasa">
+
+    <RelativeLayout
+        android:id="@+id/header_relaitve"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back_blue" />
+
+        <TextView
+            android:id="@+id/post_linimasa_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/back_button"
+            android:fontFamily="sans-serif"
+            android:text="Tambahkan Post Ke Lini Masa"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/foto_post_linimasa_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_relaitve"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
+        android:text="Foto Post"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <ImageView
+        android:id="@+id/foto_post_linimasa_picture"
+        android:layout_width="match_parent"
+        android:layout_height="128dp"
+        android:layout_below="@id/foto_post_linimasa_label"
+        android:layout_marginTop="10dp"
+        android:background="#EBEBEB"
+        android:src="@drawable/ic_baseline_add_photo_alternate_24" />
+
+    <TextView
+        android:id="@+id/caption_post_linimasa_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/foto_post_linimasa_picture"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
+        android:text="Caption Post"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/caption_post_linimasa_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/caption_post_linimasa_label"
+        android:layout_marginTop="10dp"
+        android:hint="Tulis Caption Disini..."
+        android:inputType="textMultiLine" />
+
+    <ProgressBar
+        android:id="@+id/horizontalProgressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/button_post_linimasa" />
+
+    <Button
+        android:id="@+id/button_post_linimasa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/button_blue_rounded_5dp"
+        android:text="Post"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+
+</RelativeLayout>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/blue_stroke_rounded_5dp"
+        android:padding="10dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/linimasa_avatar"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:src="@drawable/placeholder_avatar_human" />
+
+        <TextView
+            android:id="@+id/linimasa_users_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/linimasa_avatar"
+            android:fontFamily="sans-serif-medium"
+            android:text="Pevita Pearce"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/linimasa_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linimasa_users_name"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/linimasa_avatar"
+            android:fontFamily="sans-serif-light"
+            android:text="09.00, 20 Agustus 2020"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:id="@+id/linimasa_picture"
+            android:layout_width="match_parent"
+            android:layout_height="128dp"
+            android:layout_below="@id/linimasa_avatar"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder_linimasa_picture" />
+
+        <View
+            android:id="@+id/blue_rectangle_like"
+            android:layout_width="50dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/linimasa_picture"
+            android:layout_alignParentEnd="true"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/like_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linimasa_picture"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="10dp"
+            android:fontFamily="sans-serif"
+            android:text="100"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_below="@id/linimasa_picture"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_toStartOf="@id/like_amount"
+            android:src="@drawable/ic_baseline_favorite_24" />
+
+        <TextView
+            android:id="@+id/linimasa_caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/blue_rectangle_like"
+            android:layout_marginTop="4dp"
+            android:text="@string/lorem"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/linimasa_like_button"
+            android:layout_width="74dp"
+            android:layout_height="26dp"
+            android:layout_below="@id/linimasa_caption"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_blue_rounded_5dp"
+            android:fontFamily="sans-serif"
+            android:text="Suka"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

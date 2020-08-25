@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".fragment.LiniMasaFragment">
+
+    <!-- TODO: Menunggu Header dari Syfa -->
+    <View
+        android:id="@+id/headerView"
+        android:layout_width="match_parent"
+        android:layout_height="136dp"
+        android:background="@drawable/button_blue_rounded_5dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/linimasa_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerView"
+        android:layout_marginTop="20dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/linimasa_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:focusable="true"
+        android:src="@drawable/ic_baseline_add_24"
+        android:tint="@color/white"
+        app:borderWidth="0dp"
+        app:fabCustomSize="64dp"
+        app:maxImageSize="48dp"
+        app:rippleColor="@android:color/background_dark" />
+</RelativeLayout>
