@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Profile">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bc_profile"
+        android:orientation="vertical">
+
+<ImageView
+    android:layout_width="109dp"
+    android:layout_height="109dp"
+    android:layout_marginLeft="140dp"
+    android:src="@drawable/man"
+    android:layout_marginTop="100dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Andhi Kurniawan"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"
+       />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    <TextView
+        android:id="@+id/pro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Program yang diikuti"
+        android:textColor="#8D8D8D"
+        android:textSize="14sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        />
+        <TextView
+            android:id="@+id/lihat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Lihat"
+            android:textColor="#8D8D8D"
+            android:layout_toRightOf="@+id/pro"
+            android:textSize="14sp"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="170dp"
+            />
+        <ImageButton
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="8dp"
+            android:background="@drawable/ic_next"
+            android:layout_toRightOf="@+id/lihat"
+            android:layout_marginTop="18dp"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@drawable/screen_menu"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginEnd="16dp"/>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-220dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/button3"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/ic_baseline_edit_24"
+            android:layout_marginStart="32dp"
+            />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="60dp"
+            android:text="Edit Profil"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Go"
+            android:paddingBottom="12dp"
+            android:paddingRight="8dp"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/btn_editpro"
+            android:layout_marginLeft="195dp"
+            android:onClick="GoToEdit"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-60dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/img_achiv"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/ic_achiv"
+            android:layout_marginStart="32dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="60dp"
+            android:text="Achievement"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            />
+
+        <Button
+            android:id="@+id/btn_achiv"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Go"
+            android:paddingBottom="12dp"
+            android:paddingRight="8dp"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/btn_editpro"
+            android:layout_marginLeft="175dp"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-60dp"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/ic_baseline_mobile_friendly_24"
+            android:layout_marginStart="32dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="60dp"
+            android:text="Tutorial Penggunaan Aplikasi"
+            android:textSize="14sp"
+            android:textStyle="normal"
+            />
+
+        <Button
+            android:id="@+id/btn_tutorial"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="Go"
+            android:paddingBottom="12dp"
+            android:paddingRight="8dp"
+            android:textAlignment="center"
+            android:textColor="#fff"
+            android:layout_marginTop="65dp"
+            android:background="@drawable/btn_editpro"
+            android:layout_marginLeft="75dp"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="236dp"
+        android:layout_height="47dp"
+        android:text="Logout"
+        android:textColor="#fff"
+        android:maxLines="1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="45dp"
+        android:textStyle="bold"
+        android:background="@drawable/btn_edit"
+        />
+
+    </LinearLayout>
+</ScrollView>
