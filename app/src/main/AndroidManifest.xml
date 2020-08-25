@@ -15,12 +15,15 @@
         <activity android:name=".activity.ProgramKesehatan" />
         <activity android:name=".activity.PostLiniMasa" />
         <activity android:name=".activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        <activity android:name=".Homepage"></activity>
+        <activity android:name=".Daftar_Olahraga" />
+        <activity android:name=".Detail_Olahraga" />
+        <activity android:name=".Aktivitas"/>
         <activity android:name=".AddReminder">
         </activity>
         <activity android:name=".Reminder">
