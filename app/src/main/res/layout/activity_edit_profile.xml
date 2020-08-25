@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".EditProfile">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bc_profile">
+    <ImageView
+        android:layout_width="109dp"
+        android:layout_height="109dp"
+        android:layout_marginLeft="140dp"
+        android:src="@drawable/man"
+        android:layout_marginTop="100dp"/>
+<ImageButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/btn_editavatar"
+    android:layout_marginLeft="210dp"
+    android:layout_marginTop="-60dp"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama"
+                android:textSize="14dp"
+                android:textColor="#8B87B3"
+                android:textStyle="normal"
+                />
+            <EditText
+                android:id="@+id/txt_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text"
+                android:hint="Andhi Kurniawan"
+                android:padding="16dp"
+                android:maxLines="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jenis Kelamin"
+                android:textSize="14dp"
+                android:layout_marginTop="16dp"
+                android:textColor="#8B87B3"
+                android:textStyle="normal"
+                />
+            <EditText
+                android:id="@+id/txt_jeniskelamin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text"
+                android:hint="Pria"
+                android:padding="16dp"
+                android:maxLines="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Umur"
+                android:textSize="14dp"
+                android:layout_marginTop="16dp"
+                android:textColor="#8B87B3"
+                android:textStyle="normal"
+                />
+            <EditText
+                android:id="@+id/txt_umur"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text"
+                android:hint="21 tahun"
+                android:padding="16dp"
+                android:maxLines="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Berat Badan"
+                android:textSize="14dp"
+                android:layout_marginTop="16dp"
+                android:textColor="#8B87B3"
+                android:textStyle="normal"
+                />
+            <EditText
+                android:id="@+id/txt_berat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text"
+                android:hint="70 kg"
+                android:padding="16dp"
+                android:maxLines="1"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tinggi Badan"
+                android:textSize="14dp"
+                android:layout_marginTop="16dp"
+                android:textColor="#8B87B3"
+                android:textStyle="normal"
+                />
+            <EditText
+                android:id="@+id/txt_tinggi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/edit_text"
+                android:hint="179 cm"
+                android:padding="16dp"
+                android:maxLines="1"
+                />
+
+        </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_edit"
+        android:layout_width="236dp"
+        android:layout_height="47dp"
+        android:text="Simpan"
+        android:textColor="#fff"
+        android:maxLines="1"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="45dp"
+        android:textStyle="bold"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/btn_edit"
+        />
+</LinearLayout>
+</ScrollView>
