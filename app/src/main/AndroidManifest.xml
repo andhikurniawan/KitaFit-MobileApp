@@ -9,7 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Homepage"></activity>
+        <activity android:name=".Daftar_Olahraga" />
+        <activity android:name=".MainActivity">
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
+        </activity>
+        <activity android:name=".Detail_Olahraga" />
+        <activity android:name=".Aktivitas"/>
+
         <activity android:name=".AddReminder">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,15 +56,6 @@
         <activity android:name=".Register" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity android:name=".MainActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
