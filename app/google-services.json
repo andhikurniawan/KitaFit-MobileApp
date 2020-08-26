@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "784097502728",
+    "firebase_url": "https://kitafit-f4d8d.firebaseio.com",
+    "project_id": "kitafit-f4d8d",
+    "storage_bucket": "kitafit-f4d8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:784097502728:android:c1af65ff488060d39b53bd",
+        "android_client_info": {
+          "package_name": "com.akasa.kitafit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "784097502728-sqmavvqsm0fpf5j8one1vc7rh8r3nnt4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdZhTfGLFSZgZA0FD3Eb-vm5EyqDnvYYM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "784097502728-sqmavvqsm0fpf5j8one1vc7rh8r3nnt4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
