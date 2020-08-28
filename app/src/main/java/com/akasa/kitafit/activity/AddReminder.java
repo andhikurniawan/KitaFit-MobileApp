@@ -1,14 +1,16 @@
-package com.akasa.kitafit;
+package com.akasa.kitafit.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Daftar_Olahraga extends AppCompatActivity {
+import com.akasa.kitafit.R;
+
+public class AddReminder extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_daftar__olahraga);
+        setContentView(R.layout.activity_add_reminder);
     }
 }

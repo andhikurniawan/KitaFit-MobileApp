@@ -1,10 +1,12 @@
-package com.akasa.kitafit;
+package com.akasa.kitafit.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import com.akasa.kitafit.R;
 
 public class Profile extends AppCompatActivity {
 

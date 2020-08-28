@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/loginscreen"
     android:orientation="vertical"
-    tools:context=".Login">
+    tools:context=".activity.Login">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +45,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/title2"
-        android:onClick="GoToRegis"
         android:text="@string/register"
         android:layout_marginLeft="8dp"
         android:textColor="#1D9CF1"
@@ -69,6 +68,7 @@
         android:background="@drawable/edit_pass"
         android:layout_width="275dp"
         android:paddingLeft="50dp"
+        android:inputType="textPassword"
         android:paddingBottom="12dp"
         android:layout_height="40dp"
         android:textColorHint="#8D8D8D"
@@ -76,6 +76,7 @@
         android:layout_marginStart="42dp"/>
 
     <Button
+        android:id="@+id/btn_login"
         android:layout_width="57dp"
         android:layout_height="46dp"
         android:background="@drawable/btn_login"
