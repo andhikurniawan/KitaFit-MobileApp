@@ -67,7 +67,7 @@ public class PostLiniMasa extends AppCompatActivity {
         captionField = findViewById(R.id.caption_post_linimasa_field);
         postButton = findViewById(R.id.button_post_linimasa);
         progressBar = findViewById(R.id.horizontalProgressBar);
-        ref = FirebaseDatabase.getInstance().getReference("lini_masa");
+        ref = FirebaseDatabase.getInstance().getReference("lini_masa").child("id_post");
         counterRef = FirebaseDatabase.getInstance().getReference("lini_masa").child("counter_id_post");
         userRef = FirebaseDatabase.getInstance().getReference("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 

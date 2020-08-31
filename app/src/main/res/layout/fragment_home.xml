@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="343dp"
+            android:layout_height="135dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/kotak_header"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/user"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/man"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"/>
+
+            <TextView
+                android:id="@+id/judul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hallo!"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@+id/user"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="33dp"/>
+
+            <ImageButton
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/bell"
+                android:layout_toRightOf="@+id/judul"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="140dp"/>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Syfa Nur Lathifah"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@+id/user"
+                android:layout_marginLeft="24dp"
+                android:layout_below="@+id/judul"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="19 Tahun"
+                android:textSize="14sp"
+                android:textColor="@color/white"
+                android:layout_toRightOf="@+id/user"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="85dp"/>
+
+
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/judul_rekomendasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rekomendasi Program Kesehatan"
+                android:layout_toRightOf="@+id/pola2"
+                android:textColor="@color/black"
+                android:layout_marginLeft="16dp"
+                android:textSize="14dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEE ALL"
+                android:layout_toRightOf="@+id/judul_rekomendasi"
+                android:textColor="@color/inibiru"
+                android:layout_marginLeft="80dp"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="14dp"
+                android:background="@drawable/borderr"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/gambar2"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_below="@+id/polamakan2"
+                    android:layout_centerHorizontal="true"
+                    android:paddingLeft="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pushup" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gambar2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="Diet Sehat"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/borderr"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/gambar3"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_below="@+id/polamakan2"
+                    android:layout_centerHorizontal="true"
+                    android:paddingLeft="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pushup" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gambar3"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="Diet Sehat"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/borderr"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/gambar4"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_below="@+id/polamakan2"
+                    android:layout_centerHorizontal="true"
+                    android:paddingLeft="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pushup" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gambar4"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="Diet Sehat"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/borderr"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/gambar1"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_below="@+id/polamakan2"
+                    android:layout_centerHorizontal="true"
+                    android:paddingLeft="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/pushup" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/gambar1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="Diet Sehat"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/judul_olahraga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Olahraga Paling Populer"
+                android:layout_toRightOf="@+id/pola2"
+                android:textColor="@color/black"
+                android:layout_marginLeft="16dp"
+                android:textSize="14dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SEE ALL"
+                android:layout_toRightOf="@+id/judul_olahraga"
+                android:textColor="@color/inibiru"
+                android:layout_marginLeft="140dp"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="105dp"
+                android:layout_marginLeft="14dp"
+                android:background="@drawable/borderr"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ol1"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_below="@+id/polamakan2"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/badminton" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ol1"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="Badminton"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="105dp"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/borderr"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ol2"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_below="@+id/polamakan2"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/badminton" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ol2"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="Badminton"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="105dp"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/borderr"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ol3"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_below="@+id/polamakan2"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/badminton" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ol3"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="Badminton"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="100dp"
+                android:layout_height="105dp"
+                android:layout_marginLeft="6dp"
+                android:background="@drawable/borderr"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/ol4"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_below="@+id/polamakan2"
+                    android:layout_centerHorizontal="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/badminton" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ol4"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:text="Badminton"
+                    android:textColor="@color/black"
+                    android:textSize="12dp"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <View android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="#bbb"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Berita"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"/>
+
+        <ImageView
+            android:layout_width="332dp"
+            android:layout_height="240dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/berita" />
+
+
+        <!--        <androidx.cardview.widget.CardView-->
+        <!--            app:cardCornerRadius="6dp"-->
+        <!--            android:layout_margin="16dp"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content">-->
+
+
+        <!--            <com.denzcoskun.imageslider.ImageSlider-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="250dp"-->
+        <!--                android:id="@+id/slider"-->
+        <!--                app:auto_cycle="true"-->
+        <!--                app:delay="0"-->
+        <!--                app:period="1000"-->
+        <!--                app:corner_radius="5">-->
+
+        <!--            </com.denzcoskun.imageslider.ImageSlider>-->
+
+
+        <!--        </androidx.cardview.widget.CardView>-->
+
+    </LinearLayout>
+
+</ScrollView>

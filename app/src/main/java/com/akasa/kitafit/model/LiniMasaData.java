@@ -19,6 +19,9 @@ public class LiniMasaData {
         this.jumlah_like = jumlah_like;
     }
 
+    public LiniMasaData() {
+    }
+
     public int getId_post() {
         return id_post;
     }

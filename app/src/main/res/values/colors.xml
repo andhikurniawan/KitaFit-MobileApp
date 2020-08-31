@@ -145,4 +145,6 @@
     <color name="navy">#000080</color>
     <color name="black">#000000</color>
     <color name="merah">#B00020</color>
+
+    <color name="InactiveBottomNavIconColor">#80FFFFFF</color>
 </resources>
