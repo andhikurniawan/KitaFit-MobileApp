@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.akasa.kitafit.R;
 import com.akasa.kitafit.model.LiniMasaData;
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,6 +31,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
@@ -72,14 +74,6 @@ public class PostLiniMasa extends AppCompatActivity {
         // cek counter post + user data
         cekCounterPost();
         getUserData();
-
-        // cek hari ini
-        Date c = Calendar.getInstance().getTime();
-        System.out.println("Current time : "+c);
-
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("kk.mm, dd MMMM yyyy", locale);
-        String formateDate = simpleDateFormat.format(c);
-        Log.d(TAG, "Hari ini : "+formateDate);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,9 +121,33 @@ public class PostLiniMasa extends AppCompatActivity {
                                                 foto_post = uri.toString();
                                                 idPost++;
                                                 counterRef.setValue(idPost);
+                                                // cek hari ini
+                                                Date c = Calendar.getInstance().getTime();
+                                                System.out.println("Current time : "+c);
+
+                                                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("kk.mm, dd MMMM yyyy", locale);
+                                                tanggal_post = simpleDateFormat.format(c);
+                                                Log.d(TAG, "Hari ini : "+tanggal_post);
+                                                caption_post = captionField.getText().toString();
                                                 LiniMasaData liniMasaData = new LiniMasaData(idPost, nama_user, foto_user, tanggal_post, foto_post, caption_post, jumlah_like);
+                                                ref.child(String.valueOf(idPost)).setValue(liniMasaData);
+                                                Log.d(TAG, "onSuccess: Sukses Post!");
                                             }
                                         });
+                                        Toast.makeText(PostLiniMasa.this, "Sukses Menambahkan Post!", Toast.LENGTH_SHORT).show();
+                                        onBackPressed();
+                                        finish();
+                                    }
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(PostLiniMasa.this, "Ups ada kesalahan : "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }).addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onProgress(@NonNull UploadTask.TaskSnapshot taskSnapshot) {
+                                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                                        progressBar.setProgress((int) progress);
                                     }
                                 });
                     } else {

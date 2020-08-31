@@ -90,6 +90,6 @@ public class Register extends AppCompatActivity {
 
         private void UploadData(){
             UserData user= new UserData(nama,"","","","",email,password,"");
-            myRef.child("user").setValue(user);
+            myRef.child("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
         }
     }
