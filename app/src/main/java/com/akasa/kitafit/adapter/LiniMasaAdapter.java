@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,6 +23,7 @@ import com.bumptech.glide.load.DataSource;
 import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -34,10 +36,9 @@ public class LiniMasaAdapter extends RecyclerView.Adapter<LiniMasaAdapter.ViewHo
 
     Context mContext;
     ArrayList<LiniMasaData> linimasaData;
-    DatabaseReference ref;
-    int jumlahLike = 0;
+    DatabaseReference ref, userLikedRef;
     private static final String TAG = "LiniMasaAdapter";
-
+    int jumlahLike = 0;
     public LiniMasaAdapter(Context mContext, ArrayList<LiniMasaData> linimasaData) {
         this.mContext = mContext;
         this.linimasaData = linimasaData;
@@ -48,6 +49,7 @@ public class LiniMasaAdapter extends RecyclerView.Adapter<LiniMasaAdapter.ViewHo
     public LiniMasaAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.linimasa_items, parent, false);
         ref = FirebaseDatabase.getInstance().getReference("lini_masa").child("id_post");
+        userLikedRef = FirebaseDatabase.getInstance().getReference().child("liked_post").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         return new ViewHolder(view);
     }
 
@@ -90,37 +92,42 @@ public class LiniMasaAdapter extends RecyclerView.Adapter<LiniMasaAdapter.ViewHo
                 })
                 .into(holder.fotoPost);
         holder.likeUser.setText(String.valueOf(linimasaData.get(position).getJumlah_like()));
+
         holder.captionUser.setText(linimasaData.get(position).getCaption_post());
-        ref.child(String.valueOf(linimasaData.get(position).getId_post())).child("jumlah_like").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    jumlahLike = Integer.parseInt(snapshot.getValue().toString());
-            }
 
+        userLikedRef.child(String.valueOf(linimasaData.get(position).getId_post())).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        ref.keepSynced(true);
-        holder.sukaButton.setOnClickListener(new View.OnClickListener() {
-            Boolean isLiked = false;
-            @Override
-            public void onClick(View v) {
-                if (isLiked == false) {
-                    jumlahLike++;
-                    ref.child(String.valueOf(linimasaData.get(position).getId_post())).child("jumlah_like").setValue(jumlahLike);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
                     holder.sukaButton.setText("Disukai");
                     holder.sukaButton.setBackground(mContext.getResources().getDrawable(R.drawable.blue_stroke_rounded_5dp));
                     holder.sukaButton.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
-                    isLiked = true;
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        holder.sukaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jumlahLike = Integer.parseInt(holder.likeUser.getText().toString());
+                if (holder.sukaButton.getText().toString().equals("Suka")) {
+                    jumlahLike++;
+                    ref.child(String.valueOf(linimasaData.get(position).getId_post())).child("jumlah_like").setValue(jumlahLike);
+                    userLikedRef.child(String.valueOf(linimasaData.get(position).getId_post())).setValue("Disukai");
+                    holder.sukaButton.setText("Disukai");
+                    holder.sukaButton.setBackground(mContext.getResources().getDrawable(R.drawable.blue_stroke_rounded_5dp));
+                    holder.sukaButton.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
                 } else {
                     jumlahLike--;
                     ref.child(String.valueOf(linimasaData.get(position).getId_post())).child("jumlah_like").setValue(jumlahLike);
+                    userLikedRef.child(String.valueOf(linimasaData.get(position).getId_post())).removeValue();
                     holder.sukaButton.setText("Suka");
                     holder.sukaButton.setBackground(mContext.getResources().getDrawable(R.drawable.button_blue_rounded_5dp));
                     holder.sukaButton.setTextColor(mContext.getResources().getColor(R.color.white));
-                    isLiked = false;
                 }
             }
         });

@@ -8,11 +8,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.akasa.kitafit.R;
 import com.akasa.kitafit.activity.PostLiniMasa;
@@ -51,8 +54,8 @@ public class LiniMasaFragment extends Fragment {
         progressBar = view.findViewById(R.id.progressbarlingkaran);
         progressBar.setVisibility(View.VISIBLE);
         ref = FirebaseDatabase.getInstance().getReference("lini_masa").child("id_post");
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(context));
+        LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(context, RecyclerView.VERTICAL, true);
+        recyclerView.setLayoutManager(linearLayoutManager);
         readData();
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,20 +67,23 @@ public class LiniMasaFragment extends Fragment {
     }
 
     private void readData() {
+        list = new ArrayList<>();
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    list = new ArrayList<>();
+                    list.clear();
                     for (DataSnapshot ds : dataSnapshot.getChildren()){
                         LiniMasaData liniMasaData = ds.getValue(LiniMasaData.class);
                         list.add(liniMasaData);
                     }
                     LiniMasaAdapter liniMasaAdapter = new LiniMasaAdapter(context, list);
+                    liniMasaAdapter.setHasStableIds(true);
                     recyclerView.setAdapter(liniMasaAdapter);
                     progressBar.setVisibility(View.GONE);
                 } else {
                     progressBar.setVisibility(View.GONE);
+                    Toast.makeText(context, "Yuk Tambahkan Aktivitasmu ke Lini Masa!", Toast.LENGTH_SHORT).show();
                 }
             }
 
