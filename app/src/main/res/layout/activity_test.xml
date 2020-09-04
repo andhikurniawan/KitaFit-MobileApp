@@ -10,12 +10,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
-            android:id="@+id/edit1"/>
+            android:id="@+id/edit1"
+            android:textColor="@color/black"/>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tambah"
             android:id="@+id/btn1"
-            android:onClick="Click1"/>
+            />
 </LinearLayout>

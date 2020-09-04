@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.Olahraga"
+    >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/inibiru">
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ic_arrow_back_black_24dp"
+            android:layout_marginStart="20dp"
+            />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="16dp"
+            android:layout_toRightOf="@+id/button3"
+            android:text="Daftar Olahraga"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/uhuy">
+
+        <EditText
+            android:id="@+id/cari"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="27dp"
+            android:layout_marginTop="6dp"
+            android:hint="Cari Olahraga"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="normal"
+            />
+
+        <Button
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginTop="11dp"
+            android:layout_toRightOf="@+id/cari"
+            android:background="@drawable/ic_search_black_24dp"
+            android:layout_marginLeft="180dp"
+            />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerview">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
+
+
+
+
+

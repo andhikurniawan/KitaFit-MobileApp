@@ -147,4 +147,5 @@
     <color name="merah">#B00020</color>
 
     <color name="InactiveBottomNavIconColor">#80FFFFFF</color>
+    <color name="fab_pressed">#546e7a</color>
 </resources>
