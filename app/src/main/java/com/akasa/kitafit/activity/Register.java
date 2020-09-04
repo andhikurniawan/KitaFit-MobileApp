@@ -3,6 +3,7 @@ package com.akasa.kitafit.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.akasa.kitafit.R;
-import com.akasa.kitafit.model.UserData;
+import com.akasa.kitafit.model.usermodel;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -27,7 +28,7 @@ public class Register extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference();
     String nama,email, password,konfirmpass;
-
+    private ProgressDialog loadingBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +38,7 @@ public class Register extends AppCompatActivity {
         mPassword=findViewById(R.id.password_regis);
         mKonfirmPass=findViewById(R.id.konpassword_regis);
         mRegistBtn=findViewById(R.id.btn_register);
-
+        loadingBar = new ProgressDialog(this);
         fauth=FirebaseAuth.getInstance();
 //
 //        if(fauth.getCurrentUser()!=null){
@@ -71,15 +72,20 @@ public class Register extends AppCompatActivity {
                 if (!konfirmpass.equals(password)) {
                     Toast.makeText(Register.this, "Password & KonfirmPass harus sama", Toast.LENGTH_SHORT).show();
                 }
-
+                loadingBar.setTitle("Register Account");
+                loadingBar.setMessage("Please wait, while we are checking the credentials.");
+                loadingBar.setCanceledOnTouchOutside(false);
+                loadingBar.show();
                 fauth.createUserWithEmailAndPassword(email,konfirmpass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             UploadData();
+                            loadingBar.dismiss();
                             Toast.makeText(Register.this, "Akun user berhasil dbuat!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Homepage.class));
+                            startActivity(new Intent(getApplicationContext(), Login.class));
                         }else {
+                            loadingBar.dismiss();
                             Toast.makeText(Register.this, "Error!"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -89,7 +95,11 @@ public class Register extends AppCompatActivity {
         }
 
         private void UploadData(){
-            UserData user= new UserData(nama,"","","","",email,password,"");
-            myRef.child("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+          usermodel user= new usermodel (nama,"","","","",email,password,"https://firebasestorage.googleapis.com/v0/b/kitafit-f4d8d.appspot.com/o/User%2Fmain.png?alt=media&token=0ad67028-e674-46f5-a0b6-d3b80ee77317");
+            myRef.child("user").child(fauth.getUid()).setValue(user);
         }
+
+    public void GoToLogin(View view) {
+        startActivity(new Intent(getApplicationContext(), Login.class));
     }
+}
