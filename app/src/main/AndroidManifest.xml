@@ -2,6 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.akasa.kitafit">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+
+    <uses-feature android:name="android.hardware.screen.portrait" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,33 +19,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activity.TutorialPenggunaanAplikasi"></activity>
-        <activity android:name=".activity.DetailProgramKesehatan" />
-        <activity android:name=".activity.ProgramKesehatan" />
-        <activity android:name=".activity.PostLiniMasa" />
-        <activity android:name=".activity.MainActivity">
-
-        </activity>
-        <activity android:name=".Homepage">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".Daftar_Olahraga" />
-        <activity android:name=".Detail_Olahraga" />
-        <activity android:name=".Aktivitas"/>
-        <activity android:name=".AddReminder">
-        </activity>
-        <activity android:name=".Reminder">
+        <activity android:name=".activity.test">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
         </activity>
-        <activity android:name=".EditProfile">
+        <activity android:name=".activity.TutorialPenggunaanAplikasi" />
+        <activity android:name=".activity.DetailProgramKesehatan" />
+        <activity android:name=".activity.ProgramKesehatan" />
+        <activity android:name=".activity.PostLiniMasa">
+        </activity>
+        <activity android:name=".activity.MainActivity">
+
+        <activity android:name=".activity.Reminderku">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+
+
+
+        </activity>
+        <activity android:name=".activity.Homepage" />
+        <activity android:name=".activity.Daftar_Olahraga" />
+        <activity android:name=".activity.Detail_Olahraga" />
+        <activity android:name=".activity.Aktivitas" />
+        <activity android:name=".activity.EditProfile">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -45,7 +54,7 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".Profile">
+        <activity android:name=".activity.Profile">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -54,17 +63,24 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".Login" />
-        <activity android:name=".SplashScreen">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+        <activity android:name=".activity.Register" />
+        <activity android:name=".activity.Login" />
+        <activity android:name=".activity.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <receiver android:name=".adapter.NotifAlarm"/>
+
+        <provider
+            android:name=".adapter.AlarmReminderProvider"
+            android:authorities="com.delaroystudios.alarmreminder"
+            android:exported="false" />
+
+        <service
+            android:name=".adapter.ReminderAlarmService"
+            android:exported="false" />
     </application>
 
 </manifest>
