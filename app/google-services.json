@@ -15,17 +15,6 @@
       },
       "oauth_client": [
         {
-<<<<<<< HEAD
-          "client_id": "784097502728-uuf0qkd21i24scn5brtfgv3bnis2bpmt.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.akasa.kitafit",
-            "certificate_hash": "4d8f130a47ea9a3630eee6ac8e10b0035d246f4a"
-          }
-        },
-        {
-=======
->>>>>>> 4b792ec3818c10ada66f7a1647928574ebfb469e
           "client_id": "784097502728-7lh5qaqmor9hco553akao6725n3394pr.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

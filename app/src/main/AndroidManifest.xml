@@ -31,13 +31,11 @@
         <activity android:name=".activity.ProgramKesehatan" />
         <activity android:name=".activity.PostLiniMasa">
         </activity>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"/>
 
         <activity android:name=".activity.Reminderku">
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
-
-
 
 
         </activity>
