@@ -17,5 +17,5 @@
             android:layout_height="wrap_content"
             android:text="Tambah"
             android:id="@+id/btn1"
-            android:onClick="Click1"/>
+            />
 </LinearLayout>
