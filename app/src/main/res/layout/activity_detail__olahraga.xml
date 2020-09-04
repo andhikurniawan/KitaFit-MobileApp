@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".Detail_Olahraga">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
 <ImageView
     android:layout_width="match_parent"
@@ -15,7 +19,7 @@
 />
 
     <TextView
-        android:id="@+id/nama_olahraga"
+        android:id="@+id/namaolahraga"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Push Up"
@@ -35,7 +39,7 @@
         android:lineSpacingExtra="5dp"
         android:textSize="14dp"
         android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem"
-        android:textStyle="bold" />
+        />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -70,33 +74,36 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="20 min"
+            android:id="@+id/durasi"
             android:textColor="@color/black"
             android:layout_marginTop="14dp"
             android:layout_marginLeft="16dp"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="~ 200"
+            android:id="@+id/kalori"
             android:textColor="@color/black"
             android:layout_marginTop="14dp"
-            android:layout_marginLeft="70dp"
-            android:textSize="18dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Otot Lengan"
+            android:id="@+id/fokus"
             android:textColor="@color/black"
             android:layout_marginTop="14dp"
-            android:layout_marginLeft="80dp"
-            android:textSize="18dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="16dp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -108,28 +115,28 @@
 
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="Durasi"
             android:layout_marginLeft="16dp"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:textSize="14dp"
+            />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:text="Kalori"
-            android:layout_marginLeft="80dp"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:layout_marginLeft="50dp"
+            android:textSize="14dp"
+            />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Fokus Area"
-            android:layout_marginLeft="85dp"
-            android:textSize="16dp"
-            android:textStyle="bold" />
+            android:layout_marginLeft="50dp"
+            android:textSize="14dp"
+            />
 
     </LinearLayout>
 
@@ -194,5 +201,6 @@
 
 
     </LinearLayout>
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>
 
