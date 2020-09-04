@@ -22,6 +22,7 @@ import com.akasa.kitafit.R;
 import com.akasa.kitafit.adapter.AlarmReminderContract;
 import com.akasa.kitafit.adapter.AlarmReminderDbHelper;
 
+
 //public class Reminder2 extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 //    private Toolbar mToolbar;
 //    AlarmCursorAdapter mCursorAdapter;
@@ -100,3 +101,4 @@ import com.akasa.kitafit.adapter.AlarmReminderDbHelper;
 //        startActivity(intent);
 //    }
 //}
+
