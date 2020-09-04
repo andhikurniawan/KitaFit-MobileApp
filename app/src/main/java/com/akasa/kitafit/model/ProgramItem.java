@@ -1,4 +1,4 @@
-package com.akasa.kitafit;
+package com.akasa.kitafit.model;
 
 public class ProgramItem {
 

@@ -1,8 +1,7 @@
-package com.akasa.kitafit;
+package com.akasa.kitafit.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,6 +16,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.akasa.kitafit.R;
+import com.akasa.kitafit.activity.Olahraga;
+import com.akasa.kitafit.activity.OlahragaViewHolder;
+import com.akasa.kitafit.activity.ProgramViewHolder;
+import com.akasa.kitafit.model.OlahragaItem;
+import com.akasa.kitafit.model.ProgramItem;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -44,8 +49,8 @@ public class Homepage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
 
-olahraga();
-program();
+        olahraga();
+        program();
 
 
         TextView Nama = findViewById(R.id.namauser);

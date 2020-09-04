@@ -1,12 +1,9 @@
-package com.akasa.kitafit;
+package com.akasa.kitafit.activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.widget.ImageView;
-import android.widget.TextView;
-
+import com.akasa.kitafit.R;
+import com.akasa.kitafit.model.OlahragaItem;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,11 +12,11 @@ import com.google.firebase.database.ValueEventListener;
 
 public class Detail_Olahraga extends AppCompatActivity {
 
-    TextView t1, deskripsi, durasi, fokus_area, kalori;
+    android.widget.TextView t1, deskripsi, durasi, fokus_area, kalori;
     private String id = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(android.os.Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail__olahraga);
         id = getIntent().getStringExtra("pid");
@@ -30,7 +27,7 @@ public class Detail_Olahraga extends AppCompatActivity {
         fokus_area = findViewById(R.id.fokus);
         kalori = findViewById(R.id.kalori);
 
-    getDetailOlahraga(id);
+        getDetailOlahraga(id);
     }
 
     private void getDetailOlahraga(String id) {
@@ -52,7 +49,7 @@ public class Detail_Olahraga extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@androidx.annotation.NonNull DatabaseError databaseError) {
 
             }
         });

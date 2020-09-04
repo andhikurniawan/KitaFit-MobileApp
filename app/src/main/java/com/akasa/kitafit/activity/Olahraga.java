@@ -1,4 +1,4 @@
-package com.akasa.kitafit;
+package com.akasa.kitafit.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.akasa.kitafit.R;
+import com.akasa.kitafit.model.OlahragaItem;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -57,7 +59,7 @@ public class Olahraga extends AppCompatActivity {
                 holder.v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent e = new Intent(Olahraga.this,Detail_Olahraga.class);
+                        Intent e = new Intent(Olahraga.this, Detail_Olahraga.class);
                         e.putExtra("pid", model.getId());
                         startActivity(e);
                     }

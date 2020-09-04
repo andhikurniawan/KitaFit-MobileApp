@@ -1,102 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bc_addremind"
-    tools:context=".AddReminder">
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Judul Reminder"
-    android:textColor="#000"
-    android:textSize="16sp"
-    android:layout_marginTop="250dp"
-    android:layout_marginStart="16dp"/>
-<EditText
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:padding="8dp"
-    android:background="@drawable/edit_text"
-    android:layout_marginStart="16dp"
-    android:layout_marginEnd="16dp"
-    android:hint="Remind To Me"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tanggal"
-            android:textSize="16sp"
-            android:textColor="#000"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Waktu"
-            android:layout_marginLeft="140dp"
-            android:textSize="16sp"
-            android:textColor="#000"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:orientation="horizontal">
-        <EditText
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:background="@drawable/edit_text"
-            android:layout_marginEnd="16dp"
-            android:hint="Tanggal"/>
-        <EditText
-            android:layout_width="160dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:background="@drawable/edit_text"
-            android:layout_marginEnd="16dp"
-            android:hint="Waktu"/>
-    </LinearLayout>
-    <TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Deskripsi"
-    android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-    android:textSize="16sp"
-    android:textColor="#000"/>
+    android:background="@drawable/bc_add"
+    tools:context=".activity.AddReminder">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        android:padding="8dp"
-        android:background="@drawable/edit_text"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Deskripsi"/>
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:orientation="vertical"-->
+<!--        android:layout_height="match_parent">-->
+<!--<TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="Judul Reminder"-->
+<!--    android:textColor="#000"-->
+<!--    android:textSize="16sp"-->
+<!--    android:layout_marginTop="180dp"-->
+<!--    android:layout_marginStart="16dp"/>-->
+<!--<EditText-->
+<!--    android:id="@+id/reminder_title"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginTop="8dp"-->
+<!--    android:padding="8dp"-->
+<!--    android:background="@drawable/edit_text"-->
+<!--    android:layout_marginStart="16dp"-->
+<!--    android:layout_marginEnd="16dp"-->
+<!--    android:hint="Remind To Me"/>-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:orientation="horizontal">-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Tanggal"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textColor="#000"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Waktu"-->
+<!--            android:layout_marginLeft="140dp"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textColor="#000"/>-->
+<!--    </LinearLayout>-->
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:orientation="horizontal">-->
+<!--        <EditText-->
+<!--            android:id="@+id/set_date"-->
+<!--            android:layout_width="180dp"-->
+<!--            android:onClick="setDate"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="8dp"-->
+<!--            android:background="@drawable/edit_text"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:hint="Tanggal"/>-->
+<!--        <EditText-->
+<!--            android:id="@+id/set_time"-->
+<!--            android:layout_width="160dp"-->
+<!--            android:onClick="setTime"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:padding="8dp"-->
+<!--            android:background="@drawable/edit_text"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:hint="Waktu"/>-->
+<!--    </LinearLayout>-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Repeat"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="#000"/>-->
+<!--<LinearLayout-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:layout_marginTop="8dp"-->
+<!--    android:orientation="horizontal">-->
+<!--    <TextView-->
+<!--        android:id="@+id/set_repeat"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:textSize="16dp"-->
+<!--        android:text="Setiap 3 jam"/>-->
+<!--    <Switch-->
+<!--        android:id="@+id/repeat_switch"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginLeft="220dp"-->
+<!--        android:onClick="onSwitchRepeat"-->
+<!--        android:checked="true"-->
+<!--        android:textOn="On"-->
+<!--        android:textOff="Off"/>-->
+<!--</LinearLayout>-->
+<!--    <TextView-->
+<!--    android:layout_width="wrap_content"-->
+<!--    android:layout_height="wrap_content"-->
+<!--    android:text="Repetition Interval"-->
+<!--    android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--    android:textSize="16sp"-->
+<!--    android:textColor="#000"/>-->
 
-    <Button
-        android:id="@+id/btn_edit"
-        android:layout_width="236dp"
-        android:layout_height="47dp"
-        android:text="Add"
-        android:textColor="#fff"
-        android:maxLines="1"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="45dp"
-        android:textStyle="bold"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/btn_edit"
-        />
-</LinearLayout>
+<!--    <EditText-->
+<!--        android:id="@+id/set_repeat_no"-->
+<!--        android:onClick="setRepeatNo"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:padding="8dp"-->
+<!--        android:background="@drawable/edit_text"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:hint="3"/>-->
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Type of Repetitions"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:textSize="16sp"-->
+<!--        android:textColor="#000"/>-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/set_repeat_type"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:padding="8dp"-->
+<!--        android:onClick="selectRepeatType"-->
+<!--        android:background="@drawable/edit_text"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:hint="hour"/>-->
+
+<!--    <Button-->
+<!--        android:id="@+id/btn_add_reminder"-->
+<!--        android:layout_width="236dp"-->
+<!--        android:layout_height="47dp"-->
+<!--        android:text="Add"-->
+<!--        android:textColor="#fff"-->
+<!--        android:onClick="SaveReminder"-->
+<!--        android:maxLines="1"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_marginTop="45dp"-->
+<!--        android:textStyle="bold"-->
+<!--        android:layout_marginBottom="24dp"-->
+<!--        android:background="@drawable/btn_edit"-->
+<!--        />-->
+
+<!--    </LinearLayout>-->
+</ScrollView>
