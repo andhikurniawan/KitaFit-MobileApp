@@ -37,7 +37,7 @@ public class Profile extends AppCompatActivity {
     LayoutInflater inflater;
     View dialogView;
     private List<ProgramKesehatanData> listData;
-    private HistoryAdapter adapter;
+    HistoryAdapter adapter;
     String UID;
     TextView mUsername;
     private FirebaseAuth firebaseAuth;
@@ -76,8 +76,8 @@ public class Profile extends AppCompatActivity {
     }
 
     private void showListData(){
-        DatabaseReference  mRef=FirebaseDatabase.getInstance().getReference("program_kesehatan");
-        final DatabaseReference pkref=FirebaseDatabase.getInstance().getReference("history_program");
+        DatabaseReference  mRef = FirebaseDatabase.getInstance().getReference("program_kesehatan");
+        final DatabaseReference pkref = FirebaseDatabase.getInstance().getReference("history_program");
     mRef.addValueEventListener(new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -88,11 +88,14 @@ public class Profile extends AppCompatActivity {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         for(DataSnapshot ds2 : dataSnapshot.getChildren()){
-                            if(ds.child("id_program_kesehatan").getValue().equals(ds2.getKey())){
+                            if(ds.child("id_program_kesehatan").getValue().toString().equals(ds2.getKey())){
+                                System.out.println("Value "+ds.getValue());
                                 ProgramKesehatanData pk =ds.getValue(ProgramKesehatanData.class);
                                 listData.add(pk);
                             }
                         }
+                        adapter = new HistoryAdapter(Profile.this,listData);
+                        mRecyclerView.setAdapter(adapter);
                     }
 
                     @Override
@@ -101,8 +104,7 @@ public class Profile extends AppCompatActivity {
                     }
                 });
             }
-                adapter=new HistoryAdapter(Profile.this,listData);
-            mRecyclerView.setAdapter(adapter);
+
         }
         }
 
