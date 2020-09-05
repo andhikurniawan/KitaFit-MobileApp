@@ -16,7 +16,7 @@
             android:id="@+id/linimasa_avatar"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:src="@drawable/placeholder_avatar_human" />
+            android:src="@drawable/avatar_placeholder" />
 
         <TextView
             android:id="@+id/linimasa_users_name"

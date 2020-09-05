@@ -23,7 +23,7 @@
         android:layout_below="@id/title_daftar"
         android:layout_centerInParent="true"
         android:scaleType="centerCrop"
-        android:src="@drawable/placeholder_linimasa_picture" />
+        android:src="@drawable/img_placeholder" />
 
     <TextView
         android:id="@+id/content_daftar"
@@ -34,8 +34,10 @@
         android:fontFamily="sans-serif-medium"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:text="Cereal"
+        android:text=""
         android:textColor="@color/white"
-        android:textSize="18sp" />
+        android:textSize="14sp"
+        android:gravity="center"
+        />
 
 </RelativeLayout>

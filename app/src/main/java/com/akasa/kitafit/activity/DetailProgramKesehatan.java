@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -58,9 +59,9 @@ public class DetailProgramKesehatan extends AppCompatActivity {
         makanSiangView = findViewById(R.id.makanSiang);
         makanMalamView = findViewById(R.id.makanMalam);
 
-//        retrieveIntent();
-//        polaMakanRef();
-//        settingText();
+        retrieveIntent();
+        polaMakanRef();
+        settingText();
 
 //        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailProgramKesehatan.this, RecyclerView.HORIZONTAL, false);
 //        polaMakanRecycler.setLayoutManager(linearLayoutManager);
@@ -77,43 +78,17 @@ public class DetailProgramKesehatan extends AppCompatActivity {
 
     private void polaMakanRef() {
         polaMakanList = new ArrayList<>();
-        makanRef.child("sarapan").addListenerForSingleValueEvent(new ValueEventListener() {
+        makanRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                polaMakanList.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    System.out.println("Value : "+ds.getValue());
                     PolaMakanData pmd = ds.getValue(PolaMakanData.class);
                     Log.d(TAG, "gambar "+pmd.getGambar()+"\njudul : "+pmd.getJudul()+"\nlink : "+pmd.getLink());
-                    polaMakanList.add(0, pmd);
+                    polaMakanList.add(pmd);
                 }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        makanRef.child("makan_siang").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    PolaMakanData pmd = ds.getValue(PolaMakanData.class);
-                    polaMakanList.add(1, pmd);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-        makanRef.child("makan_malam").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    PolaMakanData pmd = ds.getValue(PolaMakanData.class);
-                    polaMakanList.add(2, pmd);
-                }
+                polaMakanSettingData();
             }
 
             @Override
@@ -134,7 +109,7 @@ public class DetailProgramKesehatan extends AppCompatActivity {
         ImageView gambarMakanMalam = makanMalamView.findViewById(R.id.image_daftar);
 
         Glide.with(this)
-                .load(polaMakanList.get(0).getGambar())
+                .load(polaMakanList.get(2).getGambar())
                 .centerCrop()
                 .into(gambarSarapan);
 
@@ -143,9 +118,38 @@ public class DetailProgramKesehatan extends AppCompatActivity {
                 .centerCrop()
                 .into(gambarMakanSiang);
         Glide.with(this)
-                .load(polaMakanList.get(2).getGambar())
+                .load(polaMakanList.get(0).getGambar())
                 .centerCrop()
                 .into(gambarMakanMalam);
+
+        TextView makananPagi = sarapanview.findViewById(R.id.content_daftar);
+        TextView makanSiang = makanSiangView.findViewById(R.id.content_daftar);
+        TextView makanMalam = makanMalamView.findViewById(R.id.content_daftar);
+        makananPagi.setText(polaMakanList.get(2).getJudul());
+        makanSiang.setText(polaMakanList.get(1).getJudul());
+        makanMalam.setText(polaMakanList.get(0).getJudul());
+
+        sarapanview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri web = Uri.parse(polaMakanList.get(2).getLink());
+                startActivity(new Intent(Intent.ACTION_VIEW, web));
+            }
+        });
+        makanSiangView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri web = Uri.parse(polaMakanList.get(1).getLink());
+                startActivity(new Intent(Intent.ACTION_VIEW, web));
+            }
+        });
+        makanMalamView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri web = Uri.parse(polaMakanList.get(0).getLink());
+                startActivity(new Intent(Intent.ACTION_VIEW, web));
+            }
+        });
     }
 
     private void settingText() {
@@ -167,20 +171,5 @@ public class DetailProgramKesehatan extends AppCompatActivity {
         deskripsiProgramIntent = intent.getStringExtra(DESKRIPSI_PROGRAM_KESEHATAN);
         olahragaRef = FirebaseDatabase.getInstance().getReference("daftar_olahraga_pk").child(idProgramIntent).child("hari");
         makanRef = FirebaseDatabase.getInstance().getReference("pola_makan").child(idProgramIntent);
-        makanRef.child("sarapan").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()){
-                    Log.d(TAG, "onDataChange: Ada");
-                } else  {
-                    Log.d(TAG, "onDataChange: nope");
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 }

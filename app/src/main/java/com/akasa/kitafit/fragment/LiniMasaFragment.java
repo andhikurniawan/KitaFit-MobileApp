@@ -74,6 +74,7 @@ public class LiniMasaFragment extends Fragment {
                 if (dataSnapshot.exists()){
                     list.clear();
                     for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        System.out.println("Value : "+ds.getValue());
                         LiniMasaData liniMasaData = ds.getValue(LiniMasaData.class);
                         list.add(liniMasaData);
                     }
