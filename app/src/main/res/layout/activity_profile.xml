@@ -10,15 +10,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/bc_profile"
+        android:layout_marginBottom="0dp"
         android:orientation="vertical">
 
 <com.mikhaellopez.circularimageview.CircularImageView
     android:id="@+id/imgprofil_user"
-    android:layout_width="109dp"
-    android:layout_height="109dp"
+    android:layout_width="90dp"
+    android:layout_height="90dp"
     android:layout_marginLeft="140dp"
     android:src="@drawable/man"
-    android:layout_marginTop="100dp"/>
+    android:layout_marginTop="110dp"/>
 
     <TextView
         android:id="@+id/userprofil_nama"
@@ -30,10 +31,6 @@
         android:layout_marginTop="8dp"
         android:layout_gravity="center_horizontal"
        />
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/pro"
         android:layout_width="wrap_content"
@@ -44,36 +41,37 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         />
-        <TextView
-            android:id="@+id/lihat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lihat"
-            android:textColor="#8D8D8D"
-            android:layout_toRightOf="@+id/pro"
-            android:textSize="14sp"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="130dp"
-            />
-        <ImageButton
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginLeft="8dp"
-            android:background="@drawable/ic_next"
-            android:layout_toRightOf="@+id/lihat"
-            android:layout_marginTop="18dp"/>
-    </RelativeLayout>
+<!--        <TextView-->
+<!--            android:id="@+id/lihat"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Lihat"-->
+<!--            android:textColor="#8D8D8D"-->
+<!--            android:layout_toRightOf="@+id/pro"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginLeft="130dp"-->
+<!--            />-->
+<!--        <ImageButton-->
+<!--            android:layout_width="18dp"-->
+<!--            android:layout_height="18dp"-->
+<!--            android:layout_marginLeft="8dp"-->
+<!--            android:background="@drawable/ic_next"-->
+<!--            android:layout_toRightOf="@+id/lihat"-->
+<!--            android:layout_marginTop="18dp"/>-->
+
 <androidx.recyclerview.widget.RecyclerView
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/recyclerView_history"
+    android:layout_marginTop="16dp"
     android:orientation="horizontal"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="170dp"
         android:background="@drawable/screen_menu"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp"/>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -201,7 +199,6 @@
         android:text="Logout"
         android:onClick="Logout"
         android:textColor="#fff"
-        android:maxLines="1"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="45dp"
         android:textStyle="bold"

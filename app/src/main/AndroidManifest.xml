@@ -33,14 +33,16 @@
         </activity>
 
         <activity android:name=".activity.MainActivity"></activity>
-        
+
 
 
         <activity android:name=".activity.Reminderku">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".activity.Homepage" />
         <activity android:name=".activity.Daftar_Olahraga" />
@@ -57,12 +59,12 @@
         </activity>
         <activity android:name=".activity.Profile">
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
 
 
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
         <activity android:name=".activity.Register" />
         <activity android:name=".activity.Login" />

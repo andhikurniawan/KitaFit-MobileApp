@@ -1,6 +1,7 @@
 package com.akasa.kitafit.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,6 +14,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +30,8 @@ import com.akasa.kitafit.R;
 import com.akasa.kitafit.adapter.AdapterReminder;
 import com.akasa.kitafit.adapter.NotifAlarm;
 import com.akasa.kitafit.model.AppDatabase;
+import com.akasa.kitafit.model.LiniMasaData;
+import com.akasa.kitafit.model.ReminderData;
 import com.akasa.kitafit.model.Reminders;
 import com.akasa.kitafit.model.RoomDAO;
 import com.akasa.kitafit.model.usermodel;
@@ -41,11 +45,17 @@ import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+@RequiresApi(api = Build.VERSION_CODES.O)
 public class Reminderku extends AppCompatActivity {
     private ImageButton add;
     private Dialog dialog;
@@ -57,7 +67,12 @@ public class Reminderku extends AppCompatActivity {
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase;
     String UID;
+    DatabaseReference mref;
     TextView mUsername;
+    int idPost = 0;
+    ArrayList<ReminderData> list;
+    DateTimeFormatter formattertime = DateTimeFormatter.ofPattern("h:mm a");
+    DateTimeFormatter formatterdate = DateTimeFormatter.ofPattern("EEE, d MMM yyyy");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +81,7 @@ public class Reminderku extends AppCompatActivity {
         mUsername = findViewById(R.id.nama_user);
         final CircularImageView profil = findViewById(R.id.user_img);
         add = findViewById(R.id.fab_add);
-        empty = findViewById(R.id.empty);
+//        empty = findViewById(R.id.empty);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         UID=user.getUid();
@@ -96,21 +111,45 @@ public class Reminderku extends AppCompatActivity {
         });
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(Reminderku.this);
+        LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(Reminderku.this, RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
-        setItemsInRecyclerView();
+//        setItemsInRecyclerView();
+        showdata();
     }
 
-    private void setItemsInRecyclerView() {
-        RoomDAO dao = appDatabase.getRoomDAO();
-        temp = dao.orderThetable();
-        if(temp.size()>0) {
-            empty.setVisibility(View.INVISIBLE);
-            recyclerView.setVisibility(View.VISIBLE);
-        }
-        adapter = new AdapterReminder(getApplicationContext(),temp);
-        recyclerView.setAdapter(adapter);
+    private void showdata(){
+        list = new ArrayList<>();
+        DatabaseReference refku =FirebaseDatabase.getInstance().getReference("Reminder").child(UID);
+        refku.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                list.clear();
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    ReminderData remind = ds.getValue(ReminderData.class);
+                    list.add(remind);
+                }
+
+                AdapterReminder adapterReminder = new AdapterReminder(Reminderku.this,list);
+                recyclerView.setAdapter(adapterReminder);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
+
+//    private void setItemsInRecyclerView() {
+//        RoomDAO dao = appDatabase.getRoomDAO();
+//        temp = dao.orderThetable();
+//        if(temp.size()>0) {
+//            empty.setVisibility(View.INVISIBLE);
+//            recyclerView.setVisibility(View.VISIBLE);
+//        }
+//        adapter = new AdapterReminder(getApplicationContext(),temp);
+//        recyclerView.setAdapter(adapter);
+//    }
 
     private void addReminder() {
         dialog = new Dialog(Reminderku.this);
@@ -120,6 +159,17 @@ public class Reminderku extends AppCompatActivity {
         Button tambah;
         tambah = dialog.findViewById(R.id.btn_tambah_remind);
         final EditText message = dialog.findViewById(R.id.title_reminder);
+        final TextView mTanggal=dialog.findViewById(R.id.tgl_remind);
+        final TextView mJam=dialog.findViewById(R.id.jam_remind);
+
+
+        //GetTanggal
+        LocalDate today = LocalDate.now();
+        final String tgl = today.format(formatterdate);
+
+        //GetJam
+        LocalTime now = LocalTime.now();
+        final String jam = now.format(formattertime);
 
         final Calendar newCalender = Calendar.getInstance();
         dateAndTime.setOnClickListener(new View.OnClickListener() {
@@ -138,8 +188,11 @@ public class Reminderku extends AppCompatActivity {
                                 newDate.set(year,month,dayOfMonth,hourOfDay,minute,0);
                                 Calendar tem = Calendar.getInstance();
                                 Log.w("TIME",System.currentTimeMillis()+"");
+                                mTanggal.setText(tgl);
+                                mJam.setText(jam);
                                 if(newDate.getTimeInMillis()-tem.getTimeInMillis()>0)
                                     dateAndTime.setText(newDate.getTime().toString());
+
                                 else
                                     Toast.makeText(Reminderku.this,"Invalid time",Toast.LENGTH_SHORT).show();
 
@@ -158,30 +211,49 @@ public class Reminderku extends AppCompatActivity {
         tambah.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RoomDAO roomDAO = appDatabase.getRoomDAO();
-                Reminders reminders = new Reminders();
-                reminders.setMessage(message.getText().toString().trim());
-                Date remind = new Date(dateAndTime.getText().toString().trim());
-                reminders.setRemindDate(remind);
-                roomDAO.Insert(reminders);
-                List<Reminders> l = roomDAO.getAll();
-                reminders = l.get(l.size()-1);
-                Log.e("ID chahiye",reminders.getId()+"");
+//                RoomDAO roomDAO = appDatabase.getRoomDAO();
+//                Reminders reminders = new Reminders();
+//                reminders.setMessage(message.getText().toString().trim());
+//                Date remind = new Date(dateAndTime.getText().toString().trim());
+//                reminders.setRemindDate(remind);
+//                roomDAO.Insert(reminders);
+//                List<Reminders> l = roomDAO.getAll();
+//                reminders = l.get(l.size()-1);
+//                Log.e("ID chahiye",reminders.getId()+"");
+
+                String title= message.getText().toString().trim();
+               String remind = dateAndTime.getText().toString().trim();
+                Date remindtime = new Date(dateAndTime.getText().toString().trim());
+                String tanggal =mTanggal.getText().toString().trim();
+                String waktu =mJam.getText().toString().trim();
+                //GetTanggal
+
+                ReminderData reminderData= new ReminderData();
+                idPost++;
+                reminderData.setId(idPost);
+                reminderData.setTitle(title);
+                reminderData.setDate_time(remind);
+                reminderData.setJam(waktu);
+                reminderData.setTanggal(tanggal);
+
+                mref=FirebaseDatabase.getInstance().getReference().child("Reminder").child(UID);
+                mref.child(String.valueOf(idPost)).setValue(reminderData);
 
                 Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+5:30"));
-                calendar.setTime(remind);
+                calendar.setTime(remindtime);
                 calendar.set(Calendar.SECOND,0);
                 Intent intent = new Intent(Reminderku.this, NotifAlarm.class);
-                intent.putExtra("Message",reminders.getMessage());
-                intent.putExtra("RemindDate",reminders.getRemindDate().toString());
-                intent.putExtra("id",reminders.getId());
-                PendingIntent intent1 = PendingIntent.getBroadcast(Reminderku.this,reminders.getId(),intent,PendingIntent.FLAG_UPDATE_CURRENT);
+                intent.putExtra("Message",reminderData.getTitle());
+                intent.putExtra("RemindDate",reminderData.getDate_time());
+                intent.putExtra("Image",reminderData.getImg());
+                intent.putExtra("id",reminderData.getId());
+                PendingIntent intent1 = PendingIntent.getBroadcast(Reminderku.this,reminderData.getId(),intent,PendingIntent.FLAG_UPDATE_CURRENT);
                 AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
                 alarmManager.setExact(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),intent1);
 
                 Toast.makeText(Reminderku.this,"Inserted Successfully",Toast.LENGTH_SHORT).show();
-                setItemsInRecyclerView();
-                AppDatabase.destroyInstance();
+//                setItemsInRecyclerView();
+//                AppDatabase.destroyInstance();
                 dialog.dismiss();
 
             }

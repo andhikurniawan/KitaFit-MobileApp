@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,19 +18,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.akasa.kitafit.R;
 import com.akasa.kitafit.model.AppDatabase;
+import com.akasa.kitafit.model.ProgramKesehatanData;
+import com.akasa.kitafit.model.ReminderData;
 import com.akasa.kitafit.model.Reminders;
 import com.akasa.kitafit.model.RoomDAO;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class AdapterReminder extends RecyclerView.Adapter<AdapterReminder.MyViewHolder> {
 
     private AppDatabase appDatabase;
-    private List<Reminders> allReminders;
-    private TextView message,time;
+private List<ReminderData> mData;
     private Context mContext;
-    public AdapterReminder(Context mContext, List<Reminders> allReminders) {
-        this.allReminders = allReminders;
+    public AdapterReminder(Context mContext,List<ReminderData> mData) {
+        this.mData = mData;
         this.mContext = mContext;
     }
     @NonNull
@@ -41,57 +44,46 @@ public class AdapterReminder extends RecyclerView.Adapter<AdapterReminder.MyView
 
     @Override
     public void onBindViewHolder(@NonNull final AdapterReminder.MyViewHolder holder, int position) {
-        Reminders reminders = allReminders.get(position);
-        holder.btn_hapus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                appDatabase = AppDatabase.geAppdatabase(mContext.getApplicationContext());
-                RoomDAO roomDAO = appDatabase.getRoomDAO();
-                Reminders reminder = new Reminders();
-
-                roomDAO.Delete(reminder);
-                AppDatabase.destroyInstance();
-                AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(mContext, R.style.myDialog));
-                builder.setCancelable(true);
-                builder.setTitle("Batalkan Reminder");
-                builder.setMessage("Apakah anda yakin untuk membatalkan reminder ini?");
-                builder.setPositiveButton("Ya", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-
-                    }
-                });
-                        builder.setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                            }
-                        });
-                builder.show();
-
-            }
-        });
-        if(!reminders.getMessage().equals(""))
-            message.setText(reminders.getMessage());
-        else
-            message.setHint("No Message");
-        time.setText(reminders.getRemindDate().toString());
+        holder.message.setText(mData.get(position).getTitle());
+        holder.time.setText(mData.get(position).getDate_time());
+//        Picasso.get().load(mData.get(position).getImg()).into(holder.img);
+//        Reminders reminders = allReminders.get(position);
+//        holder.btn_hapus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                appDatabase = AppDatabase.geAppdatabase(mContext.getApplicationContext());
+//                RoomDAO roomDAO = appDatabase.getRoomDAO();
+//                Reminders reminder = new Reminders();
+//
+//                roomDAO.Delete(reminder);
+//                AppDatabase.destroyInstance();
+//            }
+//        });
+//        if(!reminders.getMessage().equals(""))
+//            message.setText(reminders.getMessage());
+//        else
+//            message.setHint("No Message");
+//        time.setText(reminders.getRemindDate().toString());
 
     }
 
     @Override
     public int getItemCount() {
-        return allReminders.size();
+        return mData.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageButton btn_hapus;
+         TextView message,time;
+         ImageView img;
+        private View mView;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            message = itemView.findViewById(R.id.judul_remind);
-            time = itemView.findViewById(R.id.date_remind);
-            btn_hapus=itemView.findViewById(R.id.btn_cancel);
+            mView=itemView;
+            message = mView.findViewById(R.id.judul_remind);
+            time = mView.findViewById(R.id.date_remind);
+            btn_hapus=mView.findViewById(R.id.btn_cancel);
+            img=mView.findViewById(R.id.img_re);
         }
     }
 }

@@ -36,7 +36,7 @@ public class LiniMasaFragment extends Fragment {
     RecyclerView recyclerView;
     Context context;
     FloatingActionButton floatingActionButton;
-    DatabaseReference ref;
+        DatabaseReference ref;
     ArrayList<LiniMasaData> list;
     ProgressBar progressBar;
     public LiniMasaFragment() {
