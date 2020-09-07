@@ -30,6 +30,7 @@ import com.akasa.kitafit.activity.ProgramViewHolder;
 import com.akasa.kitafit.model.OlahragaItem;
 import com.akasa.kitafit.model.ProgramItem;
 import com.akasa.kitafit.model.usermodel;
+import com.bumptech.glide.Glide;
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.interfaces.ItemClickListener;
@@ -105,17 +106,21 @@ public class HomeFragment extends Fragment {
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         UID=user.getUid();
-        final CircularImageView profil = v.findViewById(R.id.imgprofil_user);
+        final ImageView profil = v.findViewById(R.id.user);
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("user");
-        mUsername = v.findViewById(R.id.userprofil_nama);
+        mUsername = v.findViewById(R.id.namauser);
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference.child(UID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usermodel user = dataSnapshot.getValue(usermodel.class);
                 mUsername.setText(user.getNama_user());
-                Picasso.get().load(user.getFoto_user()).into(profil);
+                if (user.getFoto_user() != null){
+                    Picasso.get().load(user.getFoto_user()).into(profil);
+                } else {
+                    Picasso.get().load(R.drawable.placeholder_avatar_human).into(profil);
+                }
             }
 
             @Override
