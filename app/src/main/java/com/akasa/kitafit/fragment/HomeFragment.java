@@ -107,7 +107,7 @@ public class HomeFragment extends Fragment {
         });
 
         judul = v.findViewById(R.id.judul);
-        judul.setText("Hello!");
+        judul.setText("Hallo!");
 
 
 
