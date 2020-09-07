@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    >
+    tools:context=".activity.Homepage">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +17,7 @@
             android:layout_height="135dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
             android:background="@drawable/kotak_header"
             android:orientation="vertical">
 
@@ -33,7 +34,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Hallo!"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:textColor="@color/white"
                 android:layout_toRightOf="@+id/user"
                 android:layout_marginLeft="24dp"
@@ -49,10 +50,11 @@
 
 
             <TextView
+                android:id="@+id/namauser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Syfa Nur Lathifah"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="@color/white"
                 android:layout_toRightOf="@+id/user"
                 android:layout_marginLeft="24dp"
@@ -60,10 +62,11 @@
                 />
 
             <TextView
+                android:id="@+id/umur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="19 Tahun"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 android:textColor="@color/white"
                 android:layout_toRightOf="@+id/user"
                 android:layout_marginLeft="24dp"
@@ -92,151 +95,29 @@
                 />
 
             <TextView
+                android:id="@+id/see_all_program_kesehatan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="SEE ALL"
                 android:layout_toRightOf="@+id/judul_rekomendasi"
                 android:textColor="@color/inibiru"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="16dp"
                 android:textSize="14dp"
                 android:textStyle="bold"
-                android:id="@+id/see_all_program_kesehatan"
                 />
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="14dp"
-                android:background="@drawable/borderr"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/gambar2"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_below="@+id/polamakan2"
-                    android:layout_centerHorizontal="true"
-                    android:paddingLeft="16dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/pushup" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/gambar2"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:text="Diet Sehat"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/recyclerview2">
 
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="6dp"
-                android:background="@drawable/borderr"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/gambar3"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_below="@+id/polamakan2"
-                    android:layout_centerHorizontal="true"
-                    android:paddingLeft="16dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/pushup" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/gambar3"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:text="Diet Sehat"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="6dp"
-                android:background="@drawable/borderr"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/gambar4"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_below="@+id/polamakan2"
-                    android:layout_centerHorizontal="true"
-                    android:paddingLeft="16dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/pushup" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/gambar4"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:text="Diet Sehat"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_marginLeft="6dp"
-                android:background="@drawable/borderr"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/gambar1"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_below="@+id/polamakan2"
-                    android:layout_centerHorizontal="true"
-                    android:paddingLeft="16dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/pushup" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/gambar1"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:text="Diet Sehat"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -261,143 +142,24 @@
                 android:text="SEE ALL"
                 android:layout_toRightOf="@+id/judul_olahraga"
                 android:textColor="@color/inibiru"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="124dp"
                 android:textSize="14dp"
+                android:layout_marginRight="16dp"
                 android:textStyle="bold"
+               android:id="@+id/see_all_olahraga"
                 />
 
         </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="105dp"
-                android:layout_marginLeft="14dp"
-                android:background="@drawable/borderr"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ol1"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_below="@+id/polamakan2"
-                    android:layout_centerHorizontal="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/badminton" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ol1"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:text="Badminton"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="8dp"
+            android:id="@+id/recyclerview">
 
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="105dp"
-                android:layout_marginLeft="6dp"
-                android:background="@drawable/borderr"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ol2"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_below="@+id/polamakan2"
-                    android:layout_centerHorizontal="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/badminton" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ol2"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:text="Badminton"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="105dp"
-                android:layout_marginLeft="6dp"
-                android:background="@drawable/borderr"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ol3"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_below="@+id/polamakan2"
-                    android:layout_centerHorizontal="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/badminton" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ol3"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:text="Badminton"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="100dp"
-                android:layout_height="105dp"
-                android:layout_marginLeft="6dp"
-                android:background="@drawable/borderr"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ol4"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_below="@+id/polamakan2"
-                    android:layout_centerHorizontal="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/badminton" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/ol4"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:text="Badminton"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-        </LinearLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
         <View android:layout_width="match_parent"
             android:layout_height="4dp"
@@ -407,41 +169,23 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Berita"
+            android:text="Informasi Kesehatan"
             android:textSize="14dp"
             android:textColor="@color/black"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"/>
 
-        <ImageView
-            android:layout_width="332dp"
-            android:layout_height="240dp"
-            android:layout_marginLeft="16dp"
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="260dp"
             android:layout_marginTop="16dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/berita" />
-
-
-        <!--        <androidx.cardview.widget.CardView-->
-        <!--            app:cardCornerRadius="6dp"-->
-        <!--            android:layout_margin="16dp"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content">-->
-
-
-        <!--            <com.denzcoskun.imageslider.ImageSlider-->
-        <!--                android:layout_width="match_parent"-->
-        <!--                android:layout_height="250dp"-->
-        <!--                android:id="@+id/slider"-->
-        <!--                app:auto_cycle="true"-->
-        <!--                app:delay="0"-->
-        <!--                app:period="1000"-->
-        <!--                app:corner_radius="5">-->
-
-        <!--            </com.denzcoskun.imageslider.ImageSlider>-->
-
-
-        <!--        </androidx.cardview.widget.CardView>-->
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="0"
+            app:iss_period="1000"
+            />
 
     </LinearLayout>
 

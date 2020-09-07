@@ -11,9 +11,9 @@ import com.akasa.kitafit.R;
 
 public class ProgramViewHolder extends RecyclerView.ViewHolder {
 
-    TextView t1;
-    ImageView i1;
-    View v;
+    public TextView t1;
+    public ImageView i1;
+    public View v;
 
 
     public ProgramViewHolder(@NonNull View itemView) {

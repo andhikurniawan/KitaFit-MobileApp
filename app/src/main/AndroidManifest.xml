@@ -31,7 +31,9 @@
         <activity android:name=".activity.ProgramKesehatan" />
         <activity android:name=".activity.PostLiniMasa">
         </activity>
-        <activity android:name=".activity.MainActivity"/>
+        <activity android:name=".activity.MainActivity">
+
+        </activity>
 
         <activity android:name=".activity.Reminderku">
 <!--            <intent-filter>-->
@@ -60,18 +62,18 @@
         <activity android:name=".activity.Register" />
         <activity android:name=".activity.Login" />
         <activity android:name=".activity.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".activity.Olahraga">
 
         </activity>
         <activity android:name=".activity.Homepage">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.Daftar_Olahraga" />
 
