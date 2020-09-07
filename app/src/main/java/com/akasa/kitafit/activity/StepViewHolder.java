@@ -9,20 +9,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.akasa.kitafit.R;
 
-public class ProgramViewHolder extends RecyclerView.ViewHolder {
+public class StepViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView t1;
-    public ImageView i1;
-    public View v;
+    TextView t1;
+    ImageView i1;
+    View v;
 
 
-    public ProgramViewHolder(@NonNull View itemView) {
+    public StepViewHolder(@NonNull View itemView) {
         super(itemView);
 
         t1 = itemView.findViewById(R.id.namaa);
         i1 = itemView.findViewById(R.id.gambarr);
         v = itemView;
 
+    }
 
-    } }
-
+}

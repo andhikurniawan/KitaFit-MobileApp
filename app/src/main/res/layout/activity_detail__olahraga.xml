@@ -4,20 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="activity.Detail_Olahraga">
-
+    tools:context=".activity.Detail_Olahraga">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<ImageView
-    android:layout_width="match_parent"
-    android:layout_height="292dp"
-    android:scaleType="fitXY"
-    android:src="@drawable/tutorial"
-/>
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible" />
+
+        <VideoView
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="292dp"
+            />
 
     <TextView
         android:id="@+id/namaolahraga"
@@ -167,41 +171,15 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="116dp"
-            android:layout_height="110dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/tutorial"
-            />
-
-        <ImageView
-            android:layout_width="116dp"
-            android:layout_height="110dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/tutorial"
-            />
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyclerview2">
 
 
-        <ImageView
-            android:layout_width="116dp"
-            android:layout_height="110dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="8dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/tutorial"
-            />
+        </androidx.recyclerview.widget.RecyclerView>
 
-
-    </LinearLayout>
     </LinearLayout>
 </ScrollView>
 

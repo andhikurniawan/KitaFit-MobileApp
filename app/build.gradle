@@ -80,6 +80,11 @@ dependencies {
     implementation 'com.getbase:floatingactionbutton:1.9.0'
     implementation "android.arch.persistence.room:runtime:1.1.0"
     annotationProcessor "android.arch.persistence.room:compiler:1.1.0"
+    implementation "com.android.support:support-v4:+"
+    implementation 'com.squareup.picasso:picasso:2.3.2'
+    implementation 'com.nineoldandroids:library:2.4.0'
+    implementation 'com.daimajia.slider:library:1.1.5@aar'
+    implementation 'com.github.denzcoskun:ImageSlideshow:0.0.7'
 
 
 }

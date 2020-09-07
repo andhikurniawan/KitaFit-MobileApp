@@ -17,14 +17,14 @@
         android:layout_height="135dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginRight="16dp"
         android:background="@drawable/kotak_header"
         android:orientation="vertical">
 
-        <com.mikhaellopez.circularimageview.CircularImageView
+        <ImageView
             android:id="@+id/user"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:onClick="GoToProfile"
             android:src="@drawable/man"
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"/>
@@ -43,7 +43,6 @@
         <ImageButton
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:onClick="GoToReminder"
             android:background="@drawable/bell"
             android:layout_toRightOf="@+id/judul"
             android:layout_marginTop="40dp"
@@ -51,7 +50,6 @@
 
 
         <TextView
-
             android:id="@+id/namauser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -64,7 +62,6 @@
             />
 
         <TextView
-
             android:id="@+id/umur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -103,7 +100,8 @@
                 android:text="SEE ALL"
                 android:layout_toRightOf="@+id/judul_rekomendasi"
                 android:textColor="@color/inibiru"
-                android:layout_marginLeft="80dp"
+                android:layout_marginLeft="64dp"
+                android:layout_marginRight="16dp"
                 android:textSize="14dp"
                 android:textStyle="bold"
                 />
@@ -143,8 +141,9 @@
                 android:text="SEE ALL"
                 android:layout_toRightOf="@+id/judul_olahraga"
                 android:textColor="@color/inibiru"
-                android:layout_marginLeft="140dp"
+                android:layout_marginLeft="124dp"
                 android:textSize="14dp"
+                android:layout_marginRight="16dp"
                 android:textStyle="bold"
                 android:onClick="olahraga"
                 />
@@ -175,15 +174,17 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"/>
 
-        <ImageView
-            android:layout_width="332dp"
-            android:layout_height="240dp"
-            android:layout_marginLeft="16dp"
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="260dp"
             android:layout_marginTop="16dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/berita" />
-
-
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            app:iss_auto_cycle="true"
+            app:iss_delay="0"
+            app:iss_period="1000"
+             />
 
 </LinearLayout>
 
