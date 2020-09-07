@@ -16,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.akasa.kitafit.R;
+import com.akasa.kitafit.adapter.DaftarOlahragaPKAdapter;
+import com.akasa.kitafit.model.OlahragaItem;
 import com.akasa.kitafit.model.PolaMakanData;
 import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
@@ -43,6 +45,7 @@ public class DetailProgramKesehatan extends AppCompatActivity {
     String idProgramIntent, gambarProgramIntent, kaloriProgramIntent, namaProgramIntent, deskripsiProgramIntent;
     DatabaseReference makanRef, olahragaRef;
     ArrayList<PolaMakanData> polaMakanList;
+    ArrayList<OlahragaItem> olahragaItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +66,10 @@ public class DetailProgramKesehatan extends AppCompatActivity {
         polaMakanRef();
         settingText();
 
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailProgramKesehatan.this, RecyclerView.HORIZONTAL, false);
-//        polaMakanRecycler.setLayoutManager(linearLayoutManager);
-//        daftarOlahragaRecycler.setLayoutManager(linearLayoutManager);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailProgramKesehatan.this, RecyclerView.HORIZONTAL, false);
+        daftarOlahragaRecycler.setLayoutManager(linearLayoutManager);
 
+        readDaftarOlahraga();
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,6 +77,30 @@ public class DetailProgramKesehatan extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void readDaftarOlahraga() {
+        olahragaItems = new ArrayList<>();
+        olahragaRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                olahragaItems.clear();
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        OlahragaItem olahragaItem = ds.getValue(OlahragaItem.class);
+                        Log.d(TAG, "onDataChange: "+ds.getValue());
+                        olahragaItems.add(olahragaItem);
+                    }
+                    DaftarOlahragaPKAdapter daftarOlahragaPKAdapter = new DaftarOlahragaPKAdapter(DetailProgramKesehatan.this, olahragaItems);
+                    daftarOlahragaRecycler.setAdapter(daftarOlahragaPKAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void polaMakanRef() {

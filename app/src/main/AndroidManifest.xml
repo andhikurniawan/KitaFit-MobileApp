@@ -39,7 +39,7 @@
 
 
         </activity>
-        <activity android:name=".activity.Homepage" />
+        <activity android:name=".activity.Homepage"/>
         <activity android:name=".activity.Daftar_Olahraga" />
         <activity android:name=".activity.Detail_Olahraga" />
         <activity android:name=".activity.Aktivitas" />
