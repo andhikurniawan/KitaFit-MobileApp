@@ -14,9 +14,10 @@ import androidx.fragment.app.Fragment;
 import com.akasa.kitafit.R;
 import com.akasa.kitafit.activity.EditProfile;
 import com.akasa.kitafit.activity.Profile;
+import com.akasa.kitafit.activity.TutorialPenggunaanAplikasi;
 
 public class ProfilFragment extends Fragment {
-    Button editProfile;
+    Button editProfile, tutorial;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -27,6 +28,13 @@ public class ProfilFragment extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), EditProfile.class);
                 startActivity(intent);
+            }
+        });
+        tutorial = view.findViewById(R.id.btn_tutorial);
+        tutorial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), TutorialPenggunaanAplikasi.class));
             }
         });
         return view;
