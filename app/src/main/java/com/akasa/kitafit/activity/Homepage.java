@@ -1,27 +1,29 @@
 package com.akasa.kitafit.activity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.akasa.kitafit.R;
-import com.akasa.kitafit.activity.Olahraga;
-import com.akasa.kitafit.activity.OlahragaViewHolder;
-import com.akasa.kitafit.activity.ProgramViewHolder;
 import com.akasa.kitafit.model.OlahragaItem;
 import com.akasa.kitafit.model.ProgramItem;
+import com.denzcoskun.imageslider.ImageSlider;
+import com.denzcoskun.imageslider.constants.ScaleTypes;
+import com.denzcoskun.imageslider.interfaces.ItemClickListener;
+import com.denzcoskun.imageslider.models.SlideModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +33,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Homepage extends AppCompatActivity {
 
@@ -43,14 +48,20 @@ public class Homepage extends AppCompatActivity {
     FirebaseRecyclerOptions<ProgramItem> optionss;
     FirebaseRecyclerAdapter<ProgramItem, ProgramViewHolder> adapterr;
     DatabaseReference databaseReference;
+    ImageSlider mainslider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homepage);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        olahraga();
-        program();
+        mainslider=(ImageSlider)findViewById(R.id.image_slider);
+
+
+olahraga();
+program();
+imageslider();
 
 
         TextView Nama = findViewById(R.id.namauser);
@@ -61,6 +72,36 @@ public class Homepage extends AppCompatActivity {
 
 
     }
+
+    private void imageslider() {
+        final List<SlideModel> remoteimages=new ArrayList<>();
+        FirebaseDatabase.getInstance().getReference().child("informasi")
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot)
+                    {
+                        for(DataSnapshot data:dataSnapshot.getChildren())
+                            remoteimages.add(new SlideModel(data.child("poster").getValue().toString(),data.child("caption").getValue().toString(), ScaleTypes.FIT));
+
+                        mainslider.setImageList(remoteimages, ScaleTypes.FIT);
+
+                        mainslider.setItemClickListener(new ItemClickListener() {
+                            @Override
+                            public void onItemSelected(int i) {
+                                Toast.makeText(getApplicationContext(),remoteimages.get(i).getTitle().toString(),Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+    }
+
+
 
     private void program() {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview2);
@@ -166,12 +207,11 @@ public class Homepage extends AppCompatActivity {
         adapter.startListening();
         recyclerView.setAdapter(adapter);
 
-
     }
 
 
     private void infodisplay(final TextView Nama, final TextView Umur) {
-        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("user").child("1jVxNEtqxTSQpxK7NDFLn68NNrl2");
+        DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("user").child("aXVtUnqvS4U4Ip699oyNzqt5jc03");
         UsersRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
