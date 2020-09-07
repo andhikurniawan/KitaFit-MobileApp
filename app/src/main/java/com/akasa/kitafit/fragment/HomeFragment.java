@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,6 +29,7 @@ import com.akasa.kitafit.activity.OlahragaViewHolder;
 import com.akasa.kitafit.activity.Profile;
 import com.akasa.kitafit.activity.ProgramKesehatan;
 import com.akasa.kitafit.activity.ProgramViewHolder;
+import com.akasa.kitafit.activity.Reminderku;
 import com.akasa.kitafit.model.OlahragaItem;
 import com.akasa.kitafit.model.ProgramItem;
 import com.akasa.kitafit.model.usermodel;
@@ -50,6 +53,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 
@@ -65,6 +69,7 @@ public class HomeFragment extends Fragment {
     FirebaseRecyclerAdapter<ProgramItem, ProgramViewHolder> adapterr;
     DatabaseReference databaseReference;
     ImageSlider mainslider;
+    ImageButton bell;
 
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase;
@@ -72,7 +77,7 @@ public class HomeFragment extends Fragment {
     TextView mUsername, mUmur;
     private FirebaseAuth firebaseAuth;
 
-    TextView seeAllProgramKesehatan, seeAllOlahraga;
+    TextView seeAllProgramKesehatan, seeAllOlahraga, judul;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -93,6 +98,17 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        bell = v.findViewById(R.id.bell);
+        bell.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity().getApplicationContext(), Reminderku.class));
+            }
+        });
+
+        judul = v.findViewById(R.id.judul);
+        judul.setText("Hello!");
+
 
 
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -100,8 +116,8 @@ public class HomeFragment extends Fragment {
         mainslider=(ImageSlider)v.findViewById(R.id.image_slider);
 
 
-        olahraga(inflater, container, savedInstanceState);
-        program(inflater, container, savedInstanceState);
+        olahraga(v);
+        program(v);
         imageslider();
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -110,12 +126,14 @@ public class HomeFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("user");
         mUsername = v.findViewById(R.id.namauser);
+        mUmur = v.findViewById(R.id.umur);
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference.child(UID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usermodel user = dataSnapshot.getValue(usermodel.class);
                 mUsername.setText(user.getNama_user());
+                mUmur.setText(user.getUmur());
                 if (user.getFoto_user() != null){
                     Picasso.get().load(user.getFoto_user()).into(profil);
                 } else {
@@ -163,8 +181,7 @@ public class HomeFragment extends Fragment {
 
 
 
-    private void program(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_home, container, false);
+    private void program(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerview2);
         recyclerView.setHasFixedSize(true);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("program_kesehatan");
@@ -217,8 +234,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setAdapter(adapterr);
     }
 
-    private void olahraga(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_home, container, false);
+    private void olahraga(View v) {
         RecyclerView recyclerView = (RecyclerView) v.findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
         databaseReference = FirebaseDatabase.getInstance().getReference().child("daftar_olahraga");
@@ -246,6 +262,7 @@ public class HomeFragment extends Fragment {
                     @Override
                     public void onClick(View v) {
                         Intent e = new Intent(getActivity(), Detail_Olahraga.class);
+                        e.putExtra("pid", model.getId());
                         startActivity(e);
                     }
                 });
