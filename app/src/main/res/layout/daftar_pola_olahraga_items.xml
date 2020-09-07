@@ -3,7 +3,9 @@
     android:layout_width="140dp"
     android:layout_height="wrap_content"
     android:background="@drawable/button_blue_rounded_5dp"
-    android:layout_marginEnd="20dp">
+    android:layout_marginEnd="20dp"
+    android:id="@+id/relative_daftar"
+    >
 
     <TextView
         android:id="@+id/title_daftar"

@@ -14,19 +14,27 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.akasa.kitafit.R;
 import com.akasa.kitafit.activity.PostLiniMasa;
+import com.akasa.kitafit.activity.Reminderku;
 import com.akasa.kitafit.adapter.LiniMasaAdapter;
 import com.akasa.kitafit.model.LiniMasaData;
+import com.akasa.kitafit.model.UserData;
+import com.akasa.kitafit.model.usermodel;
+import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
 
@@ -36,9 +44,12 @@ public class LiniMasaFragment extends Fragment {
     RecyclerView recyclerView;
     Context context;
     FloatingActionButton floatingActionButton;
-    DatabaseReference ref;
+    DatabaseReference ref, userRef;
     ArrayList<LiniMasaData> list;
     ProgressBar progressBar;
+    CircularImageView userImage;
+    TextView userName, userAge;
+    ImageView reminder;
     public LiniMasaFragment() {
         // Required empty public constructor
     }
@@ -51,9 +62,14 @@ public class LiniMasaFragment extends Fragment {
         recyclerView = view.findViewById(R.id.linimasa_recycler);
         context = getContext();
         floatingActionButton = view.findViewById(R.id.linimasa_fab);
+        userImage = view.findViewById(R.id.user);
+        userName = view.findViewById(R.id.namauser);
+        userAge = view.findViewById(R.id.umur);
+        reminder = view.findViewById(R.id.reminder_icon);
         progressBar = view.findViewById(R.id.progressbarlingkaran);
         progressBar.setVisibility(View.VISIBLE);
         ref = FirebaseDatabase.getInstance().getReference("lini_masa").child("id_post");
+        userRef = FirebaseDatabase.getInstance().getReference("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         LinearLayoutManager linearLayoutManager =  new LinearLayoutManager(context, RecyclerView.VERTICAL, true);
         recyclerView.setLayoutManager(linearLayoutManager);
         readData();
@@ -61,6 +77,12 @@ public class LiniMasaFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getActivity(), PostLiniMasa.class));
+            }
+        });
+        reminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(context, Reminderku.class));
             }
         });
         return view;
@@ -85,6 +107,35 @@ public class LiniMasaFragment extends Fragment {
                 } else {
                     progressBar.setVisibility(View.GONE);
                     Toast.makeText(context, "Yuk Tambahkan Aktivitasmu ke Lini Masa!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                usermodel usermodel = dataSnapshot.getValue(com.akasa.kitafit.model.usermodel.class);
+                if (usermodel.getFoto_user() != null){
+                    Glide.with(context)
+                            .load(usermodel.getFoto_user())
+                            .centerCrop()
+                            .into(userImage);
+                } else {
+                    Glide.with(context)
+                            .load(R.drawable.avatar_placeholder)
+                            .centerCrop()
+                            .into(userImage);
+                }
+                userName.setText(usermodel.getNama_user());
+                if (usermodel.getUmur() != null){
+                    userAge.setText(usermodel.getUmur() + " tahun");
+                } else {
+                    userAge.setText("Silakan set Umur pada menu Edit Profil");
                 }
             }
 
