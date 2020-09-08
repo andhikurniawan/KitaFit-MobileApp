@@ -20,6 +20,7 @@ import com.akasa.kitafit.adapter.DaftarOlahragaPKAdapter;
 import com.akasa.kitafit.model.OlahragaItem;
 import com.akasa.kitafit.model.PolaMakanData;
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,16 +38,18 @@ import static com.akasa.kitafit.adapter.ProgramKesehatanAdapter.NAMA_PROGRAM_KES
 public class DetailProgramKesehatan extends AppCompatActivity {
 
     private static final String TAG = "DetailProgramKesehatan";
+    public static final String AKTIVITAS_INTENT = "com.akasa.kitafit.aktivitas_intent";
     ImageView backButton, gambarProgram;
     TextView namaProgram, totalKalori, deskripsiProgram;
     RecyclerView polaMakanRecycler, daftarOlahragaRecycler;
     Button mulaiLatihanButton;
     View sarapanview, makanSiangView, makanMalamView;
     String idProgramIntent, gambarProgramIntent, kaloriProgramIntent, namaProgramIntent, deskripsiProgramIntent;
-    DatabaseReference makanRef, olahragaRef;
+    DatabaseReference makanRef, olahragaRef, aktivitasRef, PKRef, historyRef;
     ArrayList<PolaMakanData> polaMakanList;
     ArrayList<OlahragaItem> olahragaItems;
-
+    int counterProgram = 0;
+    int counterHistory = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,10 +64,13 @@ public class DetailProgramKesehatan extends AppCompatActivity {
         sarapanview = findViewById(R.id.sarapan);
         makanSiangView = findViewById(R.id.makanSiang);
         makanMalamView = findViewById(R.id.makanMalam);
-
+        aktivitasRef = FirebaseDatabase.getInstance().getReference().child("aktivitas_user").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        PKRef = FirebaseDatabase.getInstance().getReference("program_kesehatan");
+        historyRef = FirebaseDatabase.getInstance().getReference("history_program").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         retrieveIntent();
         polaMakanRef();
         settingText();
+        readCounterProgram();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailProgramKesehatan.this, RecyclerView.HORIZONTAL, false);
         daftarOlahragaRecycler.setLayoutManager(linearLayoutManager);
@@ -74,6 +80,34 @@ public class DetailProgramKesehatan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+        mulaiLatihanButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailProgramKesehatan.this, MainActivity.class);
+                intent.putExtra(AKTIVITAS_INTENT, "aktivitas");
+                aktivitasRef.child("id_program_kesehatan").setValue(idProgramIntent);
+                aktivitasRef.child("counter_hari").setValue("1");
+                counterProgram++;
+                PKRef.child(idProgramIntent).child("telah_diikuti_sebanyak").setValue(counterProgram);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+    private void readCounterProgram() {
+        PKRef.child(idProgramIntent).child("telah_diikuti_sebanyak").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                counterProgram = Integer.parseInt(dataSnapshot.getValue().toString());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
