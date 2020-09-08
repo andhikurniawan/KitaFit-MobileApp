@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY"/>
+    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
 
     <uses-feature android:name="android.hardware.screen.portrait" />
 
@@ -18,27 +18,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".activity.test">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".activity.TutorialPenggunaanAplikasi" />
         <activity android:name=".activity.DetailProgramKesehatan" />
         <activity android:name=".activity.ProgramKesehatan" />
-        <activity android:name=".activity.PostLiniMasa">
-        </activity>
-        <activity android:name=".activity.MainActivity">
-
-        </activity>
-
+        <activity android:name=".activity.PostLiniMasa"></activity>
+        <activity android:name=".activity.MainActivity"></activity>
         <activity android:name=".activity.Reminderku">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
         </activity>
         <activity android:name=".activity.EditProfile">
@@ -62,26 +59,22 @@
         <activity android:name=".activity.Register" />
         <activity android:name=".activity.Login" />
         <activity android:name=".activity.SplashScreen">
+
+        </activity>
+        <activity android:name=".activity.Video">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".activity.Olahraga">
-
-        </activity>
-        <activity android:name=".activity.Homepage">
-
-        </activity>
+        <activity android:name=".activity.Olahraga"></activity>
+        <activity android:name=".activity.Homepage"></activity>
         <activity android:name=".activity.Daftar_Olahraga" />
+        <activity android:name=".activity.Detail_Olahraga"></activity>
+        <activity android:name=".activity.Aktivitas" />
 
-        <activity android:name=".activity.Detail_Olahraga">
-
-        </activity>
-        <activity android:name=".activity.Aktivitas"></activity>
-        <receiver android:name=".adapter.NotifAlarm"/>
+        <receiver android:name=".adapter.NotifAlarm" />
 
         <provider
             android:name=".adapter.AlarmReminderProvider"

@@ -195,7 +195,6 @@ public class HomeFragment extends Fragment {
                 Picasso.get().load(model.getGambar_program()).into(holder.i1, new Callback() {
                     @Override
                     public void onSuccess() {
-
                     }
 
                     @SuppressLint("RestrictedApi")
@@ -286,4 +285,6 @@ public class HomeFragment extends Fragment {
         adapter.startListening();
         recyclerView.setAdapter(adapter);
     }
+
+
 }
