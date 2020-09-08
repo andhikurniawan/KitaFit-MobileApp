@@ -49,7 +49,7 @@ public class DetailProgramKesehatan extends AppCompatActivity {
     ArrayList<PolaMakanData> polaMakanList;
     ArrayList<OlahragaItem> olahragaItems;
     int counterProgram = 0;
-    int counterHistory = 0;
+    int counterHistory = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +71,7 @@ public class DetailProgramKesehatan extends AppCompatActivity {
         polaMakanRef();
         settingText();
         readCounterProgram();
+        readCounterHistory();
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(DetailProgramKesehatan.this, RecyclerView.HORIZONTAL, false);
         daftarOlahragaRecycler.setLayoutManager(linearLayoutManager);
@@ -90,12 +91,32 @@ public class DetailProgramKesehatan extends AppCompatActivity {
                 aktivitasRef.child("id_program_kesehatan").setValue(idProgramIntent);
                 aktivitasRef.child("counter_hari").setValue("1");
                 counterProgram++;
+                counterHistory++;
                 PKRef.child(idProgramIntent).child("telah_diikuti_sebanyak").setValue(counterProgram);
+                historyRef.child("id_program_kesehatan").child(idProgramIntent).child("id_program").setValue(idProgramIntent);
                 startActivity(intent);
                 finish();
             }
         });
 
+    }
+
+    private void readCounterHistory() {
+        historyRef.child("counter_id").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    counterHistory = Integer.parseInt(dataSnapshot.getValue().toString());
+                } else {
+                    historyRef.child("counter_id").setValue(counterHistory);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void readCounterProgram() {
