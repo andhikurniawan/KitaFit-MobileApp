@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -67,6 +68,7 @@ public class DetailProgramKesehatan extends AppCompatActivity {
         aktivitasRef = FirebaseDatabase.getInstance().getReference().child("aktivitas_user").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         PKRef = FirebaseDatabase.getInstance().getReference("program_kesehatan");
         historyRef = FirebaseDatabase.getInstance().getReference("history_program").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        checkUserProgram();
         retrieveIntent();
         polaMakanRef();
         settingText();
@@ -99,6 +101,28 @@ public class DetailProgramKesehatan extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void checkUserProgram() {
+        aktivitasRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    mulaiLatihanButton.setClickable(false);
+                    mulaiLatihanButton.setEnabled(false);
+                    mulaiLatihanButton.setBackgroundColor(Color.parseColor("#808080"));
+                } else {
+                    mulaiLatihanButton.setClickable(true);
+                    mulaiLatihanButton.setEnabled(true);
+                    mulaiLatihanButton.setBackgroundColor(Color.parseColor("#48ACE0"));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void readCounterHistory() {
