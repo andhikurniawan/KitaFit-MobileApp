@@ -7,6 +7,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.akasa.kitafit.R;
+import com.akasa.kitafit.fragment.HomeFragment;
 import com.akasa.kitafit.model.OlahragaItem;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -27,6 +29,7 @@ import com.squareup.picasso.Picasso;
 
 public class Olahraga extends AppCompatActivity {
     EditText inputSearch;
+    Button back;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<OlahragaItem> options;
@@ -36,10 +39,17 @@ public class Olahraga extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_olahraga);
-
+        back = findViewById(R.id.back);
         inputSearch = findViewById(R.id.cari);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
        LoadData("");
         inputSearch.addTextChangedListener(new TextWatcher() {
@@ -134,5 +144,6 @@ public class Olahraga extends AppCompatActivity {
         if (adapter != null)
             adapter.startListening();
     }
+
 
 }

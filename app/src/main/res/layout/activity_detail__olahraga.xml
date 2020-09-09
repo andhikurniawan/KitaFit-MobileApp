@@ -11,165 +11,176 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <VideoView
-            android:id="@+id/video"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="292dp"
-            />
+            android:layout_height="wrap_content">
 
-    </FrameLayout>
-    <TextView
-        android:id="@+id/namaolahraga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Push Up"
-        android:textColor="@color/black"
-        android:padding="16dp"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+            <VideoView
+                android:id="@+id/video"
+                android:layout_width="match_parent"
+                android:layout_height="292dp"
+                />
 
-    <TextView
-        android:id="@+id/deskripsi_olahraga"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="5"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textColor="@color/black"
-        android:lineSpacingExtra="5dp"
-        android:textSize="14dp"
-        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem"
-        />
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="fitXY"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_info" />
-
+        </FrameLayout>
         <TextView
+            android:id="@+id/sumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Informasi"
+            android:text="Sumber"
+            android:layout_marginLeft="16dp"
             android:textColor="@color/black"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:textSize="12dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/namaolahraga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Push Up"
+            android:textColor="@color/black"
+            android:padding="16dp"
             android:textSize="20dp"
             android:textStyle="bold" />
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
         <TextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="20 min"
-            android:id="@+id/durasi"
-            android:textColor="@color/black"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="16dp"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="~ 200"
-            android:id="@+id/kalori"
-            android:textColor="@color/black"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="50dp"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-
-        <TextView
-            android:id="@+id/fokus"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginTop="14dp"
-            android:text="Otot Lengan"
-            android:textColor="@color/black"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="Durasi"
-            android:layout_marginLeft="16dp"
-            android:textSize="14dp"
-            />
-
-        <TextView
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:text="Kalori"
-            android:layout_marginLeft="50dp"
-            android:textSize="14dp"
-            />
-
-        <TextView
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text="Fokus Area"
-            android:layout_marginLeft="50dp"
-            android:textSize="14dp"
-            />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="fitXY"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/ic_info" />
-
-        <TextView
+            android:id="@+id/deskripsi_olahraga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Step by Step"
+            android:maxLines="5"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             android:textColor="@color/black"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="8dp"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+            android:lineSpacingExtra="5dp"
+            android:textSize="14dp"
+            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem"
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitXY"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Informasi"
+                android:textColor="@color/black"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="8dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
 
 
-    </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="20 min"
+                android:id="@+id/durasi"
+                android:textColor="@color/black"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="16dp"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="~ 200"
+                android:id="@+id/kalori"
+                android:textColor="@color/black"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="50dp"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+
+            <TextView
+                android:id="@+id/fokus"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginTop="14dp"
+                android:text="Otot Lengan"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Durasi"
+                android:layout_marginLeft="16dp"
+                android:textSize="14dp"
+                />
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:text="Kalori"
+                android:layout_marginLeft="50dp"
+                android:textSize="14dp"
+                />
+
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="Fokus Area"
+                android:layout_marginLeft="50dp"
+                android:textSize="14dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:scaleType="fitXY"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:src="@drawable/ic_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Step by Step"
+                android:textColor="@color/black"
+                android:layout_marginTop="14dp"
+                android:layout_marginLeft="8dp"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="16dp"

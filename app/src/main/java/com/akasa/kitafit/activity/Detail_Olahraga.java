@@ -35,7 +35,7 @@ import com.squareup.picasso.Picasso;
 
 public class Detail_Olahraga extends AppCompatActivity {
 
-    TextView t1, deskripsi, durasi, fokus_area, kalori;
+    TextView t1, deskripsi, durasi, fokus_area, kalori, sumber;
     private String id = "";
     TextView url;
     VideoView video;
@@ -60,6 +60,7 @@ public class Detail_Olahraga extends AppCompatActivity {
         durasi = findViewById(R.id.durasi);
         fokus_area = findViewById(R.id.fokus);
         kalori = findViewById(R.id.kalori);
+        sumber = findViewById(R.id.sumber);
         video = (VideoView) findViewById(R.id.video);
         pd = new ProgressDialog(Detail_Olahraga.this);
         url = (TextView) findViewById(R.id.text);
@@ -166,6 +167,7 @@ public class Detail_Olahraga extends AppCompatActivity {
                     durasi.setText(olahraga.getDurasi());
                     fokus_area.setText(olahraga.getFokus_area());
                     kalori.setText("~ " +olahraga.getKalori());
+                    sumber.setText("Sumber : ("+olahraga.getSumber()+")");
                 }
             }
 
