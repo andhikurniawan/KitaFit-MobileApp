@@ -59,7 +59,7 @@ public class ProgramKesehatanAdapter extends RecyclerView.Adapter<ProgramKesehat
             public void onClick(View v) {
                 Log.d(TAG, "onClick: Detail Program : "+list.get(position).getNama_program());
                 Intent intent = new Intent(context, DetailProgramKesehatan.class);
-                intent.putExtra(ID_PROGRAM_KESEHATAN, String.valueOf(list.get(position).getId_program_Kesehatan()));
+                intent.putExtra(ID_PROGRAM_KESEHATAN, String.valueOf(list.get(position).getId_program_kesehatan()));
                 intent.putExtra(GAMBAR_PROGRAM_KESEHATAN, list.get(position).getGambar_program());
                 intent.putExtra(KALORI_PROGRAM_KESEHATAN, holder.totalKalori.getText().toString());
                 intent.putExtra(NAMA_PROGRAM_KESEHATAN, holder.judulProgram.getText().toString());

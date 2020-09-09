@@ -2,6 +2,7 @@ package com.akasa.kitafit.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -71,12 +72,14 @@ public class AktivitasFragment extends Fragment {
     RecyclerView polaMakanRecycler, daftarOlahragaRecycler;
     Button mulaiLatihanButton;
     View sarapanview, makanSiangView, makanMalamView;
+    String idProgram, idOlahraga;
+    ArrayList<PolaMakanData> PolaList;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_aktivitas, container, false);
+        final View v = inflater.inflate(R.layout.fragment_aktivitas, container, false);
         firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference("user");
         DatabaseReference aktivitas = firebaseDatabase.getReference("aktivitas_user");
@@ -87,7 +90,6 @@ public class AktivitasFragment extends Fragment {
         final ImageView profil = v.findViewById(R.id.user);
         final TextView mHari = v.findViewById(R.id.hari);
         final TextView mNama = v.findViewById(R.id.namaprogram);
-
 
         gambarProgram = v.findViewById(R.id.gambar_detail_program_kesehatan);
         namaProgram = v.findViewById(R.id.nama_program_detail_kesehatan);
@@ -125,6 +127,12 @@ public class AktivitasFragment extends Fragment {
                 
                 if (aktivitas.getCounter_hari() != null) {
                     mHari.setText("Hari Ke - " + aktivitas.getCounter_hari());
+                    idProgram = aktivitas.getId_program_kesehatan();
+                    idOlahraga = aktivitas.getCounter_hari();
+                    program(v);
+                    polamakan(v);
+                    olahraga(v);
+                    video(v);
                 } else {
                     mHari.setText("Belum Mengambil Program");
                 }
@@ -137,10 +145,7 @@ public class AktivitasFragment extends Fragment {
             }
         });
 
-        program(v);
-        polamakan(v);
-        olahraga(v);
-        video(v);
+
 //        step(v);
 
         return v;
@@ -197,7 +202,7 @@ public class AktivitasFragment extends Fragment {
         final VideoView video = (VideoView) v.findViewById(R.id.video);
         TextView url = (TextView) v.findViewById(R.id.text);
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference reference = firebaseDatabase.getReference().child("daftar_olahraga").child("1");
+        DatabaseReference reference = firebaseDatabase.getReference().child("daftar_olahraga").child(idOlahraga);
         DatabaseReference childreference = reference.child("link_video");
         final MediaController mediaController = new MediaController(getContext());
         childreference.addValueEventListener(new ValueEventListener() {
@@ -237,7 +242,7 @@ public class AktivitasFragment extends Fragment {
 
         DatabaseReference olga = firebaseDatabase.getReference("daftar_olahraga");
 
-        olga.child("1").addValueEventListener(new ValueEventListener() {
+        olga.child(idOlahraga).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot)
             {
@@ -264,29 +269,56 @@ public class AktivitasFragment extends Fragment {
         final ImageView posterp = v.findViewById(R.id.gambar2);
         final ImageView posters = v.findViewById(R.id.gambar3);
         final ImageView posterm = v.findViewById(R.id.gambar);
-        DatabaseReference pm = firebaseDatabase.getReference("pola");
-        pm.child("1").addValueEventListener(new ValueEventListener() {
+        PolaList = new ArrayList<>();
+        DatabaseReference pm = firebaseDatabase.getReference("pola_makan");
+        pm.child(idProgram).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                PolaItem pm = dataSnapshot.getValue(PolaItem.class);
-                menup.setText(pm.getPmenu());
-                menus.setText(pm.getSmenu());
-                menum.setText(pm.getMmenu());
-                if (pm.getPposter() != null){
-                    Picasso.get().load(pm.getPposter()).into(posterp);
+                PolaList.clear();
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    System.out.println("Value "+ds.getValue());
+                    PolaMakanData pmd = ds.getValue(PolaMakanData.class);
+                    PolaList.add(pmd);
+                }
+                menup.setText(PolaList.get(2).getJudul());
+                menus.setText(PolaList.get(1).getJudul());
+                menum.setText(PolaList.get(0).getJudul());
+                if (PolaList.get(2).getGambar() != null){
+                    Picasso.get().load(PolaList.get(2).getGambar()).into(posterp);
                 } else {
                     Picasso.get().load(R.drawable.placeholder_avatar_human).into(posterp);
                 }
-                if (pm.getSposter() != null){
-                    Picasso.get().load(pm.getSposter()).into(posters);
+                if (PolaList.get(1).getGambar() != null){
+                    Picasso.get().load(PolaList.get(1).getGambar()).into(posters);
                 } else {
                     Picasso.get().load(R.drawable.placeholder_avatar_human).into(posters);
                 }
-                if (pm.getMposter() != null){
-                    Picasso.get().load(pm.getMposter()).into(posterm);
+                if (PolaList.get(0).getGambar() != null){
+                    Picasso.get().load(PolaList.get(0).getGambar()).into(posterm);
                 } else {
                     Picasso.get().load(R.drawable.placeholder_avatar_human).into(posterm);
                 }
+                posterp.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri web = Uri.parse(PolaList.get(2).getLink());
+                        startActivity(new Intent(Intent.ACTION_VIEW, web));
+                    }
+                });
+                posters.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri web = Uri.parse(PolaList.get(1).getLink());
+                        startActivity(new Intent(Intent.ACTION_VIEW, web));
+                    }
+                });
+                posterm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Uri web = Uri.parse(PolaList.get(0).getLink());
+                        startActivity(new Intent(Intent.ACTION_VIEW, web));
+                    }
+                });
             }
 
             @Override
@@ -300,7 +332,7 @@ public class AktivitasFragment extends Fragment {
     private void program(View v) {
         final TextView mNama = v.findViewById(R.id.namaprogram);
         DatabaseReference pk = firebaseDatabase.getReference("program_kesehatan");
-        pk.child("1").addValueEventListener(new ValueEventListener() {
+        pk.child(idProgram).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 ProgramItem pk = dataSnapshot.getValue(ProgramItem.class);
