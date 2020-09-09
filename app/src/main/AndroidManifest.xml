@@ -59,14 +59,14 @@
         <activity android:name=".activity.Register" />
         <activity android:name=".activity.Login" />
         <activity android:name=".activity.SplashScreen">
-
-        </activity>
-        <activity android:name=".activity.Video">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".activity.Video">
+
         </activity>
         <activity android:name=".activity.Olahraga"></activity>
         <activity android:name=".activity.Homepage"></activity>

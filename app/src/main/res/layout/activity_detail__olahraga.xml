@@ -11,11 +11,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="invisible" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <VideoView
             android:id="@+id/video"
@@ -23,6 +21,7 @@
             android:layout_height="292dp"
             />
 
+    </FrameLayout>
     <TextView
         android:id="@+id/namaolahraga"
         android:layout_width="wrap_content"
@@ -173,6 +172,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_marginTop="16dp"
+            android:layout_marginLeft="8dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/recyclerview2">

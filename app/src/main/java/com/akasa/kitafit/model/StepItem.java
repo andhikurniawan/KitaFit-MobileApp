@@ -2,15 +2,24 @@ package com.akasa.kitafit.model;
 
 public class StepItem {
 
-    public String durasi, poster;
+    public String durasi, poster, nomor;
 
     public StepItem(){
 
     }
 
-    public StepItem(String durasi, String poster) {
+    public StepItem(String durasi, String poster, String nomor) {
         this.durasi = durasi;
         this.poster = poster;
+        this.nomor = nomor;
+    }
+
+    public String getNomor() {
+        return nomor;
+    }
+
+    public void setNomor(String nomor) {
+        this.nomor = nomor;
     }
 
     public String getDurasi() {
