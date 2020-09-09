@@ -41,6 +41,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
@@ -60,7 +61,7 @@ public class Reminderku extends AppCompatActivity {
     private ImageButton add;
     private Dialog dialog;
     private AppDatabase appDatabase;
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerView , rc;
     private AdapterReminder adapter;
     private List<Reminders> temp;
     private TextView empty;
@@ -68,7 +69,7 @@ public class Reminderku extends AppCompatActivity {
     private FirebaseDatabase firebaseDatabase;
     String UID;
     DatabaseReference mref;
-    TextView mUsername;
+    TextView mUsername, t_remind, t_waktu;
     int idPost = 0;
     ArrayList<ReminderData> list;
     DateTimeFormatter formattertime = DateTimeFormatter.ofPattern("h:mm a");
@@ -79,6 +80,8 @@ public class Reminderku extends AppCompatActivity {
         setContentView(R.layout.activity_reminderku);
         appDatabase = AppDatabase.geAppdatabase(Reminderku.this);
         mUsername = findViewById(R.id.nama_user);
+//        t_remind = findViewById(R.id.t_remind);
+//        t_waktu = findViewById(R.id.t_waktu);
         final CircularImageView profil = findViewById(R.id.user_img);
         add = findViewById(R.id.fab_add);
 //        empty = findViewById(R.id.empty);
@@ -87,6 +90,34 @@ public class Reminderku extends AppCompatActivity {
         UID=user.getUid();
         firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference databaseReference = firebaseDatabase.getReference("user");
+
+        rc = findViewById(R.id.recyclerViewToday);
+        rc.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager2 =  new LinearLayoutManager(Reminderku.this, RecyclerView.VERTICAL, false);
+        rc.setLayoutManager(linearLayoutManager2);
+
+        DatabaseReference reference= FirebaseDatabase.getInstance().getReference("Reminder").child(UID);
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                list.clear();
+                for (DataSnapshot ds1 : dataSnapshot.getChildren()){
+                    if(ds1.child("date_time").getValue().toString().equals("Wed Sep 09 10:46:00 GMT+07:00 2020")){
+                        ReminderData remind2 = ds1.getValue(ReminderData.class);
+                        list.add(remind2);
+                    }
+                }
+                AdapterReminder adapterReminder = new AdapterReminder(Reminderku.this,list);
+                rc.setAdapter(adapterReminder);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
 
         databaseReference.child(UID).addValueEventListener(new ValueEventListener() {
             @Override

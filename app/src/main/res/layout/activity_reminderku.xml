@@ -37,48 +37,56 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:orientation="vertical">
-        <View
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="110dp"-->
+<!--            android:background="@drawable/ret_reminder"-->
+<!--            android:alpha="0.4"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:layout_marginTop="20dp"/>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Today Reminder"-->
+<!--            android:textSize="20sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="#fff"-->
+<!--            android:layout_marginStart="32dp"-->
+<!--            android:layout_marginTop="-100dp"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/t_remind"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Workout"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="normal"-->
+<!--            android:textColor="#fff"-->
+<!--            android:layout_marginStart="32dp"-->
+<!--            android:layout_marginTop="10dp"/>-->
+<!--        <TextView-->
+<!--            android:id="@+id/t_waktu"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="13.00 PM"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="normal"-->
+<!--            android:textColor="#fff"-->
+<!--            android:layout_marginStart="32dp"-->
+<!--            android:layout_marginTop="5dp"/>-->
+<!--        <ImageView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="260dp"-->
+<!--            android:layout_marginTop="-70dp"-->
+<!--            android:background="@drawable/bell_reminder"-->
+<!--            android:adjustViewBounds="true"/>-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewToday"
             android:layout_width="match_parent"
-            android:layout_height="110dp"
-            android:background="@drawable/ret_reminder"
-            android:alpha="0.4"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="20dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Today Reminder"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#fff"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="-100dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Workout"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:textColor="#fff"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="10dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="13.00 PM"
-            android:textSize="14sp"
-            android:textStyle="normal"
-            android:textColor="#fff"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="5dp"/>
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="260dp"
-            android:layout_marginTop="-70dp"
-            android:background="@drawable/bell_reminder"
-            android:adjustViewBounds="true"/>
+            android:layout_height="match_parent"/>
     </LinearLayout>
     <TextView
         android:layout_width="wrap_content"
