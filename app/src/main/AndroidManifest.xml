@@ -32,9 +32,17 @@
 
 
 
+
         <activity android:name=".activity.Reminderku">
 
         </activity>
+
+
+        <activity android:name=".activity.Homepage" />
+        <activity android:name=".activity.Daftar_Olahraga" />
+        <activity android:name=".activity.Detail_Olahraga" />
+        <activity android:name=".activity.Aktivitas" />
+
         <activity android:name=".activity.EditProfile">
 
             <!-- <intent-filter> -->
@@ -46,12 +54,6 @@
         </activity>
         <activity android:name=".activity.Profile">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
-
-
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
         </activity>
         <activity android:name=".activity.Register" />
         <activity android:name=".activity.Login" />
@@ -68,10 +70,7 @@
 
         </activity>
         <activity android:name=".activity.Olahraga"></activity>
-        <activity android:name=".activity.Homepage"></activity>
-        <activity android:name=".activity.Daftar_Olahraga" />
-        <activity android:name=".activity.Detail_Olahraga"></activity>
-        <activity android:name=".activity.Aktivitas" />
+
 
         <receiver android:name=".adapter.NotifAlarm" />
 
