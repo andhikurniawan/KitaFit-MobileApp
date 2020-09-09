@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_login"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="150dp"/>
+        android:layout_marginTop="120dp"/>
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -86,11 +86,5 @@
         android:layout_marginStart="280dp"
         android:layout_marginTop="-43dp"
         android:textColor="#FFFFFF" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lupa Password?"
-        android:layout_marginStart="50dp"
-        android:textColor="#8D8D8D"
-        android:layout_marginTop="24dp"/>
+
 </LinearLayout>

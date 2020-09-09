@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.akasa.kitafit.R;
 import com.akasa.kitafit.adapter.AdapterReminder;
 import com.akasa.kitafit.adapter.NotifAlarm;
+import com.akasa.kitafit.adapter.TodayAdapter;
 import com.akasa.kitafit.model.AppDatabase;
 import com.akasa.kitafit.model.LiniMasaData;
 import com.akasa.kitafit.model.ReminderData;
@@ -197,7 +198,7 @@ public class Reminderku extends AppCompatActivity {
                         todayList.add(remind2);
                     }
                 }
-                AdapterReminder adapterReminder = new AdapterReminder(Reminderku.this, todayList);
+                TodayAdapter adapterReminder = new TodayAdapter(Reminderku.this, todayList);
                 rc.setAdapter(adapterReminder);
             }
 
