@@ -8,11 +8,68 @@
     tools:context=".fragment.LiniMasaFragment">
 
     <!-- TODO: Menunggu Header dari Syfa -->
-    <View
-        android:id="@+id/headerView"
+    <RelativeLayout
+        android:id="@+id/header_user"
         android:layout_width="match_parent"
-        android:layout_height="136dp"
-        android:background="@drawable/button_blue_rounded_5dp" />
+        android:layout_height="135dp"
+        android:background="@drawable/kotak_header"
+        android:orientation="vertical">
+
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/user"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:onClick="GoToProfile"
+            android:src="@drawable/man" />
+
+        <TextView
+            android:id="@+id/judul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="33dp"
+            android:layout_toRightOf="@+id/user"
+            android:text="Hallo!"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <ImageButton
+            android:id="@+id/reminder_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="40dp"
+            android:layout_toRightOf="@id/judul"
+            android:background="@drawable/bell"
+            android:onClick="GoToReminder" />
+
+
+        <TextView
+            android:id="@+id/namauser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/judul"
+            android:layout_marginLeft="24dp"
+            android:layout_toRightOf="@+id/user"
+            android:text="Syfa Nur Lathifah"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/umur"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="85dp"
+            android:layout_toRightOf="@+id/user"
+            android:text="19 Tahun"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+    </RelativeLayout>
 
     <ProgressBar
         android:id="@+id/progressbarlingkaran"
@@ -24,7 +81,7 @@
         android:id="@+id/linimasa_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/headerView"
+        android:layout_below="@id/header_user"
         android:layout_marginTop="20dp" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

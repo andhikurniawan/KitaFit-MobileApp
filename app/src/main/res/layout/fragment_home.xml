@@ -21,10 +21,12 @@
             android:background="@drawable/kotak_header"
             android:orientation="vertical">
 
-            <ImageView
+            <com.mikhaellopez.circularimageview.CircularImageView
                 android:id="@+id/user"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
+                android:onClick="GoToProfile"
+                android:src="@drawable/man"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"/>
 
@@ -43,6 +45,7 @@
                 android:id="@+id/bell"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
+                android:onClick="GoToReminder"
                 android:background="@drawable/bell"
                 android:layout_toRightOf="@+id/judul"
                 android:layout_marginTop="40dp"
@@ -71,9 +74,6 @@
                 android:layout_toRightOf="@+id/user"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="85dp"/>
-
-
-
 
         </RelativeLayout>
 
@@ -146,6 +146,7 @@
                 android:textSize="14dp"
                 android:layout_marginRight="16dp"
                 android:textStyle="bold"
+                android:onClick="olahraga"
                android:id="@+id/see_all_olahraga"
                 />
 
@@ -180,6 +181,8 @@
             android:layout_width="wrap_content"
             android:layout_height="260dp"
             android:layout_marginTop="16dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/berita"
             android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"

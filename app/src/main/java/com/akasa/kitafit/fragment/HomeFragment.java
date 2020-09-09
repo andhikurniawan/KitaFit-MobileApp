@@ -137,7 +137,7 @@ public class HomeFragment extends Fragment {
                 if (user.getFoto_user() != null){
                     Picasso.get().load(user.getFoto_user()).into(profil);
                 } else {
-                    Picasso.get().load(R.drawable.placeholder_avatar_human).into(profil);
+                    Picasso.get().load(R.drawable.avatar_placeholder).into(profil);
                 }
             }
 

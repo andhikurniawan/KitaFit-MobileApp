@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -15,6 +16,8 @@ import com.akasa.kitafit.fragment.LiniMasaFragment;
 import com.akasa.kitafit.fragment.ProfilFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import static com.akasa.kitafit.activity.DetailProgramKesehatan.AKTIVITAS_INTENT;
+
 public class MainActivity extends AppCompatActivity {
     private long backPressedTime;
     BottomNavigationView bottomNavigationView;
@@ -25,6 +28,11 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottom_nav);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+        Intent intent = getIntent();
+        if (intent.getStringExtra(AKTIVITAS_INTENT) != null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AktivitasFragment()).commit();
+            bottomNavigationView.setSelectedItemId(R.id.nav_aktivitas);
+        }
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

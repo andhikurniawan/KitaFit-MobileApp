@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.TutorialPenggunaanAplikasi">
+    tools:context=".activity.DetailTutorialPenggunaanAplikasi">
 
     <RelativeLayout
         android:id="@+id/tutorial_header_relative"
@@ -29,19 +29,12 @@
             android:textSize="20sp" />
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/caraPenggunaanAplikasiButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_centerInParent="true"
         android:layout_below="@id/tutorial_header_relative"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/button_blue_rounded_5dp"
-        android:fontFamily="sans-serif"
-        android:text="Cara Penggunaan Aplikasi"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:layout_margin="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </RelativeLayout>

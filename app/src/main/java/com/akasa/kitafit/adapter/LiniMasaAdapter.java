@@ -60,6 +60,7 @@ public class LiniMasaAdapter extends RecyclerView.Adapter<LiniMasaAdapter.ViewHo
         Glide.with(mContext)
                 .load(linimasaData.get(position).getFoto_user())
                 .centerCrop()
+                .placeholder(R.drawable.avatar_placeholder)
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
@@ -77,6 +78,7 @@ public class LiniMasaAdapter extends RecyclerView.Adapter<LiniMasaAdapter.ViewHo
         Glide.with(mContext)
                 .load(linimasaData.get(position).getFoto_post())
                 .centerCrop()
+                .placeholder(R.drawable.img_placeholder)
                 .listener(new RequestListener<Drawable>() {
                     @Override
                     public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {

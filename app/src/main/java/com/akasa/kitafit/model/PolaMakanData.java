@@ -1,16 +1,18 @@
 package com.akasa.kitafit.model;
 
 public class PolaMakanData {
-    private String gambar, judul, link;
+    public String gambar, judul, link;
 
-    public PolaMakanData(String gambar, String judul, String link) {
+    public PolaMakanData() {
+    }
+
+    public PolaMakanData(String link, String judul, String gambar) {
         this.gambar = gambar;
         this.judul = judul;
         this.link = link;
     }
 
-    public PolaMakanData() {
-    }
+
 
     public String getGambar() {
         return gambar;

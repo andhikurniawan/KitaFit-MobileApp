@@ -20,6 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.akasa.kitafit.R;
 import com.akasa.kitafit.activity.EditProfile;
+import com.akasa.kitafit.activity.Profile;
+import com.akasa.kitafit.activity.TutorialPenggunaanAplikasi;
 import com.akasa.kitafit.activity.Login;
 
 import com.akasa.kitafit.adapter.HistoryAdapter;
@@ -52,6 +54,7 @@ public class ProfilFragment extends Fragment {
     String UID;
     TextView mUsername;
     private FirebaseAuth firebaseAuth;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,8 +81,8 @@ public class ProfilFragment extends Fragment {
         btn_tutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(getActivity(), TutorialPenggunaanAplikasi.class);
-//                startActivity(intent);
+               Intent intent = new Intent(getActivity(), TutorialPenggunaanAplikasi.class);
+               startActivity(intent);
             }
         });
 
