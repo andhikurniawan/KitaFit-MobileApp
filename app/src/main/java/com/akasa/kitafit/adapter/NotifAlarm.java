@@ -19,21 +19,33 @@ import com.akasa.kitafit.activity.Reminderku;
 import com.akasa.kitafit.model.AppDatabase;
 import com.akasa.kitafit.model.Reminders;
 import com.akasa.kitafit.model.RoomDAO;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Date;
 
 public class NotifAlarm extends BroadcastReceiver {
     private AppDatabase appDatabase;
+    DatabaseReference mref;
+    private FirebaseUser user;
+    String UID;
     @Override
     public void onReceive(Context context, Intent intent) {
-        appDatabase = AppDatabase.geAppdatabase(context.getApplicationContext());
-        RoomDAO roomDAO = appDatabase.getRoomDAO();
-        Reminders reminder = new Reminders();
-        reminder.setMessage(intent.getStringExtra("Message"));
-        reminder.setRemindDate(new Date(intent.getStringExtra("RemindDate")));
-        reminder.setId(intent.getIntExtra("id",0));
-        roomDAO.Delete(reminder);
-        AppDatabase.destroyInstance();
+//        appDatabase = AppDatabase.geAppdatabase(context.getApplicationContext());
+//        RoomDAO roomDAO = appDatabase.getRoomDAO();
+//        Reminders reminder = new Reminders();
+//        reminder.setMessage(intent.getStringExtra("Message"));
+//        reminder.setRemindDate(new Date(intent.getStringExtra("RemindDate")));
+//        reminder.setId(intent.getIntExtra("id",0));
+//        roomDAO.Delete(reminder);
+//        AppDatabase.destroyInstance();
+//        user = FirebaseAuth.getInstance().getCurrentUser();
+//        UID=user.getUid();
+//
+//        DatabaseReference refku = FirebaseDatabase.getInstance().getReference("Reminder");
+//        refku.child(UID).child("1").child("img").setValue("https://firebasestorage.googleapis.com/v0/b/kitafit-f4d8d.appspot.com/o/User%2Falarm.png?alt=media&token=fc7d6126-1892-4610-a3b2-e119dc367264");
 
         Uri alarmsound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
 

@@ -23,16 +23,14 @@ public class SplashScreen extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    if (fauth.getCurrentUser() != null) {
-                        startActivity(new Intent(SplashScreen.this, MainActivity.class));
-                        finish();
-                    } else {
+
+
                         Intent intent = new Intent(SplashScreen.this, Login.class);
                         startActivity(intent);
                     }
 
 
-                }
+
             }
         };
         timerThread.start();
