@@ -148,6 +148,7 @@ public class Reminderku extends AppCompatActivity {
         showdata();
     }
 
+
     private void showdata(){
         list = new ArrayList<>();
         DatabaseReference refku =FirebaseDatabase.getInstance().getReference("Reminder").child(UID);

@@ -125,7 +125,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_marginTop="65dp"
-            android:background="@drawable/ic_achiv"
+            android:background="@drawable/ic_passsss"
             android:layout_marginStart="32dp"
             />
 
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="27dp"
             android:layout_marginTop="60dp"
-            android:text="Achievement"
+            android:text="Change Password"
             android:textSize="14sp"
             android:textStyle="normal"
             />
@@ -147,10 +147,11 @@
             android:paddingBottom="12dp"
             android:paddingRight="8dp"
             android:textAlignment="center"
+            android:onClick="ChangePass"
             android:textColor="#fff"
             android:layout_marginTop="65dp"
             android:background="@drawable/btn_editpro"
-            android:layout_marginLeft="125dp"
+            android:layout_marginLeft="95dp"
             />
     </LinearLayout>
     <LinearLayout

@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,6 +20,8 @@ import com.akasa.kitafit.R;
 import com.akasa.kitafit.adapter.HistoryAdapter;
 import com.akasa.kitafit.model.ProgramKesehatanData;
 import com.akasa.kitafit.model.usermodel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -127,4 +132,42 @@ public class Profile extends AppCompatActivity {
         finish();
         startActivity(new Intent(Profile.this, Login.class));
     }
-}
+
+    public void ChangePass(View v) {
+        final EditText resetPassword = new EditText(v.getContext());
+
+        final AlertDialog.Builder passwordResetDialog = new AlertDialog.Builder(v.getContext());
+        passwordResetDialog.setTitle("Reset Password ?");
+        passwordResetDialog.setMessage("Enter New Password > 6 Characters long.");
+        passwordResetDialog.setView(resetPassword);
+
+        passwordResetDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // extract the email and send reset link
+                String newPassword = resetPassword.getText().toString();
+                user.updatePassword(newPassword).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(Profile.this, "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(Profile.this, "Password Reset Failed.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
+
+        passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // close
+            }
+        });
+
+        passwordResetDialog.create().show();
+
+    }
+    }
