@@ -27,14 +27,6 @@ public class ProgramKesehatanData {
         this.gambar_program = gambar_program;
     }
 
-    public int getId_program_Kesehatan() {
-        return id_program_kesehatan;
-    }
-
-    public void setId_program_Kesehatan(int id_program_kesehatan) {
-        this.id_program_kesehatan = id_program_kesehatan;
-    }
-
     public int getTotal_olahraga() {
         return total_olahraga;
     }
@@ -81,5 +73,13 @@ public class ProgramKesehatanData {
 
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
+    }
+
+    public int getId_program_kesehatan() {
+        return id_program_kesehatan;
+    }
+
+    public void setId_program_kesehatan(int id_program_kesehatan) {
+        this.id_program_kesehatan = id_program_kesehatan;
     }
 }

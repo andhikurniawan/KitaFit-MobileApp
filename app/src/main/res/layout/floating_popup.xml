@@ -50,7 +50,20 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:hint="Date and Time"/>
-
+    <TextView
+        android:id="@+id/tgl_remind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tanggal"
+        android:layout_marginTop="-20dp"
+        android:textColor="#fff"/>
+    <TextView
+        android:id="@+id/jam_remind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="tanggal"
+        android:layout_marginTop="-20dp"
+        android:textColor="#fff"/>
     <Button
         android:id="@+id/btn_tambah_remind"
         android:layout_width="236dp"

@@ -31,7 +31,7 @@
                     android:layout_height="70dp"
                     android:background="@color/colorPrimary"/>
                 <ImageView
-                    android:id="@+id/img"
+                    android:id="@+id/img_re"
                 android:layout_width="24dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="18dp"
@@ -41,7 +41,7 @@
                     android:id="@+id/judul_remind"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@+id/img"
+                    android:layout_toRightOf="@+id/img_re"
                     android:text="Mau Olahraga"
                     android:layout_marginStart="16dp"
                     android:textColor="#000"
@@ -54,7 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_below="@+id/judul_remind"
-                    android:layout_toRightOf="@+id/img"
+                    android:layout_toRightOf="@+id/img_re"
                     android:layout_height="wrap_content"
                     android:text="Sat Sep 05 06:23 GMT+07:00 2020"
                     android:padding="5dp"

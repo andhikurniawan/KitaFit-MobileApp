@@ -18,31 +18,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".activity.DetailTutorialPenggunaanAplikasi"></activity>
         <activity android:name=".activity.test">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".activity.TutorialPenggunaanAplikasi" />
         <activity android:name=".activity.DetailProgramKesehatan" />
         <activity android:name=".activity.ProgramKesehatan" />
+
         <activity android:name=".activity.PostLiniMasa"></activity>
         <activity android:name=".activity.MainActivity"></activity>
-        <activity android:name=".activity.Reminderku">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-        </activity>
+        <activity android:name=".activity.Reminderku"></activity>
+      
         <activity android:name=".activity.Homepage" />
         <activity android:name=".activity.Daftar_Olahraga" />
         <activity android:name=".activity.Detail_Olahraga" />
         <activity android:name=".activity.Aktivitas" />
+
         <activity android:name=".activity.EditProfile">
 
             <!-- <intent-filter> -->
@@ -54,12 +46,6 @@
         </activity>
         <activity android:name=".activity.Profile">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".activity.Register" />
         <activity android:name=".activity.Login" />
@@ -70,8 +56,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.Video"></activity>
         <activity android:name=".activity.Olahraga"></activity>
-
         <receiver android:name=".adapter.NotifAlarm" />
 
         <provider

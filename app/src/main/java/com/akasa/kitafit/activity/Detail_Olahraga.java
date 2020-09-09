@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.MediaController;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -34,7 +35,7 @@ import com.squareup.picasso.Picasso;
 
 public class Detail_Olahraga extends AppCompatActivity {
 
-    TextView t1, deskripsi, durasi, fokus_area, kalori;
+    TextView t1, deskripsi, durasi, fokus_area, kalori, sumber;
     private String id = "";
     TextView url;
     VideoView video;
@@ -59,11 +60,11 @@ public class Detail_Olahraga extends AppCompatActivity {
         durasi = findViewById(R.id.durasi);
         fokus_area = findViewById(R.id.fokus);
         kalori = findViewById(R.id.kalori);
+        sumber = findViewById(R.id.sumber);
         video = (VideoView) findViewById(R.id.video);
         pd = new ProgressDialog(Detail_Olahraga.this);
         url = (TextView) findViewById(R.id.text);
-        pd.setMessage("Buffering please wait");
-        pd.show();
+
     getVideo(id);
     getDetailOlahraga(id);
     getStep(id);
@@ -93,13 +94,7 @@ public class Detail_Olahraga extends AppCompatActivity {
                 });
 
                 holder.t1.setText(model.getDurasi());
-                holder.v.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent e = new Intent(Detail_Olahraga.this,Detail_Olahraga.class);
-                        startActivity(e);
-                    }
-                });
+                holder.n1.setText("Step " + model.getNomor());
             }
 
             @NonNull
@@ -126,12 +121,17 @@ public class Detail_Olahraga extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference reference = firebaseDatabase.getReference().child("daftar_olahraga").child(id);
        DatabaseReference childreference = reference.child("link_video");
+        final MediaController mediaController = new MediaController(this);
         childreference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String message = dataSnapshot.getValue(String.class);
                 Uri uri = Uri.parse(message);
                 video.setVideoURI(uri);
+
+
+                mediaController.setAnchorView(video);
+                video.setMediaController(mediaController);
                 video.start();
                 video.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
                     @Override
@@ -167,6 +167,7 @@ public class Detail_Olahraga extends AppCompatActivity {
                     durasi.setText(olahraga.getDurasi());
                     fokus_area.setText(olahraga.getFokus_area());
                     kalori.setText("~ " +olahraga.getKalori());
+                    sumber.setText("Sumber : ("+olahraga.getSumber()+")");
                 }
             }
 

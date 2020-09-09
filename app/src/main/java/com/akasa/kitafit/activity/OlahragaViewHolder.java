@@ -16,6 +16,7 @@ public class OlahragaViewHolder extends RecyclerView.ViewHolder {
     TextView durasi;
     TextView fokus_area;
     TextView kalori;
+    TextView sumber;
     public ImageView i1;
     public View v;
 
@@ -29,6 +30,7 @@ public class OlahragaViewHolder extends RecyclerView.ViewHolder {
         durasi = itemView.findViewById(R.id.durasi);
         fokus_area = itemView.findViewById(R.id.fokus);
         kalori = itemView.findViewById(R.id.kalori);
+        sumber = itemView.findViewById(R.id.sumber);
         v = itemView;
 
 

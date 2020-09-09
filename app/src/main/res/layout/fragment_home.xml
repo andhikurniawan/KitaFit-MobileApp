@@ -13,7 +13,7 @@
         android:orientation="vertical">
 
         <RelativeLayout
-            android:layout_width="343dp"
+            android:layout_width="330dp"
             android:layout_height="135dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
@@ -32,9 +32,9 @@
 
             <TextView
                 android:id="@+id/judul"
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:text="Hallo!"
+                android:text=""
                 android:textSize="18sp"
                 android:textColor="@color/white"
                 android:layout_toRightOf="@+id/user"
@@ -42,20 +42,21 @@
                 android:layout_marginTop="33dp"/>
 
             <ImageButton
+                android:id="@+id/bell"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:onClick="GoToReminder"
                 android:background="@drawable/bell"
                 android:layout_toRightOf="@+id/judul"
                 android:layout_marginTop="40dp"
-                android:layout_marginLeft="140dp"/>
+                android:layout_marginLeft="110dp"/>
 
 
             <TextView
                 android:id="@+id/namauser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Syfa Nur Lathifah"
+                android:text=""
                 android:textSize="16sp"
                 android:textColor="@color/white"
                 android:layout_toRightOf="@+id/user"
@@ -67,7 +68,7 @@
                 android:id="@+id/umur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="19 Tahun"
+                android:text=""
                 android:textSize="16sp"
                 android:textColor="@color/white"
                 android:layout_toRightOf="@+id/user"
@@ -182,6 +183,7 @@
             android:layout_marginTop="16dp"
             android:scaleType="fitXY"
             android:src="@drawable/berita"
+            android:layout_marginBottom="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:iss_auto_cycle="true"
