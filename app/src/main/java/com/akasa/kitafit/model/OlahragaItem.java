@@ -2,13 +2,14 @@ package com.akasa.kitafit.model;
 
 public class OlahragaItem {
 
-    public String id, nama_olahraga, poster, deskripsi, durasi, fokus_area, kalori, link_video;
+    public String id, nama_olahraga, poster, deskripsi, durasi, fokus_area, kalori, link_video, sumber;
 
 
     public OlahragaItem() {
 
     }
-    public OlahragaItem(String id, String nama_olahraga, String poster, String deskripsi, String durasi, String fokus_area, String kalori, String link_video) {
+    public OlahragaItem(String id, String nama_olahraga, String poster, String deskripsi,
+                        String durasi, String fokus_area, String kalori, String link_video, String sumber) {
         this.nama_olahraga = nama_olahraga;
         this.poster = poster;
         this.deskripsi = deskripsi;
@@ -17,6 +18,7 @@ public class OlahragaItem {
         this.kalori = kalori;
         this.link_video = link_video;
         this.id = id;
+        this.sumber = sumber;
     }
 
     public String getId() {
@@ -81,5 +83,13 @@ public class OlahragaItem {
 
     public void setLink_video(String link_video) {
         this.link_video = link_video;
+    }
+
+    public String getSumber() {
+        return sumber;
+    }
+
+    public void setSumber(String sumber) {
+        this.sumber = sumber;
     }
 }

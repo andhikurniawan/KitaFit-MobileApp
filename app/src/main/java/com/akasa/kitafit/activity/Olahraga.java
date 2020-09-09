@@ -1,28 +1,35 @@
 package com.akasa.kitafit.activity;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
 import com.akasa.kitafit.R;
+import com.akasa.kitafit.fragment.HomeFragment;
 import com.akasa.kitafit.model.OlahragaItem;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class Olahraga extends AppCompatActivity {
-
+    EditText inputSearch;
+    Button back;
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<OlahragaItem> options;
@@ -32,13 +39,48 @@ public class Olahraga extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_olahraga);
-
+        back = findViewById(R.id.back);
+        inputSearch = findViewById(R.id.cari);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
+       LoadData("");
+        inputSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.toString()!=null){
+                    LoadData(s.toString());
+                }
+                else {
+                    LoadData("");
+                }
+            }
+        });
+    }
+
+    private void LoadData(String s) {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("daftar_olahraga");
+        Query query=databaseReference.orderByChild("nama_olahraga").startAt(s).endAt(s+"\uf8ff");
 
         options = new FirebaseRecyclerOptions.Builder<OlahragaItem>()
-                .setQuery(databaseReference, OlahragaItem.class).build();
+                .setQuery(query, OlahragaItem.class).build();
 
         adapter = new FirebaseRecyclerAdapter<OlahragaItem, OlahragaViewHolder>(options) {
             @Override
@@ -59,7 +101,7 @@ public class Olahraga extends AppCompatActivity {
                 holder.v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent e = new Intent(Olahraga.this, Detail_Olahraga.class);
+                        Intent e = new Intent(Olahraga.this,Detail_Olahraga.class);
                         e.putExtra("pid", model.getId());
                         startActivity(e);
                     }
@@ -81,6 +123,7 @@ public class Olahraga extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -101,5 +144,6 @@ public class Olahraga extends AppCompatActivity {
         if (adapter != null)
             adapter.startListening();
     }
+
 
 }

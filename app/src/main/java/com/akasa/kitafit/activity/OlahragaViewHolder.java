@@ -11,9 +11,14 @@ import com.akasa.kitafit.R;
 
 public class OlahragaViewHolder extends RecyclerView.ViewHolder {
 
-    TextView t1, deskripsi, durasi, fokus_area, kalori;
-    ImageView i1;
-    View v;
+    public TextView t1;
+    TextView deskripsi;
+    TextView durasi;
+    TextView fokus_area;
+    TextView kalori;
+    TextView sumber;
+    public ImageView i1;
+    public View v;
 
 
     public OlahragaViewHolder(@NonNull View itemView) {
@@ -25,6 +30,7 @@ public class OlahragaViewHolder extends RecyclerView.ViewHolder {
         durasi = itemView.findViewById(R.id.durasi);
         fokus_area = itemView.findViewById(R.id.fokus);
         kalori = itemView.findViewById(R.id.kalori);
+        sumber = itemView.findViewById(R.id.sumber);
         v = itemView;
 
 
