@@ -82,4 +82,12 @@ public class ProgramKesehatanData {
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
     }
+
+    public int getId_program_kesehatan() {
+        return id_program_kesehatan;
+    }
+
+    public void setId_program_kesehatan(int id_program_kesehatan) {
+        this.id_program_kesehatan = id_program_kesehatan;
+    }
 }

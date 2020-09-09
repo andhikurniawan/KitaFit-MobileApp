@@ -85,7 +85,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="14dp"
             android:layout_marginLeft="16dp"
-            android:textSize="16dp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
         <TextView
@@ -96,18 +96,19 @@
             android:textColor="@color/black"
             android:layout_marginTop="14dp"
             android:layout_marginLeft="50dp"
-            android:textSize="16dp"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
+
         <TextView
+            android:id="@+id/fokus"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Otot Lengan"
-            android:id="@+id/fokus"
-            android:textColor="@color/black"
-            android:layout_marginTop="14dp"
             android:layout_marginLeft="50dp"
-            android:textSize="16dp"
+            android:layout_marginTop="14dp"
+            android:text="Otot Lengan"
+            android:textColor="@color/black"
+            android:textSize="15dp"
             android:textStyle="bold" />
 
     </LinearLayout>

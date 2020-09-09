@@ -127,13 +127,7 @@ imageslider();
                 });
 
                 holder.t1.setText(model.getNama_program());
-                holder.v.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent e = new Intent(Homepage.this,Detail_Olahraga.class);
-                        startActivity(e);
-                    }
-                });
+
             }
 
             @NonNull

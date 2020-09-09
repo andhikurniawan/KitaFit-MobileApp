@@ -11,9 +11,9 @@ import com.akasa.kitafit.R;
 
 public class StepViewHolder extends RecyclerView.ViewHolder {
 
-    TextView t1, n1;
-    ImageView i1;
-    View v;
+    public TextView t1, n1;
+    public ImageView i1;
+    public View v;
 
 
     public StepViewHolder(@NonNull View itemView) {
