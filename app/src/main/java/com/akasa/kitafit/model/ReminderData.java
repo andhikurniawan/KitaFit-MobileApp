@@ -3,17 +3,27 @@ package com.akasa.kitafit.model;
 public class ReminderData {
     int id;
     String title, tanggal, jam, date_time, img;
+    long timeInMillis;
 
     public ReminderData() {
     }
 
-    public ReminderData(int id, String title, String tanggal, String jam, String date_time, String img) {
+    public ReminderData(int id, String title, String tanggal, String jam, String date_time, String img, long timeInMillis) {
         this.id = id;
         this.title = title;
         this.tanggal = tanggal;
         this.jam = jam;
         this.date_time = date_time;
         this.img = img;
+        this.timeInMillis = timeInMillis;
+    }
+
+    public long getTimeInMillis() {
+        return timeInMillis;
+    }
+
+    public void setTimeInMillis(long timeInMillis) {
+        this.timeInMillis = timeInMillis;
     }
 
     public int getId() {
