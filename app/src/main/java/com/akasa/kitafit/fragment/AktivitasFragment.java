@@ -133,6 +133,7 @@ public class AktivitasFragment extends Fragment {
                     polamakan(v);
                     olahraga(v);
                     video(v);
+                    step(v);
                 } else {
                     mHari.setText("Belum Mengambil Program");
                 }
@@ -151,52 +152,55 @@ public class AktivitasFragment extends Fragment {
         return v;
     }
 
-//    private void step(View v) {
-//        RecyclerView recyclerView = v.findViewById(R.id.recyclerview4);
-//        recyclerView.setHasFixedSize(true);
-//        DatabaseReference sref = FirebaseDatabase.getInstance().getReference().child("daftar_olahraga").child("1").child("step");
-//
-//        optionss = new FirebaseRecyclerOptions.Builder<StepItem>()
-//                .setQuery(sref, StepItem.class).build();
-//
-//        adapterr = new FirebaseRecyclerAdapter<StepItem, StepViewHolder>(optionss) {
-//            @Override
-//            protected void onBindViewHolder(@NonNull StepViewHolder holder, int position, @NonNull final StepItem model) {
-//                Picasso.get().load(model.getPoster()).into(holder.i1, new Callback() {
-//                    @Override
-//                    public void onSuccess() {
-//
-//                    }
-//
-//                    @SuppressLint("RestrictedApi")
-//                    @Override
-//                    public void onError(Exception e) {
-//                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
-//                    }
-//                });
-//
-//                holder.t1.setText(model.getDurasi());
-//                holder.n1.setText("Step " + model.getNomor());
-//            }
-//
-//            @NonNull
-//            @Override
-//            public StepViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.step_item, parent, false);
-//
-//                return new StepViewHolder(view);
-//            }
-//        };
-//
-//
-//        LinearLayoutManager layoutManager
-//                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
-//
-//        RecyclerView myList = (RecyclerView) v.findViewById(R.id.recyclerview4);
-//        myList.setLayoutManager(layoutManager);
-//        adapterr.startListening();
-//        recyclerView.setAdapter(adapterr);
-//    }
+    private void step(View v) {
+        RecyclerView recyclerView = v.findViewById(R.id.recyclervieww);
+        recyclerView.setHasFixedSize(true);
+        DatabaseReference sref = FirebaseDatabase.getInstance().getReference().child("daftar_olahraga").child(idOlahraga).child("step");
+
+        optionss = new FirebaseRecyclerOptions.Builder<StepItem>()
+                .setQuery(sref, StepItem.class).build();
+
+        adapterr = new FirebaseRecyclerAdapter<StepItem, StepViewHolder>(optionss) {
+            @Override
+            protected void onBindViewHolder(@NonNull StepViewHolder holder, int position, @NonNull final StepItem model) {
+                Picasso.get().load(model.getPoster()).into(holder.i1, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @SuppressLint("RestrictedApi")
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                holder.t1.setText(model.getDurasi());
+                holder.n1.setText("Step " + model.getNomor());
+            }
+
+            @NonNull
+            @Override
+            public StepViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.step_item, parent, false);
+
+                return new StepViewHolder(view);
+            }
+        };
+
+
+        LinearLayoutManager layoutManager
+                = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+
+        RecyclerView myList = (RecyclerView) v.findViewById(R.id.recyclervieww);
+        myList.setLayoutManager(layoutManager);
+        adapterr.startListening();
+        recyclerView.setAdapter(adapterr);
+    }
+
+
+
 
     private void video(View v) {
         final VideoView video = (VideoView) v.findViewById(R.id.video);

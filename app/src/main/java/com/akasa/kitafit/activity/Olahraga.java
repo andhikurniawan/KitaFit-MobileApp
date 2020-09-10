@@ -39,7 +39,7 @@ public class Olahraga extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_olahraga);
-        back = findViewById(R.id.back);
+        back = findViewById(R.id.button3);
         inputSearch = findViewById(R.id.cari);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
         recyclerView.setHasFixedSize(true);
