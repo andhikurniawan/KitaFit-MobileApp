@@ -12,447 +12,462 @@
         android:orientation="vertical">
 
 
-    <RelativeLayout
-        android:layout_width="330dp"
-        android:layout_height="135dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/kotak_header"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/user"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:src="@drawable/man"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"/>
-
-        <TextView
-            android:id="@+id/judul"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="33dp"
-            android:layout_toRightOf="@+id/user"
-            android:text="Programmu :"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
-        <TextView
-            android:id="@+id/namaprogram"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:text="Belum ambil program"
-            android:maxLines="1"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@+id/user"
-            android:layout_marginLeft="24dp"
-            android:layout_below="@+id/judul"
-            />
-
-        <TextView
-            android:id="@+id/hari"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:text=" "
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@+id/user"
-            android:layout_marginLeft="24dp"
-            android:layout_marginTop="85dp"/>
-
-
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="-10dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/kotak_header"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/pola2"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="fitXY"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="32dp"
-            android:src="@drawable/food" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pola Makan"
-            android:layout_toRightOf="@+id/pola2"
-            android:textColor="@color/white"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="8dp"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-
-
-    </RelativeLayout>
-
-    <HorizontalScrollView
-        android:id="@+id/pola_makan_scroll"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pola_makan_relative"
-        android:layout_marginTop="20dp">
-
-        <LinearLayout
-            android:id="@+id/pola_makan_linear"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <RelativeLayout
-                android:layout_width="136dp"
-                android:layout_height="180dp"
-                android:layout_marginLeft="16dp"
-                android:background="@drawable/kotak_header"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/polamakan2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sarapan"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="12dp"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/gambar2"
-                    android:layout_width="159dp"
-                    android:layout_height="105dp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:scaleType="fitXY"
-                    android:layout_below="@+id/polamakan2"
-                    android:src="@drawable/cereal" />
-
-                <TextView
-                    android:id="@+id/menusarapan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cereal"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/gambar2"
-                    android:layout_gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="136dp"
-                android:layout_height="180dp"
-                android:layout_marginLeft="16dp"
-                android:background="@drawable/kotak_header"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/polamakan3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Makan Siang"
-                    android:layout_centerHorizontal="true"
-                    android:textColor="@color/white"
-                    android:layout_marginTop="12dp"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/gambar3"
-                    android:layout_width="159dp"
-                    android:layout_height="105dp"
-                    android:scaleType="fitXY"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:layout_below="@+id/polamakan3"
-                    android:src="@drawable/cereal" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cereal"
-                    android:id="@+id/menusiang"
-                    android:layout_centerHorizontal="true"
-                    android:layout_below="@+id/gambar3"
-                    android:layout_gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="136dp"
-                android:layout_height="180dp"
-                android:layout_marginLeft="16dp"
-                android:background="@drawable/kotak_header"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/polamakan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="12dp"
-                    android:text="Makan Malam"
-                    android:textColor="@color/white"
-                    android:textSize="14dp"
-                    android:textStyle="bold" />
-
-                <ImageView
-                    android:id="@+id/gambar"
-                    android:layout_width="159dp"
-                    android:layout_height="105dp"
-                    android:layout_below="@+id/polamakan"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="8dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/cereal" />
-
-                <TextView
-                    android:id="@+id/menumalam"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/gambar"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center"
-                    android:text="Cereal"
-                    android:textColor="@color/white"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
-
-
-            </RelativeLayout>
-
-        </LinearLayout>
-    </HorizontalScrollView>
-
-    <RelativeLayout
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginLeft="-10dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/kotak_header"
-        android:orientation="vertical">
-
-        <ImageView
-            android:id="@+id/pola"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:scaleType="fitXY"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="32dp"
-            android:src="@drawable/exercise" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Olahraga"
-            android:layout_toRightOf="@+id/pola"
-            android:textColor="@color/white"
-            android:layout_marginTop="12dp"
-            android:layout_marginLeft="8dp"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-
-
-
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="16dp">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <VideoView
-                android:id="@+id/video"
-                android:layout_width="match_parent"
-                android:layout_height="292dp"
-                />
-
-        </FrameLayout>
-        <TextView
-            android:id="@+id/namaolahraga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Push Up"
-            android:textColor="@color/black"
-            android:padding="16dp"
-            android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/deskripsi_olahraga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="5"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:textColor="@color/black"
-            android:lineSpacingExtra="5dp"
-            android:textSize="14dp"
-            android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem"
-            />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:scaleType="fitXY"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/ic_info" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Informasi"
-                android:textColor="@color/black"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="8dp"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="20 min"
-                android:id="@+id/durasi"
-                android:textColor="@color/black"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="16dp"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="~ 200"
-                android:id="@+id/kalori"
-                android:textColor="@color/black"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="50dp"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-
-            <TextView
-                android:id="@+id/fokus"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginTop="14dp"
-                android:text="Otot Lengan"
-                android:textColor="@color/black"
-                android:textSize="15dp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="Durasi"
-                android:layout_marginLeft="16dp"
-                android:textSize="14dp"
-                />
-
-            <TextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="Kalori"
-                android:layout_marginLeft="50dp"
-                android:textSize="14dp"
-                />
-
-            <TextView
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:text="Fokus Area"
-                android:layout_marginLeft="50dp"
-                android:textSize="14dp"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:scaleType="fitXY"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="16dp"
-                android:src="@drawable/ic_info" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Step by Step"
-                android:textColor="@color/black"
-                android:layout_marginTop="14dp"
-                android:layout_marginLeft="8dp"
-                android:textSize="20dp"
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
+        <RelativeLayout
+            android:layout_width="330dp"
+            android:layout_height="135dp"
+            android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="8dp"
+            android:background="@drawable/kotak_header"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/user"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/man" />
+
+            <TextView
+                android:id="@+id/judul"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="33dp"
+                android:layout_toRightOf="@+id/user"
+                android:text="Programmu :"
+                android:textColor="@color/white"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/namaprogram"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/judul"
+                android:layout_marginLeft="24dp"
+                android:layout_toRightOf="@+id/user"
+                android:maxLines="1"
+                android:text="Belum ambil program"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/hari"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="85dp"
+                android:layout_toRightOf="@+id/user"
+                android:text=" "
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/polaMakanAktivitasRelative"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/kotak_header"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/pola2"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="12dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/food" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@+id/pola2"
+                android:text="Pola Makan"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/pola_makan_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pola_makan_relative"
+            android:layout_marginTop="20dp">
+
+            <LinearLayout
+                android:id="@+id/pola_makan_linear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="136dp"
+                    android:layout_height="180dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/kotak_header"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/polamakan2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="12dp"
+                        android:text="Sarapan"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/gambar2"
+                        android:layout_width="159dp"
+                        android:layout_height="105dp"
+                        android:layout_below="@+id/polamakan2"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/cereal" />
+
+                    <TextView
+                        android:id="@+id/menusarapan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gambar2"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:text="Cereal"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="136dp"
+                    android:layout_height="180dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/kotak_header"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/polamakan3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="12dp"
+                        android:text="Makan Siang"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/gambar3"
+                        android:layout_width="159dp"
+                        android:layout_height="105dp"
+                        android:layout_below="@+id/polamakan3"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/cereal" />
+
+                    <TextView
+                        android:id="@+id/menusiang"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gambar3"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:text="Cereal"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="136dp"
+                    android:layout_height="180dp"
+                    android:layout_marginLeft="16dp"
+                    android:background="@drawable/kotak_header"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/polamakan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="12dp"
+                        android:text="Makan Malam"
+                        android:textColor="@color/white"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:id="@+id/gambar"
+                        android:layout_width="159dp"
+                        android:layout_height="105dp"
+                        android:layout_below="@+id/polamakan"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/cereal" />
+
+                    <TextView
+                        android:id="@+id/menumalam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/gambar"
+                        android:layout_centerHorizontal="true"
+                        android:layout_gravity="center"
+                        android:text="Cereal"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <RelativeLayout
+            android:id="@+id/olahragaRelative"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/kotak_header"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/pola"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="12dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/exercise" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="12dp"
+                android:layout_toRightOf="@+id/pola"
+                android:text="Olahraga"
+                android:textColor="@color/white"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/detailOlahragaLinear"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="16dp"
-            android:id="@+id/recyclervieww">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_marginTop="16dp"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <VideoView
+                    android:id="@+id/video"
+                    android:layout_width="match_parent"
+                    android:layout_height="292dp" />
+
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/namaolahraga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Push Up"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/deskripsi_olahraga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lineSpacingExtra="5dp"
+                android:maxLines="5"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem"
+                android:textColor="@color/black"
+                android:textSize="14dp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_info" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="14dp"
+                    android:text="Informasi"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:id="@+id/durasi"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="14dp"
+                    android:text="20 min"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/kalori"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="14dp"
+                    android:text="~ 200"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/fokus"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginTop="14dp"
+                    android:text="Otot Lengan"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:orientation="horizontal">
+
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:text="Durasi"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text="Kalori"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:text="Fokus Area"
+                    android:textSize="14dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_info" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="14dp"
+                    android:text="Step by Step"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclervieww"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"></androidx.recyclerview.widget.RecyclerView>
+
+            <Button
+                android:id="@+id/selesaiAktivitasHariIni"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/button_blue_rounded_5dp"
+                android:text="Selesai Aktivitas Hari Ini"
+                android:textAllCaps="false"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:id="@+id/batalkanProgramSaatIni"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:text="Batalkan Program Saat Ini"
+                android:textColor="@color/indian_red"
+                android:textSize="14sp" />
+
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>
 

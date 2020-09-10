@@ -104,6 +104,10 @@ public class LiniMasaAdapter extends RecyclerView.Adapter<LiniMasaAdapter.ViewHo
                     holder.sukaButton.setText("Disukai");
                     holder.sukaButton.setBackground(mContext.getResources().getDrawable(R.drawable.blue_stroke_rounded_5dp));
                     holder.sukaButton.setTextColor(mContext.getResources().getColor(R.color.colorPrimary));
+                } else {
+                    holder.sukaButton.setText("Suka");
+                    holder.sukaButton.setBackground(mContext.getResources().getDrawable(R.drawable.button_blue_rounded_5dp));
+                    holder.sukaButton.setTextColor(mContext.getResources().getColor(R.color.white));
                 }
             }
 
