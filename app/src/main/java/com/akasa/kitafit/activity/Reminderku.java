@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -30,6 +31,7 @@ import com.akasa.kitafit.R;
 import com.akasa.kitafit.adapter.AdapterReminder;
 import com.akasa.kitafit.adapter.NotifAlarm;
 import com.akasa.kitafit.adapter.TodayAdapter;
+import com.akasa.kitafit.fragment.ProfilFragment;
 import com.akasa.kitafit.model.AppDatabase;
 import com.akasa.kitafit.model.LiniMasaData;
 import com.akasa.kitafit.model.ReminderData;
@@ -66,14 +68,14 @@ public class Reminderku extends AppCompatActivity {
     private Dialog dialog;
     private AppDatabase appDatabase;
     private RecyclerView recyclerView, rc;
-    private AdapterReminder adapter;
-    private List<Reminders> temp;
-    private TextView empty;
+    private TextView empty, t_remind, listempty;
+    private View v_remind;
+    private ImageView img_remind;
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase;
     String UID;
     DatabaseReference mref;
-    TextView mUsername, t_remind, t_waktu;
+    TextView mUsername;
     int idPost = 0;
     ArrayList<ReminderData> list;
     ArrayList<ReminderData> todayList;
@@ -97,7 +99,18 @@ public class Reminderku extends AppCompatActivity {
 //        t_waktu = findViewById(R.id.t_waktu);
         final CircularImageView profil = findViewById(R.id.user_img);
         add = findViewById(R.id.fab_add);
-//        empty = findViewById(R.id.empty);
+        empty = findViewById(R.id.empty);
+        t_remind = findViewById(R.id.ti_remind);
+        v_remind=findViewById(R.id.view_remind);
+        img_remind=findViewById(R.id.img_remind);
+        listempty=findViewById(R.id.listempty);
+        ImageButton btn_back=(ImageButton)findViewById(R.id.btn_bac_remind);
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               onBackPressed();
+            }
+        });
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         UID = user.getUid();
@@ -106,7 +119,7 @@ public class Reminderku extends AppCompatActivity {
 
         rc = findViewById(R.id.recyclerViewToday);
         rc.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(Reminderku.this, RecyclerView.VERTICAL, false);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(Reminderku.this, RecyclerView.HORIZONTAL, false);
         rc.setLayoutManager(linearLayoutManager2);
 
         todayReminderList();
@@ -116,7 +129,7 @@ public class Reminderku extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usermodel user = dataSnapshot.getValue(usermodel.class);
-                mUsername.setText("Hallo " + user.getNama_user());
+                mUsername.setText(user.getNama_user()+"!");
                 Picasso.get().load(user.getFoto_user()).into(profil);
             }
 
@@ -163,6 +176,7 @@ public class Reminderku extends AppCompatActivity {
 
     private void todayReminderList() {
         todayList = new ArrayList<>();
+
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Reminder").child(UID).child("id_reminder");
         Calendar c = Calendar.getInstance();
         int month = c.get(Calendar.MONTH);
@@ -196,7 +210,21 @@ public class Reminderku extends AppCompatActivity {
                     if (Long.parseLong(ds1.child("timeInMillis").getValue().toString()) > tanggalHariIniMillis && Long.parseLong(ds1.child("timeInMillis").getValue().toString()) < tanggalBesokInMillis) {
                         ReminderData remind2 = ds1.getValue(ReminderData.class);
                         todayList.add(remind2);
+
                     }
+                }
+                if(todayList.size()>0){
+                    empty.setVisibility(View.INVISIBLE);
+                    t_remind.setVisibility(View.INVISIBLE);
+                    v_remind.setVisibility(View.INVISIBLE);
+                    img_remind.setVisibility(View.INVISIBLE);
+                    rc.setVisibility(View.VISIBLE);
+                }else{
+                    empty.setVisibility(View.VISIBLE);
+                    t_remind.setVisibility(View.VISIBLE);
+                    v_remind.setVisibility(View.VISIBLE);
+                    img_remind.setVisibility(View.VISIBLE);
+                    rc.setVisibility(View.INVISIBLE);
                 }
                 TodayAdapter adapterReminder = new TodayAdapter(Reminderku.this, todayList);
                 rc.setAdapter(adapterReminder);
@@ -219,6 +247,13 @@ public class Reminderku extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     ReminderData remind = ds.getValue(ReminderData.class);
                     list.add(remind);
+                }
+                if(list.size()>0){
+                    listempty.setVisibility(View.INVISIBLE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }else {
+                    listempty.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.INVISIBLE);
                 }
 
                 AdapterReminder adapterReminder = new AdapterReminder(Reminderku.this, list);
