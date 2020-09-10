@@ -135,21 +135,22 @@
         android:layout_height="match_parent"
         android:layout_below="@id/textAllAReminder"
         android:layout_marginStart="16dp"
+        android:visibility="invisible"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="16dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 
-    <!--    <TextView-->
-    <!--        android:id="@+id/empty"-->
-    <!--        android:layout_width="wrap_content"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:visibility="visible"-->
-    <!--        android:layout_marginStart="70dp"-->
-    <!--        android:layout_marginTop="360dp"-->
-    <!--        android:gravity="center"-->
-    <!--        android:text="No Reminders Set\nClick + to add the reminders"-->
-    <!--        android:textSize="20sp" />-->
+        <TextView
+            android:id="@+id/listempty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:layout_marginStart="70dp"
+            android:layout_marginTop="360dp"
+            android:gravity="center"
+            android:text="No Reminders Set\nClick + to add the reminders"
+            android:textSize="20sp" />
 
     <ImageButton
         android:id="@+id/fab_add"

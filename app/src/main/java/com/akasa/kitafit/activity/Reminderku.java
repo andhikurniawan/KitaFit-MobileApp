@@ -68,7 +68,7 @@ public class Reminderku extends AppCompatActivity {
     private Dialog dialog;
     private AppDatabase appDatabase;
     private RecyclerView recyclerView, rc;
-    private TextView empty, t_remind;
+    private TextView empty, t_remind, listempty;
     private View v_remind;
     private ImageView img_remind;
     private FirebaseUser user;
@@ -103,11 +103,12 @@ public class Reminderku extends AppCompatActivity {
         t_remind = findViewById(R.id.ti_remind);
         v_remind=findViewById(R.id.view_remind);
         img_remind=findViewById(R.id.img_remind);
+        listempty=findViewById(R.id.listempty);
         ImageButton btn_back=(ImageButton)findViewById(R.id.btn_bac_remind);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Reminderku.this, MainActivity.class));
+               onBackPressed();
             }
         });
 
@@ -246,6 +247,13 @@ public class Reminderku extends AppCompatActivity {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     ReminderData remind = ds.getValue(ReminderData.class);
                     list.add(remind);
+                }
+                if(list.size()>0){
+                    listempty.setVisibility(View.INVISIBLE);
+                    recyclerView.setVisibility(View.VISIBLE);
+                }else {
+                    listempty.setVisibility(View.VISIBLE);
+                    recyclerView.setVisibility(View.INVISIBLE);
                 }
 
                 AdapterReminder adapterReminder = new AdapterReminder(Reminderku.this, list);
