@@ -14,9 +14,11 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.akasa.kitafit.R;
+import com.akasa.kitafit.fragment.ProfilFragment;
 import com.akasa.kitafit.model.usermodel;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -60,10 +62,19 @@ public class EditProfile extends AppCompatActivity {
         tb_user = (EditText) findViewById(R.id.txt_tinggi);
         updateProfilePic = findViewById(R.id.img_user);
         Button Submit = (Button) findViewById(R.id.btn_edit);
+        ImageButton btn_back=(ImageButton)findViewById(R.id.btn_bac_edit);
         firebaseStorage = FirebaseStorage.getInstance();
        storageReference = FirebaseStorage.getInstance().getReference();
         user = FirebaseAuth.getInstance().getCurrentUser();
         UID=user.getUid();
+
+        btn_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EditProfile.this, ProfilFragment.class));
+            }
+        });
+
         DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference("user");
         UsersRef.child(UID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -94,11 +105,12 @@ public class EditProfile extends AppCompatActivity {
     }
     private void updateOnlyUserInfo() {
         storageReference=firebaseStorage.getReference();
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("user");
+        if(imagePath!=null){
         StorageReference storageReference2nd = storageReference.child("User").child(UID+System.currentTimeMillis()+ "." + getFileExtension(imagePath));
         storageReference2nd.putFile(imagePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("user");
                 Task<Uri> uriTask = taskSnapshot.getStorage().getDownloadUrl();
                 while (!uriTask.isSuccessful()) ;
                 donwload = uriTask.getResult();
@@ -122,7 +134,20 @@ public class EditProfile extends AppCompatActivity {
                 Toast.makeText(EditProfile.this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+        }else{
+            HashMap<String, Object> userMap = new HashMap<>();
+            userMap. put("berat_badan", bb_user.getText().toString());
+            userMap. put("jenis_kelamin", jk_user.getText().toString());
+            userMap. put("nama_user", nama_user.getText().toString());
+            userMap. put("tinggi_badan", tb_user.getText().toString());
+            userMap. put("umur", umur_user.getText().toString());
+            ref.child(UID).updateChildren(userMap);
 
+
+            Toast.makeText(EditProfile.this, "Profile Info update successfully.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(EditProfile.this, EditProfile.class));
+            finish();
+        }
 
     }
 

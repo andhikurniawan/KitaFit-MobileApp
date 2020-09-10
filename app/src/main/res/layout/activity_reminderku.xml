@@ -13,14 +13,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="-20dp"
         android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/nama_user"
+        <ImageButton
+            android:id="@+id/btn_bac_remind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="50dp"
-            android:text="Hello Andhi Kurniawan !"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/ic_back_btn"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="40dp"
+            android:text="Hello"
             android:textColor="#fff"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -29,68 +35,89 @@
             android:id="@+id/user_img"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginLeft="130dp"
+            android:layout_marginLeft="210dp"
             android:layout_marginTop="40dp"
             android:src="@drawable/man" />
     </LinearLayout>
-
+    <TextView
+        android:id="@+id/nama_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="42dp"
+        android:text="Andhi Kurniawan !"
+        android:textColor="#fff"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewToday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:orientation="horizontal"
+        android:layout_marginTop="90dp"
+        android:visibility="invisible"
+        android:layout_marginEnd="16dp" />
     <LinearLayout
         android:id="@+id/todayRecyclerLinear"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
         android:orientation="vertical">
-        <!--        <View-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="110dp"-->
-        <!--            android:background="@drawable/ret_reminder"-->
-        <!--            android:alpha="0.4"-->
-        <!--            android:layout_marginStart="16dp"-->
-        <!--            android:layout_marginEnd="16dp"-->
-        <!--            android:layout_marginTop="20dp"/>-->
-        <!--        <TextView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="Today Reminder"-->
-        <!--            android:textSize="20sp"-->
-        <!--            android:textStyle="bold"-->
-        <!--            android:textColor="#fff"-->
-        <!--            android:layout_marginStart="32dp"-->
-        <!--            android:layout_marginTop="-100dp"/>-->
-        <!--        <TextView-->
-        <!--            android:id="@+id/t_remind"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="Workout"-->
-        <!--            android:textSize="14sp"-->
-        <!--            android:textStyle="normal"-->
-        <!--            android:textColor="#fff"-->
-        <!--            android:layout_marginStart="32dp"-->
-        <!--            android:layout_marginTop="10dp"/>-->
-        <!--        <TextView-->
-        <!--            android:id="@+id/t_waktu"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="13.00 PM"-->
-        <!--            android:textSize="14sp"-->
-        <!--            android:textStyle="normal"-->
-        <!--            android:textColor="#fff"-->
-        <!--            android:layout_marginStart="32dp"-->
-        <!--            android:layout_marginTop="5dp"/>-->
-        <!--        <ImageView-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="260dp"-->
-        <!--            android:layout_marginTop="-70dp"-->
-        <!--            android:background="@drawable/bell_reminder"-->
-        <!--            android:adjustViewBounds="true"/>-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewToday"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp" />
+                <View
+                    android:id="@+id/view_remind"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:background="@drawable/ret_reminder"
+                    android:alpha="0.4"
+                    android:visibility="visible"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginTop="20dp"/>
+                <TextView
+                    android:id="@+id/ti_remind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Today Reminder"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+                    android:textColor="#fff"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="-100dp"/>
+                <TextView
+                    android:id="@+id/empty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Reminder Hari Ini Kosong"
+                    android:textSize="16sp"
+                    android:textStyle="normal"
+                    android:visibility="visible"
+                    android:textColor="#fff"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="10dp"/>
+
+                <ImageView
+                    android:id="@+id/img_remind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="260dp"
+                    android:visibility="visible"
+                    android:layout_marginTop="-60dp"
+                    android:background="@drawable/bell_reminder"
+                    android:adjustViewBounds="true"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/empty"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Reminder Hari Ini Kosong"-->
+<!--            android:textSize="20dp"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:visibility="visible"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            />-->
+
     </LinearLayout>
 
     <TextView
@@ -99,7 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/todayRecyclerLinear"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="-10dp"
         android:text="All Reminders" />
 
     <androidx.recyclerview.widget.RecyclerView
