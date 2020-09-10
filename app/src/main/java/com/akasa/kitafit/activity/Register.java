@@ -40,11 +40,11 @@ public class Register extends AppCompatActivity {
         mRegistBtn=findViewById(R.id.btn_register);
         loadingBar = new ProgressDialog(this);
         fauth=FirebaseAuth.getInstance();
-//
-//        if(fauth.getCurrentUser()!=null){
-//            startActivity(new Intent(getApplicationContext(), Homepage.class));
-//            finish();
-//        }
+
+        if(fauth.getCurrentUser()!=null){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            finish();
+        }
 
         mRegistBtn.setOnClickListener(new View.OnClickListener() {
             @Override
