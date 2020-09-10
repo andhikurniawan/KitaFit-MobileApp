@@ -30,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
         Intent intent = getIntent();
         if (intent.getStringExtra(AKTIVITAS_INTENT) != null){
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AktivitasFragment()).commit();
             bottomNavigationView.setSelectedItemId(R.id.nav_aktivitas);
         }
     }

@@ -2,6 +2,8 @@ package com.akasa.kitafit.fragment;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -24,6 +26,7 @@ import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,7 +68,7 @@ import static com.firebase.ui.auth.AuthUI.getApplicationContext;
 public class AktivitasFragment extends Fragment {
     FirebaseRecyclerOptions<StepItem> optionss;
     FirebaseRecyclerAdapter<StepItem, StepViewHolder> adapterr;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, counterOlgaRef, durasiProgramRef;
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase;
     String UID;
@@ -80,8 +83,12 @@ public class AktivitasFragment extends Fragment {
     RelativeLayout polaMakanAktivitasRelative, olahragaRelative;
     HorizontalScrollView polaMakanScroll;
     LinearLayout detailOlahragaLinear;
-
-
+    int durasiProgram, counterOlga;
+    Button selesaikanAktivitasHariIni;
+    TextView batalkanProgram;
+    DatabaseReference prokes;
+    String idPro;
+    Context context;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -89,13 +96,17 @@ public class AktivitasFragment extends Fragment {
         firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference("user");
         final DatabaseReference aktivitas = firebaseDatabase.getReference("aktivitas_user");
-        DatabaseReference opk = firebaseDatabase.getReference("daftar_olahraga_pk");
-        DatabaseReference pk = firebaseDatabase.getReference("program_kesehatan");
+        final DatabaseReference opk = firebaseDatabase.getReference("daftar_olahraga_pk");
+        prokes = firebaseDatabase.getReference("program_kesehatan");
         user = FirebaseAuth.getInstance().getCurrentUser();
         UID = user.getUid();
         final ImageView profil = v.findViewById(R.id.user);
         final TextView mHari = v.findViewById(R.id.hari);
         final TextView mNama = v.findViewById(R.id.namaprogram);
+        counterOlgaRef = aktivitas.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("counter_hari");
+        context = getContext();
+        selesaikanAktivitasHariIni = v.findViewById(R.id.selesaiAktivitasHariIni);
+        batalkanProgram = v.findViewById(R.id.batalkanProgramSaatIni);
 
         gambarProgram = v.findViewById(R.id.gambar_detail_program_kesehatan);
         namaProgram = v.findViewById(R.id.nama_program_detail_kesehatan);
@@ -133,6 +144,8 @@ public class AktivitasFragment extends Fragment {
                 Toast.makeText(getActivity(), databaseError.getCode(), Toast.LENGTH_SHORT).show();
             }
         });
+        readCounterOlga();
+        readDurasiProgram();
 
         aktivitas.child(UID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -161,7 +174,7 @@ public class AktivitasFragment extends Fragment {
                     olahragaRelative.setVisibility(View.GONE);
                     polaMakanScroll.setVisibility(View.GONE);
                     detailOlahragaLinear.setVisibility(View.GONE);
-                    Toast.makeText(getContext(), "Anda belum mengikuti program kesehatan", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Anda belum mengikuti program kesehatan", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -202,8 +215,104 @@ public class AktivitasFragment extends Fragment {
 
 
 //        step(v);
+        selesaikanAktivitasHariIni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (selesaikanAktivitasHariIni.getText() == "Selesaikan Program"){
+                    aktivitas.child(UID).removeValue();
+                    Toast.makeText(getContext(), "Kamu telah menyelesaikan program ini, Selamat!", Toast.LENGTH_SHORT).show();
+                } else {
+                    counterOlga++;
+                    counterOlgaRef.setValue(String.valueOf(counterOlga));
+                    Toast.makeText(getContext(), "Aktivitas hari ini selesai, yuk lanjutkan besok!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
+        batalkanProgram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final AlertDialog alertDialog = new AlertDialog.Builder(context).create();
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("Batalkan Progam Kesehatan");
+                builder.setMessage("Apakah Anda yakin untuk membatalkan program ini?");
+                builder.setNegativeButton("Kembali", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.cancel();
+                    }
+                });
+                builder.setPositiveButton("Batalkan", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        aktivitas.child(UID).removeValue();
+                        Toast.makeText(getContext(), "Kamu telah membatalkan program ini.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
+            }
+        });
         return v;
+    }
+
+    private void readDurasiProgram(){
+        DatabaseReference cekId = FirebaseDatabase.getInstance().getReference("aktivitas_user").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("id_program_kesehatan");
+        cekId.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    idPro = dataSnapshot.getValue().toString();
+                    durasiProgramRef = FirebaseDatabase.getInstance().getReference("program_kesehatan").child(idPro).child("durasi_program");
+                    durasiProgramRef.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            durasiProgram = Integer.parseInt(dataSnapshot.getValue().toString());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                } else {
+                    Log.d(TAG, "onDataChange: Durasi Counter kosong");
+                }
+                
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void readCounterOlga() {
+        counterOlgaRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    counterOlga = Integer.parseInt(dataSnapshot.getValue().toString());
+                    if (counterOlga == durasiProgram){
+                        selesaikanAktivitasHariIni.setText("Selesaikan Program");
+                    }
+                } else {
+                    Log.d(TAG, "onDataChange: Kosong Counter");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     private void step(View v) {
@@ -260,14 +369,14 @@ public class AktivitasFragment extends Fragment {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference reference = firebaseDatabase.getReference().child("daftar_olahraga").child(idOlahraga);
         DatabaseReference childreference = reference.child("link_video");
-        final MediaController mediaController = new MediaController(getContext());
+        final MediaController mediaController = new MediaController(context);
         childreference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String message = dataSnapshot.getValue(String.class);
                 Uri uri = Uri.parse(message);
                 video.setVideoURI(uri);
-                final ProgressDialog pd = new ProgressDialog(getContext());
+                final ProgressDialog pd = new ProgressDialog(context);
 
 
                 mediaController.setAnchorView(video);

@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.akasa.kitafit.R;
+import com.akasa.kitafit.activity.DetailProgramKesehatan;
 import com.akasa.kitafit.activity.Detail_Olahraga;
 import com.akasa.kitafit.activity.Homepage;
 import com.akasa.kitafit.activity.Olahraga;
@@ -30,8 +31,10 @@ import com.akasa.kitafit.activity.Profile;
 import com.akasa.kitafit.activity.ProgramKesehatan;
 import com.akasa.kitafit.activity.ProgramViewHolder;
 import com.akasa.kitafit.activity.Reminderku;
+import com.akasa.kitafit.adapter.DaftarProgramOlahragaHomeAdapter;
 import com.akasa.kitafit.model.OlahragaItem;
 import com.akasa.kitafit.model.ProgramItem;
+import com.akasa.kitafit.model.ProgramKesehatanData;
 import com.akasa.kitafit.model.usermodel;
 import com.bumptech.glide.Glide;
 import com.denzcoskun.imageslider.ImageSlider;
@@ -62,14 +65,17 @@ public class HomeFragment extends Fragment {
     LinearLayoutManager mLayoutManager;
     SharedPreferences mSharedPref;
     EditText inputSearch;
-    RecyclerView recyclerView;
+    RecyclerView recyclerViewOlga, recyclerViewProgram;
     FirebaseRecyclerOptions<OlahragaItem> options;
     FirebaseRecyclerAdapter<OlahragaItem, OlahragaViewHolder> adapter;
     FirebaseRecyclerOptions<ProgramItem> optionss;
     FirebaseRecyclerAdapter<ProgramItem, ProgramViewHolder> adapterr;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference, olgaRef, programRef;
     ImageSlider mainslider;
     ImageButton bell;
+    ArrayList<String> gambarDaftar, gambarProgram;
+    ArrayList<String> judulDaftar, judulProgram;
+    Boolean isProgram, isOlga;
 
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase;
@@ -109,6 +115,17 @@ public class HomeFragment extends Fragment {
         judul = v.findViewById(R.id.judul);
         judul.setText("Hallo!");
 
+        olgaRef = FirebaseDatabase.getInstance().getReference("daftar_olahraga");
+        programRef = FirebaseDatabase.getInstance().getReference("program_kesehatan");
+
+        recyclerViewOlga = v.findViewById(R.id.recyclerview);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+        LinearLayoutManager linearLayoutManager2 = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
+
+        recyclerViewOlga.setLayoutManager(linearLayoutManager);
+
+        recyclerViewProgram = v.findViewById(R.id.recyclerview2);
+        recyclerViewProgram.setLayoutManager(linearLayoutManager2);
 
 
         getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -116,8 +133,10 @@ public class HomeFragment extends Fragment {
         mainslider=(ImageSlider)v.findViewById(R.id.image_slider);
 
 
-        olahraga(v);
-        program(v);
+//        olahraga(v);
+        readDataOlahraga();
+//        program(v);
+        readDataProgram();
         imageslider();
 
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -149,6 +168,57 @@ public class HomeFragment extends Fragment {
 
 
         return v;
+    }
+
+    private void readDataProgram() {
+        isProgram = true;
+        programRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    gambarProgram = new ArrayList<>();
+                    judulProgram = new ArrayList<>();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        ProgramKesehatanData pkd = ds.getValue(ProgramKesehatanData.class);
+                        gambarProgram.add(pkd.getGambar_program());
+                        judulProgram.add(pkd.getNama_program());
+                    }
+                    DaftarProgramOlahragaHomeAdapter dpo = new DaftarProgramOlahragaHomeAdapter(getContext(), gambarProgram, judulProgram, isProgram);
+                    recyclerViewProgram.setAdapter(dpo);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void readDataOlahraga() {
+        isOlga = false;
+        olgaRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    gambarDaftar = new ArrayList<>();
+                    judulDaftar = new ArrayList<>();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        OlahragaItem oli = ds.getValue(OlahragaItem.class);
+                        gambarDaftar.add(oli.getPoster());
+                        judulDaftar.add(oli.getNama_olahraga());
+                    }
+                    DaftarProgramOlahragaHomeAdapter dpo = new DaftarProgramOlahragaHomeAdapter(getContext(), gambarDaftar, judulDaftar, isOlga);
+                    recyclerViewOlga.setAdapter(dpo);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
     }
 
     private void imageslider() {
