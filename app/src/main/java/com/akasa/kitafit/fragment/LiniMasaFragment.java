@@ -83,19 +83,17 @@ public class LiniMasaFragment extends Fragment {
     }
 
     private void readData() {
-        list = new ArrayList<>();
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
-                    list.clear();
+                    list = new ArrayList<>();
                     for (DataSnapshot ds : dataSnapshot.getChildren()){
                         System.out.println("Value : "+ds.getValue());
                         LiniMasaData liniMasaData = ds.getValue(LiniMasaData.class);
                         list.add(liniMasaData);
                     }
                     LiniMasaAdapter liniMasaAdapter = new LiniMasaAdapter(context, list);
-                    liniMasaAdapter.setHasStableIds(true);
                     recyclerView.setAdapter(liniMasaAdapter);
                     progressBar.setVisibility(View.GONE);
                 } else {
