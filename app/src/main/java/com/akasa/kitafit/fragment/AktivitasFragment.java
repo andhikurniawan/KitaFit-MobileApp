@@ -82,7 +82,7 @@ public class AktivitasFragment extends Fragment {
         final View v = inflater.inflate(R.layout.fragment_aktivitas, container, false);
         firebaseDatabase = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = firebaseDatabase.getReference("user");
-        DatabaseReference aktivitas = firebaseDatabase.getReference("aktivitas_user");
+        final DatabaseReference aktivitas = firebaseDatabase.getReference("aktivitas_user");
         DatabaseReference opk = firebaseDatabase.getReference("daftar_olahraga_pk");
         DatabaseReference pk = firebaseDatabase.getReference("program_kesehatan");
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -119,32 +119,75 @@ public class AktivitasFragment extends Fragment {
             }
         });
 
-        aktivitas.child(UID).addValueEventListener(new ValueEventListener() {
+        aktivitas.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                AktivitasItem aktivitas = dataSnapshot.getValue(AktivitasItem.class);
-                ProgramItem pk = dataSnapshot.getValue(ProgramItem.class);
-                
-                if (aktivitas.getCounter_hari() != null) {
-                    mHari.setText("Hari Ke - " + aktivitas.getCounter_hari());
-                    idProgram = aktivitas.getId_program_kesehatan();
-                    idOlahraga = aktivitas.getCounter_hari();
-                    program(v);
-                    polamakan(v);
-                    olahraga(v);
-                    video(v);
-                    step(v);
-                } else {
-                    mHari.setText("Belum Mengambil Program");
-                }
+                if (dataSnapshot.exists()) {
+                    aktivitas.child(UID).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            AktivitasItem aktivitas = dataSnapshot.getValue(AktivitasItem.class);
+                            ProgramItem pk = dataSnapshot.getValue(ProgramItem.class);
+                            if (aktivitas.getCounter_hari() != null) {
+                                mHari.setText("Hari Ke - " + aktivitas.getCounter_hari());
+                                idProgram = aktivitas.getId_program_kesehatan();
+                                idOlahraga = aktivitas.getCounter_hari();
+                                program(v);
+                                polamakan(v);
+                                olahraga(v);
+                                video(v);
+                                step(v);
+                            } else {
+                                mHari.setText("Belum Mengambil Program");
+                            }
+                        }
 
-            }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+
+                } else {
+                    Toast.makeText(getContext(), "Anda belum mengikuti program kesehatan", Toast.LENGTH_SHORT).show();
+                }
+                }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
+//        aktivitas.child(UID).addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                AktivitasItem aktivitas = dataSnapshot.getValue(AktivitasItem.class);
+//                ProgramItem pk = dataSnapshot.getValue(ProgramItem.class);
+//                if (dataSnapshot.exists()) {
+//                    if (aktivitas.getCounter_hari() != null) {
+//                        mHari.setText("Hari Ke - " + aktivitas.getCounter_hari());
+//                        idProgram = aktivitas.getId_program_kesehatan();
+//                        idOlahraga = aktivitas.getCounter_hari();
+//                        program(v);
+//                        polamakan(v);
+//                        olahraga(v);
+//                        video(v);
+//                        step(v);
+//                    } else {
+//                        mHari.setText("Belum Mengambil Program");
+//                    }
+//                } else {
+//                    Toast.makeText(getContext(), "Anda belum mengikuti program kesehatan", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
 //        step(v);
