@@ -109,7 +109,7 @@
                 android:textColor="#fff"
                 android:layout_marginTop="65dp"
                 android:background="@drawable/btn_editpro"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="32dp"
                 android:onClick="GoToEdit"
                 />
         </LinearLayout>
@@ -141,7 +141,7 @@
                 android:id="@+id/btn_changepass"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="32dp"
                 android:layout_marginTop="65dp"
                 android:background="@drawable/btn_editpro"
                 android:onClick="ChangePass"
@@ -187,7 +187,7 @@
                 android:textColor="#fff"
                 android:layout_marginTop="65dp"
                 android:background="@drawable/btn_editpro"
-                android:layout_marginLeft="45dp"
+                android:layout_marginLeft="32dp"
                 />
         </LinearLayout>
 

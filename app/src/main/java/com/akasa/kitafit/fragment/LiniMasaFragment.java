@@ -65,7 +65,6 @@ public class LiniMasaFragment extends Fragment {
         userImage = view.findViewById(R.id.user);
         userName = view.findViewById(R.id.namauser);
         userAge = view.findViewById(R.id.umur);
-        reminder = view.findViewById(R.id.reminder_icon);
         progressBar = view.findViewById(R.id.progressbarlingkaran);
         progressBar.setVisibility(View.VISIBLE);
         ref = FirebaseDatabase.getInstance().getReference("lini_masa").child("id_post");
@@ -79,12 +78,7 @@ public class LiniMasaFragment extends Fragment {
                 startActivity(new Intent(getActivity(), PostLiniMasa.class));
             }
         });
-        reminder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(context, Reminderku.class));
-            }
-        });
+
         return view;
     }
 
@@ -133,7 +127,7 @@ public class LiniMasaFragment extends Fragment {
                 }
                 userName.setText(usermodel.getNama_user());
                 if (usermodel.getUmur() != null){
-                    userAge.setText(usermodel.getUmur() + " Tahun");
+                    userAge.setText(usermodel.getUmur());
                 } else {
                     userAge.setText("Silakan set Umur pada menu Edit Profil");
                 }

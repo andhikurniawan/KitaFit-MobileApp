@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text"
-                android:hint="Andhi Kurniawan"
+                android:hint="Nama Lengkap"
                 android:padding="16dp"
                 android:maxLines="1"
                 />
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text"
-                android:hint="Pria"
+                android:hint="Jenis Kelamin"
                 android:padding="16dp"
                 android:maxLines="1"
                 />
@@ -89,7 +89,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text"
-                android:hint="21 tahun"
+                android:hint="Umur"
                 android:padding="16dp"
                 android:maxLines="1"
                 />
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text"
-                android:hint="70 kg"
+                android:hint="Berat Badan"
                 android:padding="16dp"
                 android:maxLines="1"
                 />
@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/edit_text"
-                android:hint="179 cm"
+                android:hint="Tinggi Badan"
                 android:padding="16dp"
                 android:maxLines="1"
                 />
