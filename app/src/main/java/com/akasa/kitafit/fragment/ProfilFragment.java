@@ -27,6 +27,7 @@ import com.akasa.kitafit.activity.Login;
 import com.akasa.kitafit.adapter.HistoryAdapter;
 import com.akasa.kitafit.model.ProgramKesehatanData;
 import com.akasa.kitafit.model.usermodel;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -81,8 +82,8 @@ public class ProfilFragment extends Fragment {
         btn_tutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               Intent intent = new Intent(getActivity(), TutorialPenggunaanAplikasi.class);
-               startActivity(intent);
+                Intent intent = new Intent(getActivity(), TutorialPenggunaanAplikasi.class);
+                startActivity(intent);
             }
         });
 
@@ -129,9 +130,9 @@ public class ProfilFragment extends Fragment {
 
         });
         user = FirebaseAuth.getInstance().getCurrentUser();
-        UID=user.getUid();
+        UID = user.getUid();
         final CircularImageView profil = view.findViewById(R.id.imgprofil_user);
-        mRecyclerView= view.findViewById(R.id.recyclerView_history);
+        mRecyclerView = view.findViewById(R.id.recyclerView_history);
         mUsername = view.findViewById(R.id.userprofil_nama);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
@@ -148,7 +149,10 @@ public class ProfilFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usermodel user = dataSnapshot.getValue(usermodel.class);
                 mUsername.setText(user.getNama_user());
-                Picasso.get().load(user.getFoto_user()).into(profil);
+                Glide.with(getContext())
+                        .load(user.getFoto_user())
+                        .centerCrop()
+                        .into(profil);
             }
 
             @Override
@@ -158,27 +162,30 @@ public class ProfilFragment extends Fragment {
         });
         return view;
     }
-    private void showListData(){
-        DatabaseReference  mRef = FirebaseDatabase.getInstance().getReference("program_kesehatan");
+
+    private void showListData() {
+        DatabaseReference mRef = FirebaseDatabase.getInstance().getReference("program_kesehatan");
         final DatabaseReference pkref = FirebaseDatabase.getInstance().getReference("history_program");
         mRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists()){
-                    listData= new ArrayList<>();
-                    for(final DataSnapshot ds : dataSnapshot.getChildren()){
-                        pkref.child("myRZNQVtrqXe8qH9ML98IvLgd8J3").child("id_program_kesehatan").addValueEventListener(new ValueEventListener() {
+                if (dataSnapshot.exists()) {
+                    listData = new ArrayList<>();
+                    for (final DataSnapshot ds : dataSnapshot.getChildren()) {
+                        pkref.child(firebaseAuth.getCurrentUser().getUid()).child("id_program_kesehatan").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                for(DataSnapshot ds2 : dataSnapshot.getChildren()){
-                                    if(ds.child("id_program_kesehatan").getValue().toString().equals(ds2.getKey())){
-                                        System.out.println("Value "+ds.getValue());
-                                        ProgramKesehatanData pk =ds.getValue(ProgramKesehatanData.class);
-                                        listData.add(pk);
+                                if (dataSnapshot.exists()) {
+                                    for (DataSnapshot ds2 : dataSnapshot.getChildren()) {
+                                        if (ds.child("id_program_kesehatan").getValue().toString().equals(ds2.getKey())) {
+                                            System.out.println("Value " + ds.getValue());
+                                            ProgramKesehatanData pk = ds.getValue(ProgramKesehatanData.class);
+                                            listData.add(pk);
+                                        }
                                     }
+                                    adapter = new HistoryAdapter(getActivity(), listData);
+                                    mRecyclerView.setAdapter(adapter);
                                 }
-                                adapter = new HistoryAdapter(getActivity(),listData);
-                                mRecyclerView.setAdapter(adapter);
                             }
 
                             @Override

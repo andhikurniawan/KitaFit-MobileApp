@@ -133,9 +133,15 @@ public class AktivitasFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usermodel user = dataSnapshot.getValue(usermodel.class);
                 if (user.getFoto_user() != null) {
-                    Picasso.get().load(user.getFoto_user()).into(profil);
+                    Glide.with(context)
+                            .load(user.getFoto_user())
+                            .centerCrop()
+                            .into(profil);
                 } else {
-                    Picasso.get().load(R.drawable.placeholder_avatar_human).into(profil);
+                    Glide.with(context)
+                            .load(R.drawable.avatar_placeholder)
+                            .centerCrop()
+                            .into(profil);
                 }
             }
 

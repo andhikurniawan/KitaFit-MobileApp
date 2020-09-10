@@ -38,6 +38,7 @@ import com.akasa.kitafit.model.ReminderData;
 import com.akasa.kitafit.model.Reminders;
 import com.akasa.kitafit.model.RoomDAO;
 import com.akasa.kitafit.model.usermodel;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -130,7 +131,10 @@ public class Reminderku extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usermodel user = dataSnapshot.getValue(usermodel.class);
                 mUsername.setText(user.getNama_user()+"!");
-                Picasso.get().load(user.getFoto_user()).into(profil);
+                Glide.with(getApplicationContext())
+                        .load(user.getFoto_user())
+                        .centerCrop()
+                        .into(profil);
             }
 
             @Override

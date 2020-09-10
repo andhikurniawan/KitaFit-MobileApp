@@ -40,22 +40,13 @@ public class DaftarOlahragaPKAdapter extends RecyclerView.Adapter<DaftarOlahraga
 
     @Override
     public void onBindViewHolder(@NonNull DaftarOlahragaPKAdapter.ViewHolder holder, final int position) {
-        holder.hari.setText("Hari " + i);
+        holder.hari.setText("Hari " + list.get(position).getId());
         Glide.with(context)
                 .load(list.get(position).getPoster())
                 .centerCrop()
                 .placeholder(R.drawable.img_placeholder)
                 .into(holder.gambarOlahraga);
         holder.olahraga.setText(list.get(position).getNama_olahraga());
-        i++;
-        holder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, Detail_Olahraga.class);
-                intent.putExtra(pid, list.get(position).getId());
-                context.startActivity(intent);
-            }
-        });
     }
 
     @Override

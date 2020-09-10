@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.akasa.kitafit.R;
 import com.akasa.kitafit.fragment.ProfilFragment;
 import com.akasa.kitafit.model.usermodel;
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -80,7 +81,10 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usermodel user = dataSnapshot.getValue(usermodel.class);
-                Picasso.get().load(user.getFoto_user()).into(updateProfilePic);
+                Glide.with(getApplicationContext())
+                        .load(user.getFoto_user())
+                        .centerCrop()
+                        .into(updateProfilePic);
             }
 
             @Override

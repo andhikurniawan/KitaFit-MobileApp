@@ -1,6 +1,7 @@
 package com.akasa.kitafit.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -76,6 +77,7 @@ public class HomeFragment extends Fragment {
     ArrayList<String> gambarDaftar, gambarProgram;
     ArrayList<String> judulDaftar, judulProgram;
     Boolean isProgram, isOlga;
+    Context context;
 
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase;
@@ -84,6 +86,13 @@ public class HomeFragment extends Fragment {
     private FirebaseAuth firebaseAuth;
 
     TextView seeAllProgramKesehatan, seeAllOlahraga, judul;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -117,6 +126,8 @@ public class HomeFragment extends Fragment {
 
         olgaRef = FirebaseDatabase.getInstance().getReference("daftar_olahraga");
         programRef = FirebaseDatabase.getInstance().getReference("program_kesehatan");
+
+        context = getContext();
 
         recyclerViewOlga = v.findViewById(R.id.recyclerview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), RecyclerView.HORIZONTAL, false);
@@ -152,11 +163,17 @@ public class HomeFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usermodel user = dataSnapshot.getValue(usermodel.class);
                 mUsername.setText(user.getNama_user());
-                mUmur.setText(user.getUmur());
+                mUmur.setText(user.getUmur()+" tahun");
                 if (user.getFoto_user() != null){
-                    Picasso.get().load(user.getFoto_user()).into(profil);
+                    Glide.with(context)
+                            .load(user.getFoto_user())
+                            .centerCrop()
+                            .into(profil);
                 } else {
-                    Picasso.get().load(R.drawable.avatar_placeholder).into(profil);
+                    Glide.with(context)
+                            .load(R.drawable.avatar_placeholder)
+                            .centerCrop()
+                            .into(profil);
                 }
             }
 

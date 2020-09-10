@@ -129,7 +129,7 @@ public class LiniMasaFragment extends Fragment {
                 }
                 userName.setText(usermodel.getNama_user());
                 if (usermodel.getUmur() != null){
-                    userAge.setText(usermodel.getUmur());
+                    userAge.setText(usermodel.getUmur()+" tahun");
                 } else {
                     userAge.setText("Silakan set Umur pada menu Edit Profil");
                 }
