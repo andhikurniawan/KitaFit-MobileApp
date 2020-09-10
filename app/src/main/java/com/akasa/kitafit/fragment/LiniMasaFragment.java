@@ -14,8 +14,11 @@ import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +53,7 @@ public class LiniMasaFragment extends Fragment {
     CircularImageView userImage;
     TextView userName, userAge;
     ImageView reminder;
+
     public LiniMasaFragment() {
         // Required empty public constructor
     }

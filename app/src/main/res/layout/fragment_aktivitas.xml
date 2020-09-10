@@ -67,6 +67,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/polaMakanAktivitasRelative"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginLeft="-10dp"
@@ -244,6 +245,7 @@
     </HorizontalScrollView>
 
     <RelativeLayout
+        android:id="@+id/olahragaRelative"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginLeft="-10dp"
@@ -277,6 +279,7 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/detailOlahragaLinear"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"

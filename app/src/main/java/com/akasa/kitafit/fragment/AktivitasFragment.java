@@ -11,10 +11,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -66,7 +69,7 @@ public class AktivitasFragment extends Fragment {
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase;
     String UID;
-    private FirebaseAuth firebaseAuth;;
+    private FirebaseAuth firebaseAuth;
     ImageView backButton, gambarProgram;
     TextView namaProgram, totalKalori, deskripsiProgram;
     RecyclerView polaMakanRecycler, daftarOlahragaRecycler;
@@ -74,6 +77,9 @@ public class AktivitasFragment extends Fragment {
     View sarapanview, makanSiangView, makanMalamView;
     String idProgram, idOlahraga;
     ArrayList<PolaMakanData> PolaList;
+    RelativeLayout polaMakanAktivitasRelative, olahragaRelative;
+    HorizontalScrollView polaMakanScroll;
+    LinearLayout detailOlahragaLinear;
 
 
     @Nullable
@@ -100,7 +106,16 @@ public class AktivitasFragment extends Fragment {
         sarapanview = v.findViewById(R.id.sarapan);
         makanSiangView = v.findViewById(R.id.makanSiang);
         makanMalamView = v.findViewById(R.id.makanMalam);
+        polaMakanAktivitasRelative = v.findViewById(R.id.polaMakanAktivitasRelative);
+        olahragaRelative = v.findViewById(R.id.olahragaRelative);
+        polaMakanScroll = v.findViewById(R.id.pola_makan_scroll);
+        detailOlahragaLinear = v.findViewById(R.id.detailOlahragaLinear);
 
+        //
+        polaMakanAktivitasRelative.setVisibility(View.GONE);
+        olahragaRelative.setVisibility(View.GONE);
+        polaMakanScroll.setVisibility(View.GONE);
+        detailOlahragaLinear.setVisibility(View.GONE);
 
         databaseReference.child(UID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -119,40 +134,36 @@ public class AktivitasFragment extends Fragment {
             }
         });
 
-        aktivitas.addValueEventListener(new ValueEventListener() {
+        aktivitas.child(UID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    aktivitas.child(UID).addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            AktivitasItem aktivitas = dataSnapshot.getValue(AktivitasItem.class);
-                            ProgramItem pk = dataSnapshot.getValue(ProgramItem.class);
-                            if (aktivitas.getCounter_hari() != null) {
-                                mHari.setText("Hari Ke - " + aktivitas.getCounter_hari());
-                                idProgram = aktivitas.getId_program_kesehatan();
-                                idOlahraga = aktivitas.getCounter_hari();
-                                program(v);
-                                polamakan(v);
-                                olahraga(v);
-                                video(v);
-                                step(v);
-                            } else {
-                                mHari.setText("Belum Mengambil Program");
-                            }
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-
+                    polaMakanAktivitasRelative.setVisibility(View.VISIBLE);
+                    olahragaRelative.setVisibility(View.VISIBLE);
+                    polaMakanScroll.setVisibility(View.VISIBLE);
+                    detailOlahragaLinear.setVisibility(View.VISIBLE);
+                    AktivitasItem aktivitas = dataSnapshot.getValue(AktivitasItem.class);
+                    ProgramItem pk = dataSnapshot.getValue(ProgramItem.class);
+                    if (aktivitas.getCounter_hari() != null) {
+                        mHari.setText("Hari Ke - " + aktivitas.getCounter_hari());
+                        idProgram = aktivitas.getId_program_kesehatan();
+                        idOlahraga = aktivitas.getCounter_hari();
+                        program(v);
+                        polamakan(v);
+                        olahraga(v);
+                        video(v);
+                        step(v);
+                    } else {
+                        mHari.setText("Belum Mengambil Program");
+                    }
                 } else {
+                    polaMakanAktivitasRelative.setVisibility(View.GONE);
+                    olahragaRelative.setVisibility(View.GONE);
+                    polaMakanScroll.setVisibility(View.GONE);
+                    detailOlahragaLinear.setVisibility(View.GONE);
                     Toast.makeText(getContext(), "Anda belum mengikuti program kesehatan", Toast.LENGTH_SHORT).show();
                 }
-                }
+            }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -243,8 +254,6 @@ public class AktivitasFragment extends Fragment {
     }
 
 
-
-
     private void video(View v) {
         final VideoView video = (VideoView) v.findViewById(R.id.video);
         TextView url = (TextView) v.findViewById(R.id.text);
@@ -291,15 +300,14 @@ public class AktivitasFragment extends Fragment {
 
         olga.child(idOlahraga).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 OlahragaItem olga = dataSnapshot.getValue(OlahragaItem.class);
-                    t1.setText(olga.getNama_olahraga());
-                    deskripsi.setText(olga.getDeskripsi());
-                    durasi.setText(olga.getDurasi());
-                    fokus_area.setText(olga.getFokus_area());
-                    kalori.setText("~ " +olga.getKalori());
-                }
+                t1.setText(olga.getNama_olahraga());
+                deskripsi.setText(olga.getDeskripsi());
+                durasi.setText(olga.getDurasi());
+                fokus_area.setText(olga.getFokus_area());
+                kalori.setText("~ " + olga.getKalori());
+            }
 
 
             @Override
@@ -322,25 +330,25 @@ public class AktivitasFragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 PolaList.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    System.out.println("Value "+ds.getValue());
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    System.out.println("Value " + ds.getValue());
                     PolaMakanData pmd = ds.getValue(PolaMakanData.class);
                     PolaList.add(pmd);
                 }
                 menup.setText(PolaList.get(2).getJudul());
                 menus.setText(PolaList.get(1).getJudul());
                 menum.setText(PolaList.get(0).getJudul());
-                if (PolaList.get(2).getGambar() != null){
+                if (PolaList.get(2).getGambar() != null) {
                     Picasso.get().load(PolaList.get(2).getGambar()).into(posterp);
                 } else {
                     Picasso.get().load(R.drawable.placeholder_avatar_human).into(posterp);
                 }
-                if (PolaList.get(1).getGambar() != null){
+                if (PolaList.get(1).getGambar() != null) {
                     Picasso.get().load(PolaList.get(1).getGambar()).into(posters);
                 } else {
                     Picasso.get().load(R.drawable.placeholder_avatar_human).into(posters);
                 }
-                if (PolaList.get(0).getGambar() != null){
+                if (PolaList.get(0).getGambar() != null) {
                     Picasso.get().load(PolaList.get(0).getGambar()).into(posterm);
                 } else {
                     Picasso.get().load(R.drawable.placeholder_avatar_human).into(posterm);
