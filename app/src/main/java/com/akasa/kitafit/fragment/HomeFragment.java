@@ -165,7 +165,7 @@ public class HomeFragment extends Fragment {
                 mUsername.setText(user.getNama_user());
                 mUmur.setText(user.getUmur()+" tahun");
                 if (user.getFoto_user() != null){
-                    Glide.with(context)
+                    Glide.with(context.getApplicationContext())
                             .load(user.getFoto_user())
                             .centerCrop()
                             .into(profil);

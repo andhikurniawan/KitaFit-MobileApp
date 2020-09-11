@@ -1,6 +1,7 @@
 package com.akasa.kitafit.fragment;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -52,6 +53,7 @@ public class ProfilFragment extends Fragment {
     Button editProfile, changepass, btn_tutorial, btn_logout;
     private FirebaseUser user;
     private FirebaseDatabase firebaseDatabase;
+    DatabaseReference passRef;
     RecyclerView mRecyclerView;
     LayoutInflater inflater;
     View dialogView;
@@ -60,17 +62,30 @@ public class ProfilFragment extends Fragment {
     String UID;
     TextView mUsername;
     private FirebaseAuth firebaseAuth;
+    String oldPass;
+    Context context;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profil, container, false);
+        context = getContext();
         editProfile = view.findViewById(R.id.btn_edit_profil);
         changepass = view.findViewById(R.id.btn_changepass);
         btn_tutorial = view.findViewById(R.id.btn_tutorial);
         btn_logout = view.findViewById(R.id.btn_logout);
         user = FirebaseAuth.getInstance().getCurrentUser();
+        passRef = FirebaseDatabase.getInstance().getReference("user").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("password");
+        readUserPass();
         UID = user.getUid();
+        firebaseAuth = FirebaseAuth.getInstance();
+        firebaseDatabase = FirebaseDatabase.getInstance();
         editProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,8 +97,8 @@ public class ProfilFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 firebaseAuth.signOut();
-                getActivity().finish();
                 startActivity(new Intent(getActivity(), Login.class));
+                getActivity().finishAffinity();
             }
         });
         btn_tutorial.setOnClickListener(new View.OnClickListener() {
@@ -111,18 +126,8 @@ public class ProfilFragment extends Fragment {
                         // extract the email and send reset link
                         final String newPassword = resetPassword.getText().toString();
                         String email=user.getEmail();
-                        ref.child(UID).addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-                        AuthCredential credential = EmailAuthProvider.getCredential(email,"oldpass");
+                        AuthCredential credential = EmailAuthProvider.getCredential(email,oldPass);
+                        Toast.makeText(context, "Sedang Mengupdate Password...", Toast.LENGTH_SHORT).show();
                         user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -133,12 +138,12 @@ public class ProfilFragment extends Fragment {
                                             HashMap<String, Object> userMap = new HashMap<>();
                                             userMap. put("password", resetPassword.getText().toString());
                                             ref.child(UID).updateChildren(userMap);
-                                            Toast.makeText(getActivity(), "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Password Reset Successfully.", Toast.LENGTH_SHORT).show();
                                         }
                                     }).addOnFailureListener(new OnFailureListener() {
                                         @Override
                                         public void onFailure(@NonNull Exception e) {
-                                            Toast.makeText(getActivity(), "Password Reset Failed.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(context, "Password Reset Failed.", Toast.LENGTH_SHORT).show();
                                         }
                                     });
                                 }else {
@@ -171,8 +176,6 @@ public class ProfilFragment extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         showListData();
 
-        firebaseAuth = FirebaseAuth.getInstance();
-        firebaseDatabase = FirebaseDatabase.getInstance();
 
 
         DatabaseReference databaseReference = firebaseDatabase.getReference("user");
@@ -181,7 +184,7 @@ public class ProfilFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 usermodel user = dataSnapshot.getValue(usermodel.class);
                 mUsername.setText(user.getNama_user());
-                Glide.with(getContext())
+                Glide.with(context.getApplicationContext())
                         .load(user.getFoto_user())
                         .centerCrop()
                         .into(profil);
@@ -193,6 +196,20 @@ public class ProfilFragment extends Fragment {
             }
         });
         return view;
+    }
+
+    private void readUserPass() {
+        passRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                oldPass = dataSnapshot.getValue().toString();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
     private void showListData() {

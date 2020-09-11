@@ -23,6 +23,10 @@ public class DetailTutorialPenggunaanAplikasi extends AppCompatActivity {
         backButton = findViewById(R.id.back_button);
         Intent intent = getIntent();
         if (intent.getStringExtra(PILIHAN_TUTORIAL).equals("cara_penggunaan")){
+            pdfView.fromAsset("tutorialPenggunaan.pdf")
+                    .enableSwipe(true)
+                    .load();
+        } else if (intent.getStringExtra(PILIHAN_TUTORIAL).equals("cara_aktivitas")){
             pdfView.fromAsset("cara_penggunaan.pdf")
                     .enableSwipe(true)
                     .load();

@@ -14,7 +14,7 @@ public class TutorialPenggunaanAplikasi extends AppCompatActivity {
 
     public static final String PILIHAN_TUTORIAL = "com.akasa.kitafit.pilihan_tutorial";
 
-    Button caraPenggunaan;
+    Button caraPenggunaan, caraAktivitas;
     ImageView backButton;
 
     @Override
@@ -22,6 +22,7 @@ public class TutorialPenggunaanAplikasi extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial_penggunaan_aplikasi);
         caraPenggunaan = findViewById(R.id.caraPenggunaanAplikasiButton);
+        caraAktivitas = findViewById(R.id.caraPost);
         backButton = findViewById(R.id.back_button);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,6 +36,14 @@ public class TutorialPenggunaanAplikasi extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(TutorialPenggunaanAplikasi.this, DetailTutorialPenggunaanAplikasi.class);
                 intent.putExtra(PILIHAN_TUTORIAL, "cara_penggunaan");
+                startActivity(intent);
+            }
+        });
+        caraAktivitas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(TutorialPenggunaanAplikasi.this, DetailTutorialPenggunaanAplikasi.class);
+                intent.putExtra(PILIHAN_TUTORIAL, "cara_aktivitas");
                 startActivity(intent);
             }
         });
