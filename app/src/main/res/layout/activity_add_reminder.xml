@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bc_add"
-    tools:context=".activity.AddReminder">
+    >
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->

@@ -45,7 +45,6 @@
                 android:id="@+id/bell"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:onClick="GoToReminder"
                 android:background="@drawable/bell"
                 android:layout_toRightOf="@+id/judul"
                 android:layout_marginTop="40dp"
